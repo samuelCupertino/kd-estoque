@@ -1,10 +1,3 @@
-import { Box } from '@/components/ui/box';
-import { Text } from '@/components/ui/text';
+import { HomeScreen } from '@/components/templates';
 
-export default function HomeScreen() {
-  return (
-    <Box>
-      <Text>ola, mundo2!</Text>
-    </Box>
-  );
-}
+export default () => <HomeScreen /> 

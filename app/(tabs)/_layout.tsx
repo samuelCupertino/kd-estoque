@@ -1,50 +1,46 @@
 import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
-
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Icon } from '@/components/atoms';
+import { useThemeColor } from '@/hooks/useThemeColor';
+import { TabBar } from '@/components/organisms';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-  const insets = useSafeAreaInsets();
-
   return (
     <Tabs
+      tabBar={(props) => <TabBar {...props} />}
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-        tabBarStyle: Platform.select({
-          ios: {
-            position: 'absolute',
-            height: 20 + insets.bottom,
-            backgroundColor: "red",
-            width: 200,
-            margin: 'auto',
-            BorderRadius: 8
-          },
-          default: {
-            backgroundColor: "red",
-            width: 200,
-            margin: 'auto',
-            BorderRadius: 8
-          },
-        }),
-      }}>
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
+        tabBarShowLabel: false,
+        animation: 'fade',
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ color }) => <Icon name="Home" size="xl" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="stock"
+        options={{
+          tabBarIcon: ({ color }) => <Icon name="PackageSearch" size="xl" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="ai-agents"
+        options={{
+          tabBarIcon: ({ color }) => <Icon name="Bot" size="xl" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="notification"
+        options={{
+          tabBarIcon: ({ color }) => <Icon name="Bell" size="xl" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          tabBarIcon: ({ color }) => <Icon name="UserRound" size="xl" color={color} />,
         }}
       />
     </Tabs>
