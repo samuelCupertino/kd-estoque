@@ -12,7 +12,7 @@ export default function NotFoundScreen() {
         <Text>This screen doesn't exist.</Text>
         <Link href="/">
           <Button variant="link">
-            Go to home screen!
+            Go to home screen!!
           </Button>
         </Link>
       </Center>

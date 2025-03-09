@@ -1,4 +1,4 @@
-import { DefaultTheme, Theme, ThemeProvider, DarkTheme } from '@react-navigation/native';
+import { DefaultTheme, Theme, ThemeProvider } from '@react-navigation/native';
 import "@/global.css";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import { useFonts } from 'expo-font';

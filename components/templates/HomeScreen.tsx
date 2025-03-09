@@ -1,76 +1,110 @@
-import { Box } from '@/components/ui/box';
-import { Text } from '@/components/ui/text';
-import { useColorScheme } from 'react-native';
-import { Button, ButtonText } from '../ui/button';
-import { Center } from '../ui/center';
-import { Heading } from '../ui/heading';
-import { Divider } from '../ui/divider';
-import { Checkbox, CheckboxIcon, CheckboxIndicator, CheckboxLabel } from '../ui/checkbox';
-import { CheckIcon } from 'lucide-react-native';
+import { Grid, GridItem } from '../ui/grid';
+import { ScrollContainer } from '../molecules';
 
 export const HomeScreen = () => {
-    const colorScheme = useColorScheme();
-    const isDark = colorScheme === 'dark';
-
-    const sizes = ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl", "5xl"]
 
     return (
-        <Box className='h-full'>
-            <Text size='4xl' className='color-red-600'>home!</Text>
+        <ScrollContainer>
+            {(isLandscape) =>
+                isLandscape
+                    ? (
+                        <Grid className='gap-2' _extra={{ className: "grid-cols-6" }}>
+                            <GridItem
+                                className="bg-background-50 rounded-3xl"
+                                _extra={{ className: "col-span-2" }}
+                                style={{ height: "100%", aspectRatio: 2 / 1 }}
+                            >
+                            </GridItem>
+                            <GridItem
+                                className="bg-background-50 rounded-3xl"
+                                _extra={{ className: "col-span-2" }}
+                                style={{ height: "100%", aspectRatio: 2 / 1 }}
+                            >
+                            </GridItem>
+                            <GridItem
+                                className="bg-background-50 rounded-3xl"
+                                _extra={{ className: "col-span-2" }}
+                                style={{ height: "100%", aspectRatio: 2 / 1 }}
+                            >
+                            </GridItem>
 
-            <Center>
-                {sizes.map((size, index) => (
-                    <Heading size={size} key={index}>
-                        {size}
-                    </Heading>
-                ))}
-            </Center>
+                            <GridItem
+                                className="bg-background-50 rounded-3xl"
+                                _extra={{ className: "col-span-4", }}
+                                style={{ height: "100%", aspectRatio: 2 / 1 }}
+                            >
+                            </GridItem>
+                            <GridItem
+                                className="bg-background-50 rounded-3xl"
+                                _extra={{ className: "col-span-2" }}
+                                style={{ height: "100%", aspectRatio: 1 / 1 }}
+                            >
+                            </GridItem>
 
-            <Divider className="my-0.5" />
+                            <GridItem
+                                className="bg-background-50 rounded-3xl"
+                                _extra={{ className: "col-span-3" }}
+                                style={{ height: "100%", aspectRatio: 2 / 1 }}
+                            >
+                            </GridItem>
+                            <GridItem
+                                className="bg-background-50 rounded-3xl"
+                                _extra={{ className: "col-span-3" }}
+                                style={{ height: "100%", aspectRatio: 2 / 1 }}
+                            >
+                            </GridItem>
+                        </Grid>
+                    )
+                    : (
 
-            <Center>
-                {sizes.map((size, index) => (
-                    <Text size={size} key={index} className="text-center">
-                        {size}
-                    </Text>
-                ))}
-            </Center>
+                        <Grid className='gap-2' _extra={{ className: "grid-cols-6" }}>
+                            <GridItem
+                                className="bg-background-50 rounded-3xl"
+                                _extra={{ className: "col-span-3" }}
+                                style={{ height: "100%", aspectRatio: 1 / 1 }}
+                            >
+                            </GridItem>
+                            <GridItem
+                                className="bg-background-50 rounded-3xl"
+                                _extra={{ className: "col-span-3" }}
+                                style={{ height: "100%", aspectRatio: 1 / 1 }}
+                            >
+                            </GridItem>
+                            <GridItem
+                                className="bg-background-50 rounded-3xl"
+                                _extra={{ className: "col-span-3" }}
+                                style={{ height: "100%", aspectRatio: 1 / 1 }}
+                            >
+                            </GridItem>
+                            <GridItem
+                                className="bg-background-50 rounded-3xl"
+                                _extra={{ className: "col-span-3" }}
+                                style={{ height: "100%", aspectRatio: 1 / 1 }}
+                            >
+                            </GridItem>
 
-            <Divider className="my-0.5" />
+                            <GridItem
+                                className="bg-background-50 rounded-3xl"
+                                _extra={{ className: "col-span-6", }}
+                                style={{ height: "100%", aspectRatio: 2 / 2 }}
+                            >
+                            </GridItem>
 
-            <Center>
-                <Button size="md" variant="solid" action="primary">
-                    <ButtonText>Hello World!</ButtonText>
-                </Button>
-
-                <Checkbox size="md" isInvalid={false} isDisabled={false} value='ola'>
-                    <CheckboxIndicator>
-                        <CheckboxIcon as={CheckIcon} />
-                    </CheckboxIndicator>
-                    <CheckboxLabel>Label</CheckboxLabel>
-                </Checkbox>
-
-
-                {/* <Input
-                    variant="outline"
-                    size="md"
-                    isDisabled={false}
-                    isInvalid={false}
-                    isReadOnly={false}
-                >
-                    <InputField placeholder="Enter Text here..." />
-                </Input>
-
-
-                <Input>
-                    <InputField />
-                    <InputSlot>
-                        <InputIcon><CheckIcon /></InputIcon>
-                    </InputSlot>
-                </Input> */}
-            </Center>
-
-
-        </Box>
+                            <GridItem
+                                className="bg-background-50 rounded-3xl"
+                                _extra={{ className: "col-span-6" }}
+                                style={{ height: "100%", aspectRatio: 2 / 1 }}
+                            >
+                            </GridItem>
+                            <GridItem
+                                className="bg-background-50 rounded-3xl"
+                                _extra={{ className: "col-span-6" }}
+                                style={{ height: "100%", aspectRatio: 2 / 1 }}
+                            >
+                            </GridItem>
+                        </Grid>
+                    )
+            }
+        </ScrollContainer>
     )
 };

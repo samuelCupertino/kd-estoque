@@ -1,14 +1,8 @@
-import { View, Platform, Pressable, PressableProps, ViewStyle } from 'react-native';
-import { useLinkBuilder, useTheme } from '@react-navigation/native';
-import { Text, PlatformPressable } from '@react-navigation/elements';
-import { BottomTabBarProps, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Icon, IconProps } from '../../atoms';
-import { ReactElement, useEffect } from 'react';
-import { Props } from '@react-navigation/elements/lib/typescript/commonjs/src/PlatformPressable';
+import { Pressable, PressableProps, ViewStyle } from 'react-native';
+import { Icon } from '../../atoms';
+import { useEffect } from 'react';
 import Animated, { interpolate, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
-import { Box } from '@/components/ui/box';
 import { useThemeColor } from '@/hooks/useThemeColor';
-
 
 interface ITabBarButtomProps extends PressableProps {
   isFocused?: boolean
