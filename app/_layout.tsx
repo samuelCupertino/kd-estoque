@@ -1,68 +1,80 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome'
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from '@react-navigation/native'
-import { useFonts } from 'expo-font'
-import * as SplashScreen from 'expo-splash-screen'
-import { useEffect, useState } from 'react'
+import { DefaultTheme, Theme, ThemeProvider } from '@react-navigation/native'
+import '@/global.css'
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider'
-import { useColorScheme } from '@/components/useColorScheme'
-import { Slot } from 'expo-router'
+import { useFonts } from 'expo-font'
+import { Stack } from 'expo-router'
+import * as SplashScreen from 'expo-splash-screen'
+import 'react-native-reanimated'
 
-import '../global.css'
+import { Platform, SafeAreaView, useColorScheme } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { useEffect } from 'react'
+import { StatusBar } from 'expo-status-bar'
+import * as NavigationBar from 'expo-navigation-bar'
+import { useThemeColor } from '@/hooks/useThemeColor'
 
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from 'expo-router'
-
-// export const unstable_settings = {
-//   // Ensure that reloading on `/modal` keeps a back button present.
-//   initialRouteName: "gluestack",
-// };
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
 
 export default function RootLayout() {
-  const [loaded, error] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-    ...FontAwesome.font,
-  })
+	const insets = useSafeAreaInsets()
+	const [loaded] = useFonts({
+		SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+	})
+	const colorScheme = useColorScheme()
+	const isDark = colorScheme === 'dark'
+	const backgroundWhite = useThemeColor('primary_100')
 
-  const [styleLoaded, setStyleLoaded] = useState(false)
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
-  useEffect(() => {
-    if (error) throw error
-  }, [error])
+	const currentTheme: Theme = {
+		dark: isDark,
+		colors: {
+			primary: 'red',
+			background: isDark ? 'rgb(0, 0, 0)' : backgroundWhite,
+			card: isDark ? 'rgb(18, 18, 18)' : 'rgb(242, 242, 242)',
+			text: isDark ? 'rgb(229, 229, 231)' : 'rgb(28, 28, 30)',
+			border: isDark ? 'rgb(39, 39, 41)' : 'rgb(216, 216, 216)',
+			notification: 'rgb(255, 59, 48)',
+		},
+		fonts: DefaultTheme.fonts,
+	}
 
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync()
-    }
-  }, [loaded])
+	useEffect(() => {
+		async function configureNavigationBar() {
+			if (Platform.OS === 'android') {
+				await NavigationBar.setBackgroundColorAsync(
+					currentTheme.colors.background,
+				)
+				await NavigationBar.setButtonStyleAsync(isDark ? 'light' : 'dark')
+			}
+		}
+		configureNavigationBar()
+	}, [currentTheme.colors.background, isDark])
 
-  // useLayoutEffect(() => {
-  //   setStyleLoaded(true);
-  // }, [styleLoaded]);
+	useEffect(() => {
+		if (loaded) SplashScreen.hideAsync()
+	}, [loaded])
 
-  // if (!loaded || !styleLoaded) {
-  //   return null;
-  // }
+	if (!loaded) return null
 
-  return <RootLayoutNav />
-}
-
-function RootLayoutNav() {
-  const colorScheme = useColorScheme()
-
-  return (
-    <GluestackUIProvider mode={colorScheme === 'dark' ? 'dark' : 'light'}>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Slot />
-      </ThemeProvider>
-    </GluestackUIProvider>
-  )
+	return (
+		<GluestackUIProvider mode="system">
+			<ThemeProvider value={currentTheme}>
+				<StatusBar
+					backgroundColor={currentTheme.colors.background}
+					style={isDark ? 'light' : 'dark'}
+				/>
+				<SafeAreaView
+					style={{
+						flex: 1,
+						paddingTop: insets.top,
+						backgroundColor: currentTheme.colors.background,
+					}}
+				>
+					<Stack>
+						<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+						<Stack.Screen name="+not-found" />
+					</Stack>
+				</SafeAreaView>
+			</ThemeProvider>
+		</GluestackUIProvider>
+	)
 }
