@@ -21,12 +21,9 @@ export const TabBar = ({
 	navigation,
 	onRouterChange,
 }: ITabBarProps) => {
-	const primary50Color = useThemeColor('primary_0')
-	const secondary200Color = useThemeColor({
-		light: 'secondary_100',
-		dark: 'primary_400',
-	})
-	const secondary600Color = useThemeColor('secondary_300')
+	const backgroundColor = useThemeColor('background_0')
+	const activeBackgroundColor = useThemeColor('primary_500')
+	const iconColor = useThemeColor('primary_700')
 	const [navBarDimensions, setNavBarDimensions] = useState({
 		width: 100,
 		height: 20,
@@ -71,7 +68,7 @@ export const TabBar = ({
 				bottom: navBarMargin,
 				justifyContent: 'space-between',
 				alignItems: 'center',
-				backgroundColor: primary50Color,
+				backgroundColor: backgroundColor,
 				width: navBarWidth,
 				borderRadius: 100,
 				shadowColor: 'black',
@@ -96,7 +93,7 @@ export const TabBar = ({
 					animatedTabActiveStyle,
 					{
 						position: 'absolute',
-						backgroundColor: secondary200Color,
+						backgroundColor: activeBackgroundColor,
 						borderRadius: 100,
 						marginHorizontal: 2,
 						width: buttonWidth - 4,
@@ -151,7 +148,7 @@ export const TabBar = ({
 						}}
 					>
 						{tabIcons?.[route.name]?.({
-							color: isFocused ? primary50Color : secondary600Color,
+							color: isFocused ? backgroundColor : iconColor,
 						})}
 					</TabBarButtom>
 				)

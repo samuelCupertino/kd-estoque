@@ -22,10 +22,7 @@ export const TabBarButtom = ({
 	...props
 }: ITabBarButtomProps) => {
 	const scale = useSharedValue(0)
-	const primary500Color = useThemeColor({
-		light: 'primary_600',
-		dark: 'secondary_800',
-	})
+	const iconColor = useThemeColor('primary_200')
 
 	useEffect(() => {
 		if (isFocused === undefined) return
@@ -64,7 +61,7 @@ export const TabBarButtom = ({
 						position: 'absolute',
 						left: '25%',
 						top: '25%',
-						color: primary500Color,
+						color: iconColor,
 						borderRadius: 100,
 					}}
 				/>
@@ -75,7 +72,7 @@ export const TabBarButtom = ({
 						position: 'absolute',
 						right: '25%',
 						bottom: '25%',
-						color: primary500Color,
+						color: iconColor,
 						borderRadius: 100,
 					}}
 				/>

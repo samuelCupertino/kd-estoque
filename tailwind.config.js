@@ -171,10 +171,10 @@ module.exports = {
 				},
 			},
 			fontFamily: {
-				heading: undefined,
-				body: undefined,
-				mono: undefined,
-				roboto: ['Roboto', 'sans-serif'],
+				heading: 'DMSans',
+				body: 'DMSans',
+				mono: 'DMSans',
+				roboto: ['DMSans', 'Roboto', 'sans-serif'],
 			},
 			fontWeight: {
 				extrablack: '950',

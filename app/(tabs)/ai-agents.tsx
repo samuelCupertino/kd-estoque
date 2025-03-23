@@ -1,3 +1,3 @@
-import { AiAgentsScreen } from '@/components/templates'
+import { AIAgentsScreen } from '@/components/templates'
 
-export default () => <AiAgentsScreen />
+export default () => <AIAgentsScreen />

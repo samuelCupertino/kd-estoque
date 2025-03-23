@@ -1,47 +1,53 @@
-import { ScrollView } from 'react-native'
-import { Grid, GridItem } from '../ui/grid'
+import { Icon, Button } from '../atoms'
+import { Box } from '../ui/box'
+import { ScrollContainer } from '../atoms'
+import { AIAgentsCard, ScreenHeader } from '../molecules'
+import { VStack } from '../ui/vstack'
 
-export const AiAgentsScreen = () => (
-	<ScrollView
-		contentContainerStyle={{ flexGrow: 1, paddingBottom: 100, padding: 8 }}
-		showsVerticalScrollIndicator={false}
-	>
-		<Grid className="gap-2" _extra={{ className: 'grid-cols-2' }}>
-			<GridItem
-				className="bg-background-50 rounded-3xl h-52"
-				_extra={{ className: 'col-span-1' }}
-			></GridItem>
-			<GridItem
-				className="bg-background-50 rounded-3xl h-52"
-				_extra={{ className: 'col-span-1' }}
-			></GridItem>
+export const AIAgentsScreen = () => (
+	<Box>
+		<ScreenHeader title="Agentes de IA">
+			<Button variant="circle" size="xl">
+				<Icon name="CircleDollarSign" size={24} className="color-primary-50" />
+			</Button>
+			<Button variant="circle" size="xl">
+				<Icon name="Settings" size={24} className="color-primary-50" />
+			</Button>
+		</ScreenHeader>
 
-			<GridItem
-				className="bg-background-50 rounded-3xl h-52"
-				_extra={{ className: 'col-span-2' }}
-			></GridItem>
-
-			<GridItem
-				className="bg-background-50 rounded-3xl h-52"
-				_extra={{ className: 'col-span-1' }}
-			></GridItem>
-			<GridItem
-				className="bg-background-50 rounded-3xl h-52"
-				_extra={{ className: 'col-span-1' }}
-			></GridItem>
-			<GridItem
-				className="bg-background-50 rounded-3xl h-52"
-				_extra={{ className: 'col-span-1' }}
-			></GridItem>
-			<GridItem
-				className="bg-background-50 rounded-3xl h-52"
-				_extra={{ className: 'col-span-1' }}
-			></GridItem>
-
-			<GridItem
-				className="bg-background-50 rounded-3xl h-52"
-				_extra={{ className: 'col-span-2' }}
-			></GridItem>
-		</Grid>
-	</ScrollView>
+		<ScrollContainer className="mx-3 mt-4">
+			<VStack space="lg" className="pb-72">
+				<AIAgentsCard
+					iconName="BotMessageSquare"
+					title="Operador de Estoque"
+					text="Busca, cria, edita, exclui e exporta veículos cadastrados."
+				/>
+				<AIAgentsCard
+					iconName="BotMessageSquare"
+					title="Operador de Caixa"
+					text="Auxilia nas vendas de produtos pelo código de barras."
+				/>
+				<AIAgentsCard
+					iconName="BotMessageSquare"
+					title="Analista de Relatórios"
+					text="Gera relatórios detalhados sobre a movimentação de produtos."
+				/>
+				<AIAgentsCard
+					iconName="BotMessageSquare"
+					title="Analista Publicitário"
+					text="Melhora a apresentação dos produtos para aumentar a atratividade."
+				/>
+				<AIAgentsCard
+					iconName="BotMessageSquare"
+					title="Instrutor do Sistema"
+					text="Orienta os usuários no uso completo da plataforma."
+				/>
+				<AIAgentsCard
+					iconName="BotMessageSquare"
+					title="Suporte Técnico"
+					text="Atende dúvidas técnicas e garante a continuidade do atendimento."
+				/>
+			</VStack>
+		</ScrollContainer>
+	</Box>
 )

@@ -19,10 +19,11 @@ export default function RootLayout() {
 	const insets = useSafeAreaInsets()
 	const [loaded] = useFonts({
 		SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+		DMSans: require('../assets/fonts/DMSans-VariableFont_opsz,wght.ttf'),
 	})
 	const colorScheme = useColorScheme()
 	const isDark = colorScheme === 'dark'
-	const backgroundWhite = useThemeColor('primary_100')
+	const backgroundWhite = useThemeColor('background_200')
 
 	const currentTheme: Theme = {
 		dark: isDark,
