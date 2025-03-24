@@ -21,17 +21,19 @@ export const TabBar = ({
 	navigation,
 	onRouterChange,
 }: ITabBarProps) => {
-	const backgroundColor = useThemeColor('background_0')
-	const activeBackgroundColor = useThemeColor('primary_500')
+	const backgroundColor = useThemeColor({
+		light: 'background_0',
+		dark: 'background_50',
+	})
+	const activeBackgroundColor = useThemeColor('primary_700')
 	const iconColor = useThemeColor('primary_700')
 	const [navBarDimensions, setNavBarDimensions] = useState({
 		width: 100,
 		height: 20,
 	})
-	const buttonWidth = navBarDimensions.width / state.routes.length
-
 	const screenDimensions = useWindowDimensions()
-	const isLandscape = screenDimensions.width > screenDimensions.height
+	const buttonWidth = navBarDimensions.width / state.routes.length
+	const isNavLeft = screenDimensions.width > screenDimensions.height
 
 	const navBarWidth = Math.min(screenDimensions.width * 0.75, 300)
 	const navBarMargin = 16
@@ -39,7 +41,7 @@ export const TabBar = ({
 	const tabIcons: Record<string, (p: Omit<IconProps, 'name'>) => JSX.Element> =
 		{
 			index: (props) => <Icon {...props} name="Home" size={24} />,
-			stock: (props) => <Icon {...props} name="PackageSearch" size={24} />,
+			stock: (props) => <Icon {...props} name="Package" size={24} />,
 			'ai-agents': (props) => <Icon {...props} name="Bot" size={28} />,
 			notification: (props) => <Icon {...props} name="Bell" size={24} />,
 			profile: (props) => <Icon {...props} name="UserRound" size={24} />,
@@ -76,7 +78,7 @@ export const TabBar = ({
 				elevation: 6,
 				shadowRadius: 10,
 				shadowOpacity: 0.2,
-				...(isLandscape
+				...(isNavLeft
 					? {
 							top: '50%',
 							bottom: 'auto',
@@ -135,7 +137,7 @@ export const TabBar = ({
 						isFocused={isFocused}
 						style={{
 							height: buttonWidth,
-							...(isLandscape
+							...(isNavLeft
 								? {
 										transform: [
 											{ scale: 0.95 },

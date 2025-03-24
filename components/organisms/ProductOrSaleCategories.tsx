@@ -1,0 +1,73 @@
+import { Box } from '../ui/box'
+import { ComponentProps } from 'react'
+import { useThemeColor } from '@/hooks/useThemeColor'
+import { PieChart, Slider } from '../molecules'
+import { Heading } from '../ui/heading'
+import { useBreakpointValue } from '../ui/utils/use-break-point-value'
+import { HStack } from '../ui/hstack'
+import { IconCircle } from '../atoms'
+
+export interface IProductOrSaleCategoriesProps
+	extends Omit<ComponentProps<typeof Box>, 'children'> {
+	width?: number
+	height?: number
+}
+
+export const ProductOrSaleCategories = ({
+	width = 400,
+	height = 200,
+	style,
+	...props
+}: IProductOrSaleCategoriesProps) => {
+	const titleFontSize = useBreakpointValue({
+		default: 'lg',
+		md: 'xl',
+	})
+
+	const backgroundColor = useThemeColor({
+		light: 'background_0',
+		dark: 'background_50',
+	})
+	const typographyColor = useThemeColor('typography_600')
+
+	return (
+		<Slider
+			width={width}
+			height={height - 4}
+			className="border-2 border-background-100"
+			style={{ backgroundColor, borderRadius: 24, ...(style as object) }}
+			{...props}
+		>
+			<Box className="items-cente p-5">
+				<HStack className="justify-between">
+					<Heading size={titleFontSize} style={{ color: typographyColor }}>
+						Categorias em produtos
+					</Heading>
+					<Box className="h-full ml-auto">
+						<IconCircle
+						name="Ellipsis"
+						size={12}
+						color={{ light: 'background_400', dark: 'background_600' }}
+					/>
+					</Box>
+				</HStack>
+				<PieChart className="mt-4" width={width - 48} height={height - 82} />
+			</Box>
+			<Box className="items-cente p-5">
+				<HStack className="justify-between">
+					<Heading size={titleFontSize} style={{ color: typographyColor }}>
+						Categorias em vendas
+					</Heading>
+					<Box className="h-full ml-auto">
+						<IconCircle
+						name="Ellipsis"
+						size={12}
+						color={{ light: 'background_400', dark: 'background_600' }}
+					/>
+					</Box>
+				</HStack>
+				<PieChart className="mt-4" width={width - 48} height={height - 82} />
+			</Box>
+		</Slider>
+	)
+}

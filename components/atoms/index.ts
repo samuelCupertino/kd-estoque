@@ -1,3 +1,7 @@
 export * from './Icon'
+export * from './IconCircle'
 export * from './Button'
 export * from './ScrollContainer'
+export * from './GridContainer'
+export * from './GridContainerItem'
+export * from './Text'

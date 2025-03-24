@@ -23,13 +23,13 @@ export default function RootLayout() {
 	})
 	const colorScheme = useColorScheme()
 	const isDark = colorScheme === 'dark'
-	const backgroundWhite = useThemeColor('background_200')
+	const backgroundLight = useThemeColor('background_100')
 
 	const currentTheme: Theme = {
 		dark: isDark,
 		colors: {
 			primary: 'red',
-			background: isDark ? 'rgb(0, 0, 0)' : backgroundWhite,
+			background: isDark ? 'rgb(0, 0, 0)' : backgroundLight,
 			card: isDark ? 'rgb(18, 18, 18)' : 'rgb(242, 242, 242)',
 			text: isDark ? 'rgb(229, 229, 231)' : 'rgb(28, 28, 30)',
 			border: isDark ? 'rgb(39, 39, 41)' : 'rgb(216, 216, 216)',

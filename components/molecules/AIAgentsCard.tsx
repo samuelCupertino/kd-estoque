@@ -19,7 +19,7 @@ export const AIAgentsCard = ({
 	...props
 }: IAIAgentsCardProps) => (
 	<Box
-		className="justify-between items-center rounded-3xl bg-background-50 p-5"
+		className="justify-between items-center rounded-3xl bg-background-0 dark:bg-background-50 p-5"
 		{...props}
 	>
 		<HStack space="md" className="w-full items-center">
