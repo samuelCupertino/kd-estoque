@@ -16,7 +16,7 @@ type AllowedChild = ReactElement<typeof GridContainerItem>
 export interface IGridContainerProps
 	extends Omit<ComponentProps<typeof Box>, 'children' | 'style'> {
 	cols: number
-	gap?: number
+	gap?: IBreakPoint<number> | number
 	children:
 		| ((props: IGridContainerChildrenProps) => AllowedChild[])
 		| AllowedChild[]
@@ -44,12 +44,13 @@ export const GridContainer = ({
 	const styleResponsive = useBreakpoint(
 		isBreakPoint(style) ? style : { base: style },
 	)
+	const gapResponsive = useBreakpoint(isBreakPoint(gap) ? gap : { base: gap })
 
 	const overrideElementsProps = (elements: JSX.Element[]) => {
 		const newElements = elements
 			.map((child, i) =>
 				React.cloneElement(child, {
-					space: gap,
+					space: gapResponsive,
 					index: child.props.index ?? i + 1,
 					key: child?.key ?? i + 1,
 				}),

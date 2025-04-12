@@ -8,6 +8,7 @@ import { Badge, BadgeIcon, BadgeText } from '../ui/badge'
 import { TrendingDown, TrendingUp } from 'lucide-react-native'
 import { useThemeColor } from '@/hooks/useThemeColor'
 import { useBreakpointValue } from '../ui/utils/use-break-point-value'
+import { Pressable } from '../ui/pressable'
 
 export interface IValueDifferenceCardProps extends ComponentProps<typeof Box> {
 	iconName: IIconCircleProps['name']
@@ -66,11 +67,13 @@ export const ValueDifferenceCard = ({
 				</Heading>
 
 				<Box className="h-full ml-auto">
-					<IconCircle
-						name="Ellipsis"
-						size={12}
-						color={{ light: 'background_400', dark: 'background_600' }}
-					/>
+					<Pressable className="opacity-60 hover:opacity-100">
+						<IconCircle
+							name="Ellipsis"
+							size={12}
+							color={{ light: 'background_500', dark: 'background_700' }}
+						/>
+					</Pressable>
 				</Box>
 			</HStack>
 

@@ -1,9 +1,8 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { Icon as IconUI } from '@/components/ui/icon'
 import { ComponentProps } from 'react'
 import * as LucideIcons from 'lucide-react-native'
 import * as VectorIcons from '@expo/vector-icons'
-import { IColorOption, useThemeColor } from '@/hooks/useThemeColor'
+import { isThemeColor, IThemeColor, useThemeColor } from '@/hooks/useThemeColor'
 import { Center } from '../ui/center'
 import { Box } from '../ui/box'
 
@@ -17,7 +16,7 @@ export interface IIconCircleProps
 	extends Omit<ComponentProps<typeof IconUI>, 'size' | 'color'> {
 	name: keyof typeof iconMap
 	size?: number | ComponentProps<typeof IconUI>['size']
-	color?: IColorOption
+	color?: IThemeColor | (string & {})
 	borderRadius?: number
 	padding?: number
 }
@@ -31,7 +30,8 @@ export const IconCircle = ({
 	style,
 	...props
 }: IIconCircleProps) => {
-	const iconColor = color ? useThemeColor?.(color) : color
+	const resolvedColor = useThemeColor(isThemeColor(color) ? color : 'white')
+	const iconColor = isThemeColor(color) ? resolvedColor : color
 
 	return (
 		<Center

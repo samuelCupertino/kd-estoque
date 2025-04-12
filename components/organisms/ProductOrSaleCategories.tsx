@@ -6,6 +6,7 @@ import { Heading } from '../ui/heading'
 import { useBreakpointValue } from '../ui/utils/use-break-point-value'
 import { HStack } from '../ui/hstack'
 import { IconCircle } from '../atoms'
+import { Pressable } from '../ui/pressable'
 
 export interface IProductOrSaleCategoriesProps
 	extends Omit<ComponentProps<typeof Box>, 'children'> {
@@ -44,11 +45,13 @@ export const ProductOrSaleCategories = ({
 						Categorias em produtos
 					</Heading>
 					<Box className="h-full ml-auto">
-						<IconCircle
-						name="Ellipsis"
-						size={12}
-						color={{ light: 'background_400', dark: 'background_600' }}
-					/>
+						<Pressable className="opacity-60 hover:opacity-100">
+							<IconCircle
+								name="Ellipsis"
+								size={12}
+								color={{ light: 'background_500', dark: 'background_700' }}
+							/>
+						</Pressable>
 					</Box>
 				</HStack>
 				<PieChart className="mt-4" width={width - 48} height={height - 82} />
@@ -59,11 +62,13 @@ export const ProductOrSaleCategories = ({
 						Categorias em vendas
 					</Heading>
 					<Box className="h-full ml-auto">
-						<IconCircle
-						name="Ellipsis"
-						size={12}
-						color={{ light: 'background_400', dark: 'background_600' }}
-					/>
+						<Pressable className="opacity-60 hover:opacity-100">
+							<IconCircle
+								name="Ellipsis"
+								size={12}
+								color={{ light: 'background_500', dark: 'background_700' }}
+							/>
+						</Pressable>
 					</Box>
 				</HStack>
 				<PieChart className="mt-4" width={width - 48} height={height - 82} />

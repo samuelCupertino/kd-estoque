@@ -11,6 +11,7 @@ import { Text } from '../ui/text'
 import { Divider } from '../ui/divider'
 import React from 'react'
 import { formatNumberShort } from '@/utils'
+import { Pressable } from '../ui/pressable'
 
 export interface ILatestSalesListProps
 	extends Omit<ComponentProps<typeof Box>, 'children'> {}
@@ -53,11 +54,13 @@ export const LatestSalesList = ({ style, ...props }: ILatestSalesListProps) => {
 					Últimas vendas
 				</Heading>
 				<Box className="h-full ml-auto">
-					<IconCircle
-						name="Ellipsis"
-						size={12}
-						color={{ light: 'background_400', dark: 'background_600' }}
-					/>
+					<Pressable className="opacity-60 hover:opacity-100">
+						<IconCircle
+							name="Ellipsis"
+							size={12}
+							color={{ light: 'background_500', dark: 'background_700' }}
+						/>
+					</Pressable>
 				</Box>
 			</HStack>
 

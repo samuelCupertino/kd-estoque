@@ -11,12 +11,17 @@ import {
 } from '@/components/ui/drawer'
 import React from 'react'
 import { useBreakpoint } from '@/hooks/useBreakpoint'
-import { IconCircle } from '../atoms'
+import { IconCircle, IIconCircleProps, Text } from '../atoms'
 import { Pressable } from '../ui/pressable'
 import { Divider } from '../ui/divider'
+import { HStack } from '../ui/hstack'
+import { VStack } from '../ui/vstack'
 
 export interface IDrawerProps extends ComponentProps<typeof DrawerUI> {
 	title: string
+	subtitle: string
+	iconName: IIconCircleProps['name']
+	iconColor?: IIconCircleProps['color']
 	renderButton: (prop: {
 		showDrawer: boolean
 		setShowDrawer: React.Dispatch<React.SetStateAction<boolean>>
@@ -29,6 +34,9 @@ export interface IDrawerProps extends ComponentProps<typeof DrawerUI> {
 
 export const Drawer = ({
 	title,
+	subtitle,
+	iconName,
+	iconColor = 'typography_400',
 	renderButton,
 	renderFooter,
 	children,
@@ -70,21 +78,34 @@ export const Drawer = ({
 								}),
 					}}
 				>
-					<Pressable onResponderStart={() => setShowDrawer(false)}>
-						{drawerResponsiveProps.anchor === 'bottom' && (
-							<Divider className="w-20 h-1 rounded-full mx-auto -mt-3 mb-1" />
-						)}
-						<DrawerHeader>
-							<Heading size="xl" className="color-typography-700">
-								{title}
-							</Heading>
+					<DrawerHeader>
+						<HStack className="gap-3 items-center">
+							<IconCircle
+								name={iconName}
+								color={iconColor}
+								size={32}
+								borderRadius={8}
+							/>
+							<VStack>
+								<Heading size="lg" className="color-typography-600">
+									{title}
+								</Heading>
+								<Text
+									size="sm"
+									color={{ light: 'background_600', dark: 'background_800' }}
+								>
+									{subtitle}
+								</Text>
+							</VStack>
+						</HStack>
+						<Pressable onResponderEnd={() => setShowDrawer(false)}>
 							<IconCircle
 								name="XIcon"
 								size={16}
 								color={{ light: 'background_400', dark: 'background_800' }}
 							/>
-						</DrawerHeader>
-					</Pressable>
+						</Pressable>
+					</DrawerHeader>
 
 					<Divider className="rounded-full mt-3 -mb-4" />
 
