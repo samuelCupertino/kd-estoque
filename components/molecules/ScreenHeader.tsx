@@ -18,7 +18,9 @@ export const ScreenHeader = ({
 		className={`justify-between items-center min-h-16 ${Platform.OS === 'web' ? 'my-4' : 'mb-4 mt-2'} ${className}`}
 		{...props}
 	>
-		<Heading size="xl">{title}</Heading>
+		<Heading size="xl" className="color-typography-700">
+			{title}
+		</Heading>
 		<HStack space="lg">{children}</HStack>
 	</HStack>
 )

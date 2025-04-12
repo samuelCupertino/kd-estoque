@@ -36,12 +36,12 @@ type IColorScales =
 	| '900'
 	| '950'
 
-export type IColorOption =
+export type IThemeColor =
 	| (keyof LightColors & keyof DarkColors)
 	| { light: keyof LightColors; dark: keyof DarkColors }
 	| AllColors
 
-const extractThemeColor = (color: IColorOption, theme: 'light' | 'dark') => {
+const extractThemeColor = (color: IThemeColor, theme: 'light' | 'dark') => {
 	const colorKey = typeof color === 'object' ? color[theme] : color
 	const curColors = Colors[theme] as Record<string, string>
 
@@ -55,7 +55,7 @@ const extractThemeColor = (color: IColorOption, theme: 'light' | 'dark') => {
 	return twFullConfig.theme.colors?.[colorName]?.[colorScale]
 }
 
-export const isColorOption = (value: any): value is IColorOption => {
+export const isThemeColor = (value: any): value is IThemeColor => {
 	const isTailwindColor = (value: string): boolean => {
 		const [color, scale] = value.split('_') as [IColorNames, IColorScales]
 		return !!(
@@ -88,13 +88,13 @@ export const isColorOption = (value: any): value is IColorOption => {
 	return false
 }
 
-export const useThemeColor = <T extends IColorOption | IColorOption[]>(
+export const useThemeColor = <T extends IThemeColor | IThemeColor[]>(
 	colorName: T,
 	config?: {
 		forceTheme?: 'light' | 'dark'
-		falback: T extends IColorOption[] ? string[] : string
+		falback: T extends IThemeColor[] ? string[] : string
 	},
-): T extends IColorOption[] ? string[] : string => {
+): T extends IThemeColor[] ? string[] : string => {
 	const colorTheme = useColorScheme()
 	const theme = config?.forceTheme ?? colorTheme ?? 'light'
 
@@ -102,5 +102,17 @@ export const useThemeColor = <T extends IColorOption | IColorOption[]>(
 		? colorName.map((color) => extractThemeColor(color, theme))
 		: extractThemeColor(colorName, theme)
 
-	return color as T extends IColorOption[] ? string[] : string
+	return color as T extends IThemeColor[] ? string[] : string
+}
+
+export const rgbToHex = (rgbStr: string) => {
+	// Remove 'rgb(' e ')' e divide os valores
+	const [r, g, b] = rgbStr
+		.replace(/^rgb\(|\)$/g, '')
+		.trim()
+		.split(/\s+/)
+		.map(Number)
+
+	// Converte cada componente para hexadecimal e concatena
+	return '#' + [r, g, b].map((x) => x.toString(16).padStart(2, '0')).join('')
 }

@@ -10,6 +10,7 @@ import { Image } from '../ui/image'
 import { Text } from '../ui/text'
 import { Divider } from '../ui/divider'
 import React from 'react'
+import { Pressable } from '../ui/pressable'
 
 export interface IProductsByExpirationDateProps
 	extends Omit<ComponentProps<typeof Box>, 'children'> {}
@@ -87,11 +88,13 @@ export const ProductsByExpirationDate = ({
 					Produtos em vencimento
 				</Heading>
 				<Box className="h-full ml-auto">
-					<IconCircle
-						name="Ellipsis"
-						size={12}
-						color={{ light: 'background_400', dark: 'background_600' }}
-					/>
+					<Pressable className="opacity-60 hover:opacity-100">
+						<IconCircle
+							name="Ellipsis"
+							size={12}
+							color={{ light: 'background_500', dark: 'background_700' }}
+						/>
+					</Pressable>
 				</Box>
 			</HStack>
 

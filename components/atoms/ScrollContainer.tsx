@@ -1,7 +1,12 @@
 import { ScrollView, ScrollViewProps, useWindowDimensions } from 'react-native'
 import { Box } from '../ui/box'
 import { ComponentProps } from 'react'
-import { useBreakpoint, IBreakpointKey } from '@/hooks/useBreakpoint'
+import {
+	useBreakpoint,
+	IBreakpointKey,
+	IBreakPoint,
+	isBreakPoint,
+} from '@/hooks/useBreakpoint'
 
 interface IScrollContainerChildrenProps {
 	isLandscape: boolean
@@ -17,7 +22,8 @@ export interface IScrollContainerProps
 		| ((props: IScrollContainerChildrenProps) => JSX.Element | JSX.Element[])
 	scrollViewProps?: ScrollViewProps
 	borderRadius?: number
-	innerMargin?: number
+	innerMargin?: IBreakPoint<number> | number
+	paddingBottom?: number
 }
 
 export const ScrollContainer = ({
@@ -25,8 +31,12 @@ export const ScrollContainer = ({
 	scrollViewProps,
 	borderRadius,
 	innerMargin,
+	paddingBottom,
 	...props
 }: IScrollContainerProps) => {
+	const innerMarginResponsive = useBreakpoint(
+		isBreakPoint(innerMargin) ? innerMargin : { base: innerMargin },
+	)
 	const screenDimensions = useWindowDimensions()
 	const isLandscape = screenDimensions.width > screenDimensions.height
 	const breakpoint: IScrollContainerChildrenProps['breakpoint'] = useBreakpoint(
@@ -49,7 +59,7 @@ export const ScrollContainer = ({
 			}}
 		>
 			<ScrollView showsVerticalScrollIndicator={false} {...scrollViewProps}>
-				<Box style={{ margin: innerMargin }}>
+				<Box style={{ margin: innerMarginResponsive, paddingBottom }}>
 					{typeof children === 'function'
 						? children({ breakpoint, isLandscape })
 						: children}

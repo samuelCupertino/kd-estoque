@@ -15,7 +15,7 @@ import {
 	DashboardFilterDrawer,
 } from '../organisms'
 import { breakpointToPx, useBreakpoint } from '@/hooks/useBreakpoint'
-import { useWindowDimensions } from 'react-native'
+import { Platform, useWindowDimensions } from 'react-native'
 import { VStack } from '../ui/vstack'
 
 export const HomeScreen = () => {
@@ -30,24 +30,30 @@ export const HomeScreen = () => {
 		<VStack style={style}>
 			<ScreenHeader
 				title="Dashboard"
-				style={{ marginLeft: isNavLeft ? 92 : 8, marginRight: 8 }}
+				style={{
+					marginLeft: isNavLeft ? 92 : 6,
+					marginRight: isNavLeft ? 12 : 6,
+				}}
 			>
 				<DashboardFilterDrawer />
 			</ScreenHeader>
 
 			<ScrollContainer
 				borderRadius={24}
-				innerMargin={-6}
+				innerMargin={{ base: -4, sm: -6 }}
 				style={{
-					marginInline: 8,
-					marginLeft: isNavLeft ? 92 : 8,
+					marginInline: 6,
+					marginLeft: isNavLeft ? 92 : 6,
+					marginRight: isNavLeft ? 12 : 6,
 				}}
 			>
 				{({ breakpoint }) => (
 					<GridContainer
 						cols={12}
-						gap={6}
-						style={{ marginBottom: isNavLeft ? 0 : 284 }}
+						gap={{ base: 4, sm: 6 }}
+						style={{
+							marginBottom: Platform.OS === 'web' ? 0 : isNavLeft ? 160 : 248,
+						}}
 					>
 						<GridContainerItem
 							index={1}
