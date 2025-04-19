@@ -3,7 +3,7 @@ import { Animated, View } from 'react-native'
 import { HStack } from '../ui/hstack'
 import { isThemeColor, IThemeColor, useThemeColor } from '@/hooks/useThemeColor'
 import { twMerge } from 'tailwind-merge'
-import { Text } from './Text'
+import { Text } from '../atoms/Text'
 
 export type IAnimatedAIStatus =
 	| 'speaking'
@@ -368,7 +368,7 @@ export const AnimatedAI: React.FC<AnimatedAIProps> = ({
 					opacity: titleOpacity,
 				}}
 			>
-				<Text size="lg" color="typography_500">
+				<Text size="lg" color="typography_500" className="min-w-40 text-center">
 					{currentTitle}
 				</Text>
 			</Animated.View>

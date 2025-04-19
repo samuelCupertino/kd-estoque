@@ -1,8 +1,8 @@
 import { View, LayoutChangeEvent, useWindowDimensions } from 'react-native'
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs'
-import { Icon, IconProps } from '../../atoms'
+import { Icon, IIconProps } from '../../atoms'
 import { TabBarButtom } from './TabBarButton'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Animated, {
 	useAnimatedStyle,
 	useSharedValue,
@@ -38,7 +38,7 @@ export const TabBar = ({
 	const navBarWidth = Math.min(screenDimensions.width * 0.75, 300)
 	const navBarMargin = 16
 
-	const tabIcons: Record<string, (p: Omit<IconProps, 'name'>) => JSX.Element> =
+	const tabIcons: Record<string, (p: Omit<IIconProps, 'name'>) => JSX.Element> =
 		{
 			index: (props) => <Icon {...props} name="Home" size={24} />,
 			stock: (props) => <Icon {...props} name="Package" size={24} />,
@@ -58,6 +58,17 @@ export const TabBar = ({
 			height: e.nativeEvent.layout.height,
 		})
 	}
+
+	useEffect(() => {
+		const currentRoute = state.routes[state.index]
+		const currentRouteName = currentRoute.name
+		const routeIndex = state.routes.findIndex(
+			(route) => route.name === currentRouteName,
+		)
+		tabPositionX.value = withSpring(buttonWidth * routeIndex, {
+			duration: 2000,
+		})
+	}, [state.index, buttonWidth, tabPositionX, state.routes])
 
 	return (
 		<View

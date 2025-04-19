@@ -3,8 +3,19 @@ import { ScrollContainer } from '../atoms'
 import { AIAgentsCard, BagdeCard, ScreenHeader } from '../molecules'
 import { Platform, useWindowDimensions } from 'react-native'
 import { breakpointToPx, useBreakpoint } from '@/hooks/useBreakpoint'
-import { AIAgentCallDrawer, AIAgentsCoinsDrawer } from '../organisms'
+import {
+	AIAnnaLisaCallDrawer,
+	AIAgentsCoinsDrawer,
+	AIEduarteCallDrawer,
+	AIPolianaCameraDrawer,
+	AIAgentsChatDrawer,
+	AIAldairCameraDrawer,
+	AILidiaCameraDrawer,
+	AIClaraFeedCameraDrawer,
+} from '../organisms'
 import { VStack } from '../ui/vstack'
+import { HStack } from '../ui/hstack'
+import { Divider } from '../ui/divider'
 
 export const AIAgentsScreen = () => {
 	const screenDimensions = useWindowDimensions()
@@ -53,7 +64,7 @@ export const AIAgentsScreen = () => {
 								name="Poliana"
 								role="Repositora de Produtos"
 								description="Cadastra produtos automaticamente a partir de fotos, identificando nome, categoria, código de barras e descrição para agilizar a organização do estoque."
-								onPhoto={() => {}}
+								renderFooter={() => <AIPolianaCameraDrawer />}
 								style={{ width, height }}
 							/>
 						)}
@@ -70,12 +81,22 @@ export const AIAgentsScreen = () => {
 								role="Analista de Dados"
 								description="Analisa dados de estoque e vendas para prever demandas, evitar perdas e sugerir reposições inteligentes, apoiando decisões mais eficientes para o seu negócio."
 								renderFooter={() => (
-									<AIAgentCallDrawer
-										title="Anna Lisa"
-										subtitle="Analista de Dados"
-										iconName="Database"
-										iconColor="tertiary_400"
-									/>
+									<HStack className="w-full">
+										<AIAnnaLisaCallDrawer
+											buttonProps={{ className: 'rounded-r-none' }}
+										/>
+										<Divider
+											orientation="vertical"
+											className="bg-background-0"
+										/>
+										<AIAgentsChatDrawer
+											title="Anna Lisa"
+											subtitle="Analista de Dados"
+											iconName="Database"
+											iconColor="tertiary_400"
+											buttonProps={{ className: 'rounded-l-none' }}
+										/>
+									</HStack>
 								)}
 								style={{ width, height }}
 							/>
@@ -92,8 +113,24 @@ export const AIAgentsScreen = () => {
 								name="Eduarte"
 								role="Designer Gráfico"
 								description="Cria artes promocionais e imagens de divulgação com base nos produtos, campanhas e datas especiais, fortalecendo a comunicação visual e o impacto da marca."
-								onCall={() => {}}
-								onChat={() => {}}
+								renderFooter={() => (
+									<HStack className="w-full">
+										<AIEduarteCallDrawer
+											buttonProps={{ className: 'rounded-r-none' }}
+										/>
+										<Divider
+											orientation="vertical"
+											className="bg-background-0"
+										/>
+										<AIAgentsChatDrawer
+											title="Eduarte"
+											subtitle="Designer Gráfico"
+											iconName="Palette"
+											iconColor="quaternary_400"
+											buttonProps={{ className: 'rounded-l-none' }}
+										/>
+									</HStack>
+								)}
 								style={{ width, height }}
 							/>
 						)}
@@ -110,7 +147,7 @@ export const AIAgentsScreen = () => {
 									name="Aldair"
 									role="Auditor de Produtos"
 									description="Avalia produtos cadastrados e sugere melhorias como inclusão de imagens, datas de validade e descrições, mantendo o catálogo completo, atrativo e atualizado."
-									onAction={() => {}}
+									renderFooter={() => <AIAldairCameraDrawer />}
 									style={{ width, height }}
 								/>
 							</BagdeCard>
@@ -128,7 +165,7 @@ export const AIAgentsScreen = () => {
 									name="Lídia"
 									role="Vendedora Artificial"
 									description="Responde dúvidas dos clientes, sugere produtos com base no estoque e ajuda a impulsionar as vendas com recomendações inteligentes e atendimento automatizado."
-									onLead={() => {}}
+									renderFooter={() => <AILidiaCameraDrawer />}
 									style={{ width, height }}
 								/>
 							</BagdeCard>
@@ -146,7 +183,7 @@ export const AIAgentsScreen = () => {
 									name="Clara Feed"
 									role="Social Media"
 									description="Cria posts criativos de produtos e datas comemorativas com dados da Lídia e imagens do Eduarte. Publica automaticamente nas redes sociais, fazendo o marketing digital da sua loja."
-									onLead={() => {}}
+									renderFooter={() => <AIClaraFeedCameraDrawer />}
 									style={{ width, height }}
 								/>
 							</BagdeCard>
@@ -164,8 +201,24 @@ export const AIAgentsScreen = () => {
 									name="Renderley"
 									role="Video Maker"
 									description="Produz vídeos promocionais e institucionais com base em produtos e campanhas, ampliando o alcance da marca e fortalecendo o engajamento com seus clientes."
-									onCall={() => {}}
-									onChat={() => {}}
+									renderFooter={() => (
+										<HStack className="w-full">
+											<AIEduarteCallDrawer
+												buttonProps={{ className: 'rounded-r-none' }}
+											/>
+											<Divider
+												orientation="vertical"
+												className="bg-background-0"
+											/>
+											<AIAgentsChatDrawer
+												title="Eduarte"
+												subtitle="Designer Gráfico"
+												iconName="Palette"
+												iconColor="quaternary_400"
+												buttonProps={{ className: 'rounded-l-none' }}
+											/>
+										</HStack>
+									)}
 									style={{ width, height }}
 								/>
 							</BagdeCard>

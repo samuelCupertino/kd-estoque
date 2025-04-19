@@ -2,26 +2,42 @@ import { ComponentProps } from 'react'
 import { Button as ButtonUi } from '../ui/button'
 import { Icon, IIconProps } from './Icon'
 import { twMerge } from 'tailwind-merge'
+import { IBreakPoint, isBreakPoint, useBreakpoint } from '@/hooks/useBreakpoint'
 
-export interface IButtonCircleProps extends ComponentProps<typeof ButtonUi> {
+type IButtonUiProps = ComponentProps<typeof ButtonUi>
+
+export interface IButtonCircleProps
+	extends Omit<ComponentProps<typeof ButtonUi>, 'size'> {
 	iconProps: IIconProps
 	children?: JSX.Element | string
+	size?: IBreakPoint<IButtonUiProps['size']> | IButtonUiProps['size']
 }
 
 export const ButtonCircle = ({
 	children,
 	iconProps,
 	className,
+	size = 'lg',
 	...props
-}: IButtonCircleProps) => (
-	<ButtonUi
-		className={twMerge(
-			'min-w-16 w-fit min-h-16 h-fit p-3 border rounded-full border-background-200 bg-primary-50 dark:bg-primary-50 hover:bg-primary-50 hover:dark:bg-primary-100 cursor-pointer',
-			className,
-		)}
-		{...props}
-	>
-		{iconProps && <Icon size={28} color="typography_600" {...iconProps} />}
-		{children}
-	</ButtonUi>
-)
+}: IButtonCircleProps) => {
+	const sizeResponsive: NonNullable<IButtonUiProps['size']> =
+		useBreakpoint(isBreakPoint(size) ? size : { base: size }) ?? size
+
+	const iconSize = { xs: 8, sm: 10, md: 12, lg: 16, xl: 20 }[sizeResponsive]
+	const btnSize = { xs: 14, sm: 18, md: 22, lg: 28, xl: 32 }[sizeResponsive]
+
+	return (
+		<ButtonUi
+			className={twMerge(
+				`w-fit h-fit w-${iconSize} p-1 aspect-square border rounded-full hover:scale-105 !border-primary-100 bg-primary-50 hover:!bg-primary-100 dark:!border-primary-300 dark:bg-primary-50 dark:hover:!bg-primary-100 cursor-pointer duration-500`,
+				className,
+			)}
+			{...props}
+		>
+			{iconProps && (
+				<Icon size={btnSize} color="typography_600" {...iconProps} />
+			)}
+			{children}
+		</ButtonUi>
+	)
+}

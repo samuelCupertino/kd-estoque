@@ -9,6 +9,7 @@ export interface IBagdeProps extends ComponentProps<typeof Box> {
 	text: string
 	bgColor?: IThemeColor
 	isDisable?: boolean
+	size?: number
 }
 
 export const BagdeCard = ({
@@ -17,6 +18,7 @@ export const BagdeCard = ({
 	text,
 	bgColor = { light: 'warning_300', dark: 'warning_100' },
 	isDisable,
+	size = 12,
 	children,
 	style,
 	...props
@@ -35,7 +37,7 @@ export const BagdeCard = ({
 				style={{
 					backgroundColor,
 					...(position === 'top-left' ? { top: 0, left: 0 } : {}),
-					...(position === 'top-right' ? { top: -25, right: -20 } : {}),
+					...(position === 'top-right' ? { top: -40, right: -40 } : {}),
 					...(position === 'bottom-left' ? { bottom: 0, left: 0 } : {}),
 					...(position === 'bottom-right' ? { bottom: 0, right: 0 } : {}),
 					...(direction === 'transversal'
@@ -43,7 +45,14 @@ export const BagdeCard = ({
 						: {}),
 				}}
 			>
-				<BadgeText style={{ textAlign: 'center', paddingInline: 28 }}>
+				<BadgeText
+					className="text-lg"
+					style={{
+						textAlign: 'center',
+						paddingInline: size * 6,
+						fontSize: size,
+					}}
+				>
 					{text}
 				</BadgeText>
 			</Badge>

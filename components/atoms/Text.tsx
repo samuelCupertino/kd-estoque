@@ -14,8 +14,7 @@ export const Text = ({ size, color, style, ...props }: ITextProps) => {
 	const fontSize: ITextUIProps['size'] = useBreakpoint(
 		isBreakPoint(size) ? size : { base: size },
 	)
-	const resolvedColor = useThemeColor(color ?? 'white')
-	const fontColor = color ? resolvedColor : color
+	const fontColor = useThemeColor(color ?? 'typography_600')
 
 	return (
 		<TextUI

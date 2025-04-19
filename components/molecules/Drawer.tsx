@@ -16,12 +16,21 @@ import { Pressable } from '../ui/pressable'
 import { Divider } from '../ui/divider'
 import { HStack } from '../ui/hstack'
 import { VStack } from '../ui/vstack'
+import { twMerge } from 'tailwind-merge'
+import { LayoutChangeEvent } from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { Box } from '../ui/box'
 
-export interface IDrawerProps extends ComponentProps<typeof DrawerUI> {
+export interface IDrawerProps
+	extends Omit<ComponentProps<typeof DrawerUI>, 'children'> {
 	title: string
 	subtitle: string
 	iconName: IIconCircleProps['name']
 	iconColor?: IIconCircleProps['color']
+	bodyProps?: ComponentProps<typeof DrawerBody>
+	children?:
+		| ((size: { width: number; height: number }) => JSX.Element)
+		| ComponentProps<typeof DrawerUI>['children']
 	renderButton: (prop: {
 		showDrawer: boolean
 		setShowDrawer: React.Dispatch<React.SetStateAction<boolean>>
@@ -40,14 +49,22 @@ export const Drawer = ({
 	renderButton,
 	renderFooter,
 	children,
+	onClose,
+	bodyProps,
 	...props
 }: IDrawerProps) => {
 	const [showDrawer, setShowDrawer] = useState(false)
+	const [bodySize, setBodySize] = useState({ width: 0, height: 0 })
 	const drawerResponsiveProps = useBreakpoint({
 		base: { size: 'lg', anchor: 'bottom' },
 		sm: { size: 'lg', anchor: 'right' },
 		lg: { size: 'md', anchor: 'right' },
 	})
+
+	const handleLayout = (event: LayoutChangeEvent) => {
+		const { width, height } = event.nativeEvent.layout
+		setBodySize({ width, height })
+	}
 
 	return (
 		<>
@@ -55,13 +72,16 @@ export const Drawer = ({
 
 			<DrawerUI
 				isOpen={showDrawer}
-				onClose={() => setShowDrawer(false)}
+				onClose={() => {
+					onClose?.()
+					setShowDrawer(false)
+				}}
 				{...drawerResponsiveProps}
 				{...props}
 			>
 				<DrawerBackdrop />
 				<DrawerContent
-					className="border-background-300"
+					className="border-background-300 p-0"
 					style={{
 						...(drawerResponsiveProps.anchor === 'bottom'
 							? {
@@ -78,7 +98,7 @@ export const Drawer = ({
 								}),
 					}}
 				>
-					<DrawerHeader>
+					<DrawerHeader className="p-4">
 						<HStack className="gap-3 items-center">
 							<IconCircle
 								name={iconName}
@@ -98,7 +118,13 @@ export const Drawer = ({
 								</Text>
 							</VStack>
 						</HStack>
-						<Pressable onResponderEnd={() => setShowDrawer(false)}>
+						<Pressable
+							className="hover:scale-110 duration-500"
+							onResponderEnd={() => {
+								onClose?.()
+								setShowDrawer(false)
+							}}
+						>
 							<IconCircle
 								name="XIcon"
 								size={16}
@@ -106,16 +132,30 @@ export const Drawer = ({
 							/>
 						</Pressable>
 					</DrawerHeader>
+					<Box className="px-4">
+						<Divider className="rounded-full" />
+					</Box>
 
-					<Divider className="rounded-full mt-3 -mb-4" />
+					<KeyboardAwareScrollView
+						contentContainerStyle={{ flexGrow: 1 }}
+						enableOnAndroid={true}
+						extraScrollHeight={0}
+						keyboardShouldPersistTaps="handled"
+					>
+						<DrawerBody
+							onLayout={handleLayout}
+							{...bodyProps}
+							className={twMerge('my-0', bodyProps?.className)}
+						>
+							{typeof children === 'function' ? children(bodySize) : children}
+						</DrawerBody>
 
-					<DrawerBody className="pt-4">{children}</DrawerBody>
-
-					{renderFooter && (
-						<DrawerFooter>
-							{renderFooter({ showDrawer, setShowDrawer })}
-						</DrawerFooter>
-					)}
+						{renderFooter && (
+							<DrawerFooter className="px-4 pt-0 pb-4">
+								{renderFooter({ showDrawer, setShowDrawer })}
+							</DrawerFooter>
+						)}
+					</KeyboardAwareScrollView>
 				</DrawerContent>
 			</DrawerUI>
 		</>

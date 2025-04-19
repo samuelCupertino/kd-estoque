@@ -10,6 +10,7 @@ export default function TabLayout() {
 				headerShown: false,
 				tabBarShowLabel: false,
 				animation: 'fade',
+				tabBarHideOnKeyboard: true,
 			}}
 		>
 			<Tabs.Screen

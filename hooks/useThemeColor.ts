@@ -106,13 +106,43 @@ export const useThemeColor = <T extends IThemeColor | IThemeColor[]>(
 }
 
 export const rgbToHex = (rgbStr: string) => {
-	// Remove 'rgb(' e ')' e divide os valores
 	const [r, g, b] = rgbStr
 		.replace(/^rgb\(|\)$/g, '')
 		.trim()
 		.split(/\s+/)
 		.map(Number)
 
-	// Converte cada componente para hexadecimal e concatena
 	return '#' + [r, g, b].map((x) => x.toString(16).padStart(2, '0')).join('')
+}
+
+export const getThemeColorBase = (themeColor: string) => {
+	const baseColor = themeColor.toString().replace(/(\D+)[-_]\d+/, '$1')
+	return baseColor
+}
+
+export const getThemeColorLevel = (themeColor: string) => {
+	const baseColor = themeColor.toString().replace(/\D+(\d+)/, '$1')
+	return baseColor
+}
+
+interface IEditThemeColor {
+	themeColor?: any
+	separator?: string
+	color?: string
+	level?: number | string
+}
+
+export const editThemeColor = ({
+	themeColor = 'primary_100',
+	separator,
+	color,
+	level,
+}: IEditThemeColor) => {
+	const baseColor = themeColor.toString().replace(/(\D+)[-_]\d+/, '$1')
+	const baseLevel = themeColor.toString().replace(/\D+(\d+)/, '$1')
+	const baseSeparator = themeColor.toString().replace(/.+([-_]).+/, '$1')
+
+	return (
+		(color ?? baseColor) + (separator ?? baseSeparator) + (level ?? baseLevel)
+	)
 }
