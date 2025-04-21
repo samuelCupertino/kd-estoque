@@ -96,6 +96,7 @@ export const Drawer = ({
 									borderWidth: 1,
 									borderRightWidth: 0,
 								}),
+						maxWidth: 740,
 					}}
 				>
 					<DrawerHeader className="p-4">
@@ -151,7 +152,7 @@ export const Drawer = ({
 						</DrawerBody>
 
 						{renderFooter && (
-							<DrawerFooter className="px-4 pt-0 pb-4">
+							<DrawerFooter className={twMerge('px-4 pt-0 pb-6')}>
 								{renderFooter({ showDrawer, setShowDrawer })}
 							</DrawerFooter>
 						)}

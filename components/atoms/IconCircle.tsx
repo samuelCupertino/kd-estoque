@@ -5,6 +5,7 @@ import * as VectorIcons from '@expo/vector-icons'
 import { isThemeColor, IThemeColor, useThemeColor } from '@/hooks/useThemeColor'
 import { Center } from '../ui/center'
 import { Box } from '../ui/box'
+import { twMerge } from 'tailwind-merge'
 
 const iconMap = {
 	...LucideIcons,
@@ -19,6 +20,7 @@ export interface IIconCircleProps
 	color?: IThemeColor | (string & {})
 	borderRadius?: number
 	padding?: number
+	containerProps?: ComponentProps<typeof Center>
 }
 
 export const IconCircle = ({
@@ -28,6 +30,7 @@ export const IconCircle = ({
 	borderRadius = 100,
 	padding = 8,
 	style,
+	containerProps,
 	...props
 }: IIconCircleProps) => {
 	const resolvedColor = useThemeColor(isThemeColor(color) ? color : 'white')
@@ -35,8 +38,12 @@ export const IconCircle = ({
 
 	return (
 		<Center
-			className="rounded-full relative overflow-hidden"
-			style={{ borderRadius, padding }}
+			{...containerProps}
+			className={twMerge(
+				'rounded-full relative overflow-hidden',
+				containerProps?.className,
+			)}
+			style={{ borderRadius, padding, ...(containerProps?.style as object) }}
 		>
 			<Box
 				className="absolute inset-0"

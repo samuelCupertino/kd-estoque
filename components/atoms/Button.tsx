@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react'
+import { ComponentProps, useEffect, useState } from 'react'
 import { Pressable } from '../ui/pressable'
 import { Icon, IIconProps } from './Icon'
 import { Text, ITextProps } from './Text'
@@ -18,22 +18,28 @@ export const Button = ({
 	iconProps,
 	textProps,
 	className,
-	baseColor = 'quinary',
+	baseColor = 'primary',
 	...props
 }: IButtonProps) => {
-	const btnPrimaryClassNames = `bg-${baseColor}-200 hover:bg-${baseColor}-300 dark:bg-${baseColor}-100 hover:dark:bg-${baseColor}-200`
-	const btnSecondaryClassNames = `border-2 border-${baseColor}-300 hover:bg-${baseColor}-300 dark:border-${baseColor}-100 hover:dark:bg-${baseColor}-200`
-	const btnDangerClassNames = `bg-red-300 hover:bg-red-400 dark:bg-red-900 hover:dark:bg-red-800`
+	const [btnClassNames, setBtnClassNames] = useState('')
+
+	useEffect(() => {
+		setBtnClassNames(
+			variant === 'primary'
+				? `bg-${baseColor}-200 hover:bg-${baseColor}-300 dark:bg-${baseColor}-100 hover:dark:bg-${baseColor}-200`
+				: variant === 'secondary'
+					? `border-2 border-${baseColor}-300 hover:bg-${baseColor}-300 dark:border-${baseColor}-100 hover:dark:bg-${baseColor}-200`
+					: variant === 'danger'
+						? `bg-red-300 hover:bg-red-400 dark:bg-red-900 hover:dark:bg-red-800`
+						: '',
+		)
+	}, [variant, baseColor])
 
 	return (
 		<Pressable
 			className={twMerge(
 				`flex-1 flex-row gap-3 justify-center items-center py-3 rounded-xl duration-300`,
-				variant === 'secondary'
-					? btnSecondaryClassNames
-					: variant === 'danger'
-						? btnDangerClassNames
-						: btnPrimaryClassNames,
+				btnClassNames,
 				className,
 			)}
 			{...props}

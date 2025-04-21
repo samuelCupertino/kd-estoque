@@ -3,6 +3,7 @@ import { useMediaQuery } from '@/components/ui/utils/use-media-query'
 
 export const breakpointToPx = {
 	base: 0,
+	'2xs': 340,
 	xs: 480,
 	sm: 640,
 	md: 768,
@@ -20,6 +21,7 @@ export const isBreakPoint = <T>(value: any): value is IBreakPoint<T> => {
 
 	const validBreakpoints: IBreakpointKey[] = [
 		'base',
+		'2xs',
 		'xs',
 		'sm',
 		'md',
@@ -34,7 +36,8 @@ export const isBreakPoint = <T>(value: any): value is IBreakPoint<T> => {
 }
 
 export const useBreakpoint = (breakpoint: IBreakPoint) => {
-	const [isXs, isSm, isMd, isLg, isXl, is2xl] = useMediaQuery([
+	const [is2Xs, isXs, isSm, isMd, isLg, isXl, is2xl] = useMediaQuery([
+		{ minWidth: breakpointToPx['2xs'] },
 		{ minWidth: breakpointToPx.xs },
 		{ minWidth: breakpointToPx.sm },
 		{ minWidth: breakpointToPx.md },
@@ -56,6 +59,8 @@ export const useBreakpoint = (breakpoint: IBreakPoint) => {
 							? 'sm'
 							: isXs && 'xs' in breakpoint
 								? 'xs'
-								: 'base'
+								: is2Xs && '2xs' in breakpoint
+									? '2xs'
+									: 'base'
 	]
 }
