@@ -55,7 +55,7 @@ export const AIAgentsScreen = () => {
 				>
 					<GridContainerItem
 						cols={{ base: 12, sm: 6, xl: 4 }}
-						rows={{ base: 14, '2xs': 8, xs: 6, sm: 5, lg: 4, xl: 3 }}
+						rows={{ base: 14, '2xs': 9, xs: 6, sm: 5, lg: 4, xl: 3 }}
 					>
 						{({ width, height }) => (
 							<AIAgentsCard
@@ -71,7 +71,7 @@ export const AIAgentsScreen = () => {
 					</GridContainerItem>
 					<GridContainerItem
 						cols={{ base: 12, sm: 6, xl: 4 }}
-						rows={{ base: 14, '2xs': 8, xs: 6, sm: 5, lg: 4, xl: 3 }}
+						rows={{ base: 14, '2xs': 9, xs: 6, sm: 5, lg: 4, xl: 3 }}
 					>
 						{({ width, height }) => (
 							<AIAgentsCard
@@ -104,7 +104,7 @@ export const AIAgentsScreen = () => {
 					</GridContainerItem>
 					<GridContainerItem
 						cols={{ base: 12, sm: 6, xl: 4 }}
-						rows={{ base: 14, '2xs': 8, xs: 6, sm: 5, lg: 4, xl: 3 }}
+						rows={{ base: 14, '2xs': 9, xs: 6, sm: 5, lg: 4, xl: 3 }}
 					>
 						{({ width, height }) => (
 							<AIAgentsCard
@@ -137,7 +137,7 @@ export const AIAgentsScreen = () => {
 					</GridContainerItem>
 					<GridContainerItem
 						cols={{ base: 12, sm: 6, xl: 4 }}
-						rows={{ base: 14, '2xs': 8, xs: 6, sm: 5, lg: 4, xl: 3 }}
+						rows={{ base: 14, '2xs': 9, xs: 6, sm: 5, lg: 4, xl: 3 }}
 					>
 						{({ width, height }) => (
 							<BagdeCard text="Em breve" isDisable>
@@ -155,7 +155,7 @@ export const AIAgentsScreen = () => {
 					</GridContainerItem>
 					<GridContainerItem
 						cols={{ base: 12, sm: 6, xl: 4 }}
-						rows={{ base: 14, '2xs': 8, xs: 6, sm: 5, lg: 4, xl: 3 }}
+						rows={{ base: 14, '2xs': 9, xs: 6, sm: 5, lg: 4, xl: 3 }}
 					>
 						{({ width, height }) => (
 							<BagdeCard text="Em breve" isDisable>
@@ -173,7 +173,7 @@ export const AIAgentsScreen = () => {
 					</GridContainerItem>
 					<GridContainerItem
 						cols={{ base: 12, sm: 6, xl: 4 }}
-						rows={{ base: 14, '2xs': 8, xs: 6, sm: 5, lg: 4, xl: 3 }}
+						rows={{ base: 14, '2xs': 9, xs: 6, sm: 5, lg: 4, xl: 3 }}
 					>
 						{({ width, height }) => (
 							<BagdeCard text="Em breve" isDisable>
@@ -191,7 +191,7 @@ export const AIAgentsScreen = () => {
 					</GridContainerItem>
 					<GridContainerItem
 						cols={{ base: 12, sm: 6, xl: 4 }}
-						rows={{ base: 14, '2xs': 8, xs: 6, sm: 5, lg: 4, xl: 3 }}
+						rows={{ base: 14, '2xs': 9, xs: 6, sm: 5, lg: 4, xl: 3 }}
 					>
 						{({ width, height }) => (
 							<BagdeCard text="Em breve" isDisable>

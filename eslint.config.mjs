@@ -58,6 +58,7 @@ export default [
 			'react/jsx-uses-react': 'off',
 			'react/no-unescaped-entities': 'off',
 			'react/display-name': 'off',
+			'no-undef': 'off',
 			'no-restricted-imports': [
 				'warn',
 				{

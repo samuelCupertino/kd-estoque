@@ -16,6 +16,7 @@ export const DashboardFilterDrawer = ({
 		iconName="Filter"
 		renderButton={({ setShowDrawer }) => (
 			<ButtonCircle
+				className="bg-background-0"
 				iconProps={{ name: 'Filter' }}
 				onPress={() => setShowDrawer(true)}
 			>

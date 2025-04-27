@@ -6,12 +6,21 @@ import { Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import 'react-native-reanimated'
 
-import { Platform, SafeAreaView, useColorScheme } from 'react-native'
+import {
+	Dimensions,
+	Platform,
+	SafeAreaView,
+	useColorScheme,
+} from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import * as NavigationBar from 'expo-navigation-bar'
 import { useThemeColor } from '@/hooks/useThemeColor'
+import { Center } from '@/components/ui/center'
+import { Image } from '@/components/ui/image'
+
+const LogoPng = require('@/assets/images/icon.png')
 
 SplashScreen.preventAutoHideAsync()
 
@@ -24,6 +33,7 @@ export default function RootLayout() {
 	const colorScheme = useColorScheme()
 	const isDark = colorScheme === 'dark'
 	const backgroundLight = useThemeColor('background_100')
+	const [isLoadingResponsive, setIsLoadingResponsive] = useState(false)
 
 	const currentTheme: Theme = {
 		dark: isDark,
@@ -54,7 +64,28 @@ export default function RootLayout() {
 		if (loaded) SplashScreen.hideAsync()
 	}, [loaded])
 
-	if (!loaded) return null
+	useEffect(() => {
+		const onChange = () => {
+			setIsLoadingResponsive(true)
+			setTimeout(() => setIsLoadingResponsive(false), 250)
+		}
+		if (Platform.OS === 'web') onChange()
+
+		const subscription = Dimensions.addEventListener('change', onChange)
+		return () => subscription.remove()
+	}, [])
+
+	if (isLoadingResponsive || !loaded) {
+		return (
+			<Center className="absolute inset-0 bg-background-100">
+				<Image
+					className="w-36 h-36 rounded-xl mx-auto"
+					source={LogoPng}
+					alt="Imagem do produto"
+				/>
+			</Center>
+		)
+	}
 
 	return (
 		<GluestackUIProvider mode="system">

@@ -1,4 +1,4 @@
-import { ComponentProps, useEffect, useState } from 'react'
+import { ComponentProps } from 'react'
 import { Pressable } from '@/components/ui/pressable'
 import { Icon, IIconProps } from './Icon'
 import { Text, ITextProps } from './Text'
@@ -21,19 +21,14 @@ export const Button = ({
 	baseColor = 'primary',
 	...props
 }: IButtonProps) => {
-	const [btnClassNames, setBtnClassNames] = useState('')
-
-	useEffect(() => {
-		setBtnClassNames(
-			variant === 'primary'
-				? `bg-${baseColor}-200 hover:bg-${baseColor}-300 dark:bg-${baseColor}-100 hover:dark:bg-${baseColor}-200`
-				: variant === 'secondary'
-					? `border-2 border-${baseColor}-300 hover:bg-${baseColor}-300 dark:border-${baseColor}-100 hover:dark:bg-${baseColor}-200`
-					: variant === 'danger'
-						? `bg-red-300 hover:bg-red-400 dark:bg-red-900 hover:dark:bg-red-800`
-						: '',
-		)
-	}, [variant, baseColor])
+	const btnClassNames =
+		variant === 'primary'
+			? `bg-${baseColor}-200 hover:bg-${baseColor}-300 dark:bg-${baseColor}-100 hover:dark:bg-${baseColor}-200`
+			: variant === 'secondary'
+				? `border-2 border-${baseColor}-300 hover:bg-${baseColor}-300 dark:border-${baseColor}-100 hover:dark:bg-${baseColor}-200`
+				: variant === 'danger'
+					? `bg-red-300 hover:bg-red-400 dark:bg-red-900 hover:dark:bg-red-800`
+					: ''
 
 	return (
 		<Pressable

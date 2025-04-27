@@ -15,7 +15,7 @@ export const ScreenHeader = ({
 	...props
 }: IScreenHeaderProps) => (
 	<HStack
-		className={`justify-between items-center min-h-16 ${Platform.OS === 'web' ? 'my-4' : 'mb-4 mt-2'} ${className}`}
+		className={`justify-between items-center min-h-16 ${Platform.OS === 'web' ? 'my-3' : 'mb-4 mt-2'} ${className}`}
 		{...props}
 	>
 		<Heading size="xl" className="color-typography-700">

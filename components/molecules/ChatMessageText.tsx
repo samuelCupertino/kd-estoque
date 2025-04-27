@@ -46,7 +46,7 @@ export const ChatMessageText = ({
 			<Collapse
 				visible={({ isOpen }) => (
 					<Box
-						className="transition-all duration-30"
+						className="transition-all duration-30 my-1"
 						style={{
 							...(isOpen
 								? {
@@ -61,7 +61,10 @@ export const ChatMessageText = ({
 						}}
 					>
 						{typeof children === 'string' ? (
-							<Text size={{ base: 'md', xs: 'sm' }} className="text-justify">
+							<Text
+								size={{ base: 'md', xs: 'sm' }}
+								// className={isAuthor ? 'text-right' : 'text-left'}
+							>
 								{children}
 							</Text>
 						) : (

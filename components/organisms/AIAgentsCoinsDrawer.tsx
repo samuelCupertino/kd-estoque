@@ -42,6 +42,7 @@ export const AIAgentsCoinsDrawer = ({
 			iconName="DollarSign"
 			renderButton={({ setShowDrawer }) => (
 				<ButtonCircle
+					className="bg-background-0"
 					iconProps={{ name: 'CircleDollarSign' }}
 					onPress={() => setShowDrawer(true)}
 				>
@@ -76,7 +77,7 @@ export const AIAgentsCoinsDrawer = ({
 							<GridContainerItem
 								key={coin.id}
 								cols={{ base: 12, md: 6, lg: 12, xl: 6 }}
-								rows={{ base: 10, '2xs': 7, xs: 6, md: 5, lg: 6, xl: 4 }}
+								rows={{ base: 10, '2xs': 8, xs: 6, md: 5, lg: 6, xl: 4 }}
 							>
 								<AddCoinByPixCard
 									coins={coin.number}
