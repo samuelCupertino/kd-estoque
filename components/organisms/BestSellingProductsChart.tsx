@@ -1,12 +1,9 @@
-import { Box } from '../ui/box'
+import { Box } from '@/components/ui/box'
 import { ComponentProps } from 'react'
 import { useThemeColor } from '@/hooks/useThemeColor'
-import { HorizontalBarChart, Slider } from '../molecules'
-import { Heading } from '../ui/heading'
-import { useBreakpointValue } from '../ui/utils/use-break-point-value'
-import { HStack } from '../ui/hstack'
-import { IconCircle } from '../atoms'
-import { Pressable } from '../ui/pressable'
+import { HorizontalBarChart, Slider } from '@/components/molecules'
+import { HStack } from '@/components/ui/hstack'
+import { Heading, ButtonCircle } from '@/components/atoms'
 
 export interface IBestSellingProductsChartProps
 	extends Omit<ComponentProps<typeof Box>, 'children'> {
@@ -20,11 +17,6 @@ export const BestSellingProductsChart = ({
 	style,
 	...props
 }: IBestSellingProductsChartProps) => {
-	const titleFontSize = useBreakpointValue({
-		default: 'lg',
-		md: 'xl',
-	})
-
 	const backgroundColor = useThemeColor({
 		light: 'background_0',
 		dark: 'background_50',
@@ -41,18 +33,20 @@ export const BestSellingProductsChart = ({
 		>
 			<Box className="items-cente p-5">
 				<HStack className="justify-between">
-					<Heading size={titleFontSize} style={{ color: typographyColor }}>
+					<Heading
+						size={{ base: 'md', md: 'lg' }}
+						style={{ color: typographyColor }}
+					>
 						Produtos mais vendidos
 					</Heading>
-					<Box className="h-full ml-auto">
-						<Pressable className="opacity-60 hover:opacity-100">
-							<IconCircle
-								name="Ellipsis"
-								size={12}
-								color={{ light: 'background_500', dark: 'background_700' }}
-							/>
-						</Pressable>
-					</Box>
+					<ButtonCircle
+						size="xs"
+						className="ml-auto mb-auto"
+						iconProps={{
+							name: 'Ellipsis',
+							color: { light: 'background_500', dark: 'background_700' },
+						}}
+					/>
 				</HStack>
 				<HorizontalBarChart
 					className="mt-4"
@@ -62,18 +56,20 @@ export const BestSellingProductsChart = ({
 			</Box>
 			<Box className="items-cente p-5">
 				<HStack className="justify-between">
-					<Heading size={titleFontSize} style={{ color: typographyColor }}>
+					<Heading
+						size={{ base: 'md', md: 'lg' }}
+						style={{ color: typographyColor }}
+					>
 						Produtos menos vendidos
 					</Heading>
-					<Box className="h-full ml-auto">
-						<Pressable className="opacity-60 hover:opacity-100">
-							<IconCircle
-								name="Ellipsis"
-								size={12}
-								color={{ light: 'background_500', dark: 'background_700' }}
-							/>
-						</Pressable>
-					</Box>
+					<ButtonCircle
+						size="xs"
+						className="ml-auto mb-auto"
+						iconProps={{
+							name: 'Ellipsis',
+							color: { light: 'background_500', dark: 'background_700' },
+						}}
+					/>
 				</HStack>
 				<HorizontalBarChart
 					className="mt-4"

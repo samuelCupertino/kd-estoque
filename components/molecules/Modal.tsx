@@ -1,15 +1,14 @@
 import { ComponentProps, useState } from 'react'
-import { Heading } from '../ui/heading'
 
 import React from 'react'
-import { IconCircle, IIconCircleProps, Text } from '../atoms'
-import { Pressable } from '../ui/pressable'
-import { Divider } from '../ui/divider'
-import { HStack } from '../ui/hstack'
-import { VStack } from '../ui/vstack'
+import { IconCircle, IIconCircleProps, Text, Heading } from '@/components/atoms'
+import { Pressable } from '@/components/ui/pressable'
+import { Divider } from '@/components/ui/divider'
+import { HStack } from '@/components/ui/hstack'
+import { VStack } from '@/components/ui/vstack'
 import { twMerge } from 'tailwind-merge'
 import { Dimensions } from 'react-native'
-import { Box } from '../ui/box'
+import { Box } from '@/components/ui/box'
 
 import {
 	Modal as ModalUI,

@@ -1,14 +1,16 @@
 import { ComponentProps } from 'react'
-import { Box } from '../ui/box'
-import { Heading } from '../ui/heading'
-import { HStack } from '../ui/hstack'
-import { IconCircle, IIconCircleProps } from '../atoms'
-import { Text } from '../ui/text'
-import { Badge, BadgeIcon, BadgeText } from '../ui/badge'
+import { Box } from '@/components/ui/box'
+import { HStack } from '@/components/ui/hstack'
+import {
+	ButtonCircle,
+	Heading,
+	IconCircle,
+	IIconCircleProps,
+	Text,
+} from '@/components/atoms'
+import { Badge, BadgeIcon, BadgeText } from '@/components/ui/badge'
 import { TrendingDown, TrendingUp } from 'lucide-react-native'
 import { useThemeColor } from '@/hooks/useThemeColor'
-import { useBreakpointValue } from '../ui/utils/use-break-point-value'
-import { Pressable } from '../ui/pressable'
 
 export interface IValueDifferenceCardProps extends ComponentProps<typeof Box> {
 	iconName: IIconCircleProps['name']
@@ -40,14 +42,6 @@ export const ValueDifferenceCard = ({
 		dark: 'background_50',
 	})
 	const typographyColor = useThemeColor('typography_600')
-	const titleFontSize = useBreakpointValue({
-		default: 'md',
-		md: 'xl',
-	})
-	const valueFontSize = useBreakpointValue({
-		default: 'xl',
-		md: '3xl',
-	})
 
 	return (
 		<Box
@@ -62,23 +56,27 @@ export const ValueDifferenceCard = ({
 					color={iconColor}
 					borderRadius={8}
 				/>
-				<Heading size={titleFontSize} style={{ color: typographyColor }}>
+				<Heading
+					size={{ base: 'md', md: 'lg' }}
+					style={{ color: typographyColor }}
+				>
 					{title}
 				</Heading>
-
-				<Box className="h-full ml-auto">
-					<Pressable className="opacity-60 hover:opacity-100">
-						<IconCircle
-							name="Ellipsis"
-							size={12}
-							color={{ light: 'background_500', dark: 'background_700' }}
-						/>
-					</Pressable>
-				</Box>
+				<ButtonCircle
+					size="xs"
+					className="ml-auto mb-auto"
+					iconProps={{
+						name: 'Ellipsis',
+						color: { light: 'background_500', dark: 'background_700' },
+					}}
+				/>
 			</HStack>
 
 			<HStack space="md" className="w-full justify-between items-end">
-				<Text size={valueFontSize} style={{ color: typographyColor }}>
+				<Text
+					size={{ base: 'xl', md: '2xl' }}
+					style={{ color: typographyColor }}
+				>
 					{formatValue(value)}
 				</Text>
 

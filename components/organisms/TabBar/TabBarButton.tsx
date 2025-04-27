@@ -1,5 +1,5 @@
 import { Pressable, PressableProps, ViewStyle } from 'react-native'
-import { Icon } from '../../atoms'
+import { Icon } from '@/components/atoms'
 import { useEffect } from 'react'
 import Animated, {
 	interpolate,

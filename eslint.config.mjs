@@ -58,6 +58,17 @@ export default [
 			'react/jsx-uses-react': 'off',
 			'react/no-unescaped-entities': 'off',
 			'react/display-name': 'off',
+			'no-restricted-imports': [
+				'warn',
+				{
+					patterns: [
+						{
+							group: ['../*'],
+							message: 'Avoid relative imports. Use paths with alias (@/).',
+						},
+					],
+				},
+			],
 		},
 	},
 

@@ -1,9 +1,9 @@
 import React, { ComponentProps, useEffect, useRef, useState } from 'react'
 import { Animated, View } from 'react-native'
-import { HStack } from '../ui/hstack'
+import { HStack } from '@/components/ui/hstack'
 import { isThemeColor, IThemeColor, useThemeColor } from '@/hooks/useThemeColor'
 import { twMerge } from 'tailwind-merge'
-import { Text } from '../atoms/Text'
+import { Text } from '@/components/atoms'
 
 export type IAnimatedAIStatus =
 	| 'speaking'
@@ -266,7 +266,16 @@ export const AnimatedAI: React.FC<AnimatedAIProps> = ({
 			barAnimations.forEach((animation) => animation.stop())
 			thinkingAnimations.forEach((animation) => animation.stop())
 		}
-	}, [status])
+	}, [
+		barAnims,
+		currentTitle,
+		listeningOpacity,
+		scaleAnim,
+		status,
+		thinkingAnims,
+		thinkingOpacity,
+		titleOpacity,
+	])
 
 	return (
 		<HStack

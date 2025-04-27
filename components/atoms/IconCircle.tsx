@@ -3,8 +3,8 @@ import { ComponentProps } from 'react'
 import * as LucideIcons from 'lucide-react-native'
 import * as VectorIcons from '@expo/vector-icons'
 import { isThemeColor, IThemeColor, useThemeColor } from '@/hooks/useThemeColor'
-import { Center } from '../ui/center'
-import { Box } from '../ui/box'
+import { Center } from '@/components/ui/center'
+import { Box } from '@/components/ui/box'
 import { twMerge } from 'tailwind-merge'
 
 const iconMap = {

@@ -1,7 +1,7 @@
 import React, { ComponentProps } from 'react'
-import { Input, InputField } from '../ui/input'
-import { VStack } from '../ui/vstack'
-import { Text } from '../atoms'
+import { Input, InputField } from '@/components/ui/input'
+import { VStack } from '@/components/ui/vstack'
+import { Text } from '@/components/atoms'
 
 type IInputField = ComponentProps<typeof InputField>
 

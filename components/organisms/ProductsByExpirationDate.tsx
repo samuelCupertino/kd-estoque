@@ -1,16 +1,17 @@
-import { Box } from '../ui/box'
+import { Box } from '@/components/ui/box'
 import { ComponentProps } from 'react'
 import { useThemeColor } from '@/hooks/useThemeColor'
-import { Heading } from '../ui/heading'
-import { useBreakpointValue } from '../ui/utils/use-break-point-value'
-import { HStack } from '../ui/hstack'
-import { IconCircle, ScrollContainer } from '../atoms'
-import { VStack } from '../ui/vstack'
-import { Image } from '../ui/image'
-import { Text } from '../ui/text'
-import { Divider } from '../ui/divider'
+import { HStack } from '@/components/ui/hstack'
+import {
+	ScrollContainer,
+	Text,
+	Heading,
+	ButtonCircle,
+} from '@/components/atoms'
+import { VStack } from '@/components/ui/vstack'
+import { Image } from '@/components/ui/image'
+import { Divider } from '@/components/ui/divider'
 import React from 'react'
-import { Pressable } from '../ui/pressable'
 
 export interface IProductsByExpirationDateProps
 	extends Omit<ComponentProps<typeof Box>, 'children'> {}
@@ -19,10 +20,6 @@ export const ProductsByExpirationDate = ({
 	style,
 	...props
 }: IProductsByExpirationDateProps) => {
-	const titleFontSize = useBreakpointValue({
-		default: 'lg',
-		md: 'xl',
-	})
 	const backgroundColor = useThemeColor({
 		light: 'background_0',
 		dark: 'background_50',
@@ -84,18 +81,20 @@ export const ProductsByExpirationDate = ({
 			{...props}
 		>
 			<HStack className="justify-between">
-				<Heading size={titleFontSize} className="color-typography-600">
+				<Heading
+					size={{ base: 'md', md: 'lg' }}
+					className="color-typography-600"
+				>
 					Produtos em vencimento
 				</Heading>
-				<Box className="h-full ml-auto">
-					<Pressable className="opacity-60 hover:opacity-100">
-						<IconCircle
-							name="Ellipsis"
-							size={12}
-							color={{ light: 'background_500', dark: 'background_700' }}
-						/>
-					</Pressable>
-				</Box>
+				<ButtonCircle
+					size="xs"
+					className="ml-auto mb-auto"
+					iconProps={{
+						name: 'Ellipsis',
+						color: { light: 'background_500', dark: 'background_700' },
+					}}
+				/>
 			</HStack>
 
 			<Box className="mt-6">
@@ -112,7 +111,7 @@ export const ProductsByExpirationDate = ({
 									alt="Imagem do produto"
 								/>
 								<VStack>
-									<Heading size="md" className="color-typography-600">
+									<Heading size="sm" className="color-typography-600">
 										{e.name}
 									</Heading>
 									<Text size="sm" className="color-typography-500 -mt-1">

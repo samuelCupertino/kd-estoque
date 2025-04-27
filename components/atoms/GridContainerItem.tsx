@@ -1,5 +1,5 @@
-import { Box } from '../ui/box'
-import { GridItem } from '../ui/grid'
+import { Box } from '@/components/ui/box'
+import { GridItem } from '@/components/ui/grid'
 import {
 	findNodeHandle,
 	LayoutChangeEvent,

@@ -1,5 +1,4 @@
 import { ComponentProps, useState } from 'react'
-import { Heading } from '../ui/heading'
 
 import {
 	Drawer as DrawerUI,
@@ -11,15 +10,15 @@ import {
 } from '@/components/ui/drawer'
 import React from 'react'
 import { useBreakpoint } from '@/hooks/useBreakpoint'
-import { IconCircle, IIconCircleProps, Text } from '../atoms'
-import { Pressable } from '../ui/pressable'
-import { Divider } from '../ui/divider'
-import { HStack } from '../ui/hstack'
-import { VStack } from '../ui/vstack'
+import { IconCircle, IIconCircleProps, Text, Heading } from '@/components/atoms'
+import { Pressable } from '@/components/ui/pressable'
+import { Divider } from '@/components/ui/divider'
+import { HStack } from '@/components/ui/hstack'
+import { VStack } from '@/components/ui/vstack'
 import { twMerge } from 'tailwind-merge'
 import { LayoutChangeEvent } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import { Box } from '../ui/box'
+import { Box } from '@/components/ui/box'
 
 export interface IDrawerProps
 	extends Omit<ComponentProps<typeof DrawerUI>, 'children'> {

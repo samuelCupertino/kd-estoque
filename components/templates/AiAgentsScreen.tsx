@@ -1,6 +1,6 @@
-import { GridContainer, GridContainerItem } from '../atoms'
-import { ScrollContainer } from '../atoms'
-import { AIAgentsCard, BagdeCard, ScreenHeader } from '../molecules'
+import { GridContainer, GridContainerItem } from '@/components/atoms'
+import { ScrollContainer } from '@/components/atoms'
+import { AIAgentsCard, BagdeCard, ScreenHeader } from '@/components/molecules'
 import { Platform, useWindowDimensions } from 'react-native'
 import { breakpointToPx, useBreakpoint } from '@/hooks/useBreakpoint'
 import {
@@ -12,10 +12,10 @@ import {
 	AIAldairCameraDrawer,
 	AILidiaCameraDrawer,
 	AIClaraFeedCameraDrawer,
-} from '../organisms'
-import { VStack } from '../ui/vstack'
-import { HStack } from '../ui/hstack'
-import { Divider } from '../ui/divider'
+} from '@/components/organisms'
+import { VStack } from '@/components/ui/vstack'
+import { HStack } from '@/components/ui/hstack'
+import { Divider } from '@/components/ui/divider'
 
 export const AIAgentsScreen = () => {
 	const screenDimensions = useWindowDimensions()

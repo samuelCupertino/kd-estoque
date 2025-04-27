@@ -1,15 +1,18 @@
 import { ComponentProps } from 'react'
-import { Box } from '../ui/box'
-import { Heading } from '../ui/heading'
-import { HStack } from '../ui/hstack'
-import { IconCircle, IconProps } from '../atoms'
-import { Text } from '../ui/text'
-import { Divider } from '../ui/divider'
+import { Box } from '@/components/ui/box'
+import { HStack } from '@/components/ui/hstack'
+import {
+	ButtonCircle,
+	Heading,
+	IconCircle,
+	IIconProps,
+	Text,
+} from '@/components/atoms'
+import { Divider } from '@/components/ui/divider'
 import { IThemeColor } from '@/hooks/useThemeColor'
-import { Pressable } from '../ui/pressable'
 
 export interface IStockCardProps extends ComponentProps<typeof Box> {
-	iconName: IconProps['name']
+	iconName: IIconProps['name']
 	iconColor?: IThemeColor
 	title: string
 	text: string
@@ -38,16 +41,14 @@ export const StockCard = ({
 			<Heading size="md" className="color-typography-600">
 				{title}
 			</Heading>
-
-			<Box className="h-full ml-auto">
-				<Pressable className="opacity-60 hover:opacity-100">
-					<IconCircle
-						name="Ellipsis"
-						size={12}
-						color={{ light: 'background_500', dark: 'background_700' }}
-					/>
-				</Pressable>
-			</Box>
+			<ButtonCircle
+				size="xs"
+				className="ml-auto mb-auto"
+				iconProps={{
+					name: 'Ellipsis',
+					color: { light: 'background_500', dark: 'background_700' },
+				}}
+			/>
 		</HStack>
 		<Divider className="mt-4 p-[1px] rounded-full bg-background-100" />
 		<Text className="w-full mt-2" style={{ fontFamily: 'DMSans' }} size="md">

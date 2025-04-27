@@ -1,6 +1,6 @@
 import { BarChart } from 'react-native-gifted-charts'
 
-import { Box } from '../ui/box'
+import { Box } from '@/components/ui/box'
 import { ComponentProps } from 'react'
 import { useThemeColor } from '@/hooks/useThemeColor'
 

@@ -1,5 +1,5 @@
-import { Box } from '../ui/box'
-import { Grid } from '../ui/grid'
+import { Box } from '@/components/ui/box'
+import { Grid } from '@/components/ui/grid'
 import { useWindowDimensions } from 'react-native'
 import { ComponentProps, ReactElement } from 'react'
 import React from 'react'

@@ -3,7 +3,7 @@ import {
 	AnimatedCoin,
 	Drawer,
 	IDrawerProps,
-} from '../molecules'
+} from '@/components/molecules'
 import {
 	Badge,
 	ButtonCircle,
@@ -11,11 +11,11 @@ import {
 	GridContainerItem,
 	ScrollContainer,
 	AnimateNumber,
-} from '../atoms'
-import { Divider } from '../ui/divider'
-import { HStack } from '../ui/hstack'
-import { VStack } from '../ui/vstack'
-import { Heading } from '../ui/heading'
+	Heading,
+} from '@/components/atoms'
+import { Divider } from '@/components/ui/divider'
+import { HStack } from '@/components/ui/hstack'
+import { VStack } from '@/components/ui/vstack'
 
 const addCoinsOptions = [
 	{ id: 1, number: 1000, bonus: 0, price: 5 },

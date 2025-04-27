@@ -1,7 +1,7 @@
 import { BarChart } from 'react-native-gifted-charts'
 
-import { Box } from '../ui/box'
-import { Text } from '../ui/text'
+import { Box } from '@/components/ui/box'
+import { Text } from '@/components/atoms'
 import { ComponentProps } from 'react'
 import { useThemeColor } from '@/hooks/useThemeColor'
 import { formatNumberShort } from '@/utils'
@@ -35,7 +35,7 @@ export const GroupBarChart = ({
 			label: 'Jan.',
 			topLabelComponent: () => (
 				<Text size="sm" className="color-typography-500 -rotate-45">
-					{2500}
+					{formatNumberShort(2500)}
 				</Text>
 			),
 		},
@@ -44,7 +44,7 @@ export const GroupBarChart = ({
 			frontColor: secondary300Color,
 			topLabelComponent: () => (
 				<Text size="sm" className="color-typography-500 -rotate-45">
-					{2400}
+					{formatNumberShort(2400)}
 				</Text>
 			),
 		},
@@ -56,7 +56,7 @@ export const GroupBarChart = ({
 			label: 'Feb.',
 			topLabelComponent: () => (
 				<Text size="sm" className="color-typography-500 -rotate-45">
-					{3500}
+					{formatNumberShort(3500)}
 				</Text>
 			),
 		},
@@ -65,7 +65,7 @@ export const GroupBarChart = ({
 			frontColor: secondary300Color,
 			topLabelComponent: () => (
 				<Text size="sm" className="color-typography-500 -rotate-45">
-					{3000}
+					{formatNumberShort(3000)}
 				</Text>
 			),
 		},
@@ -75,24 +75,63 @@ export const GroupBarChart = ({
 			frontColor: quinary300Color,
 			spacing: 6,
 			label: 'Mar.',
+			topLabelComponent: () => (
+				<Text size="sm" className="color-typography-500 -rotate-45">
+					{formatNumberShort(4500)}
+				</Text>
+			),
 		},
-		{ value: 4000, frontColor: secondary300Color },
+		{
+			value: 4000,
+			frontColor: secondary300Color,
+			topLabelComponent: () => (
+				<Text size="sm" className="color-typography-500 -rotate-45">
+					{formatNumberShort(4000)}
+				</Text>
+			),
+		},
 
 		{
 			value: 5200,
 			frontColor: quinary300Color,
 			spacing: 6,
 			label: 'Apr.',
+			topLabelComponent: () => (
+				<Text size="sm" className="color-typography-500 -rotate-45">
+					{formatNumberShort(5200)}
+				</Text>
+			),
 		},
-		{ value: 4900, frontColor: secondary300Color },
+		{
+			value: 4900,
+			frontColor: secondary300Color,
+			topLabelComponent: () => (
+				<Text size="sm" className="color-typography-500 -rotate-45">
+					{formatNumberShort(4900)}
+				</Text>
+			),
+		},
 
 		{
 			value: 3000,
 			frontColor: quinary300Color,
 			spacing: 6,
 			label: 'May.',
+			topLabelComponent: () => (
+				<Text size="sm" className="color-typography-500 -rotate-45">
+					{formatNumberShort(3000)}
+				</Text>
+			),
 		},
-		{ value: 2800, frontColor: secondary300Color },
+		{
+			value: 2800,
+			frontColor: secondary300Color,
+			topLabelComponent: () => (
+				<Text size="sm" className="color-typography-500 -rotate-45">
+					{formatNumberShort(2800)}
+				</Text>
+			),
+		},
 	]
 
 	return (

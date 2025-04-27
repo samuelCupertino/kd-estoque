@@ -1,5 +1,5 @@
 import { ComponentProps, useEffect, useState } from 'react'
-import { Pressable } from '../ui/pressable'
+import { Pressable } from '@/components/ui/pressable'
 import { Icon, IIconProps } from './Icon'
 import { Text, ITextProps } from './Text'
 import { twMerge } from 'tailwind-merge'

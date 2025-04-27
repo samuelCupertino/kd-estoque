@@ -1,7 +1,7 @@
 import { twMerge } from 'tailwind-merge'
-import { Icon, Text } from '../atoms'
-import { Box } from '../ui/box'
-import { HStack } from '../ui/hstack'
+import { Icon, Text } from '@/components/atoms'
+import { Box } from '@/components/ui/box'
+import { HStack } from '@/components/ui/hstack'
 
 import {
 	Accordion,

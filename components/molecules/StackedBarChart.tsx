@@ -1,9 +1,9 @@
 import { StackedBarChart as StackedBarChartUi } from 'react-native-chart-kit'
-import { Box } from '../ui/box'
-import { Text } from '../ui/text'
+import { Box } from '@/components/ui/box'
+import { Text } from '@/components/atoms'
 import { ComponentProps } from 'react'
 import { useThemeColor } from '@/hooks/useThemeColor'
-import { HStack } from '../ui/hstack'
+import { HStack } from '@/components/ui/hstack'
 
 export interface IStackedBarChartProps
 	extends Omit<ComponentProps<typeof Box>, 'children'> {

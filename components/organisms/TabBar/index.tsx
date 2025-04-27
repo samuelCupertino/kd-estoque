@@ -1,6 +1,6 @@
 import { View, LayoutChangeEvent, useWindowDimensions } from 'react-native'
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs'
-import { Icon, IIconProps } from '../../atoms'
+import { Icon, IIconProps } from '@/components/atoms'
 import { TabBarButtom } from './TabBarButton'
 import { useState, useEffect } from 'react'
 import Animated, {

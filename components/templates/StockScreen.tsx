@@ -1,10 +1,14 @@
 import React from 'react'
-import { GridContainer, GridContainerItem, ScrollContainer } from '../atoms'
-import { BagdeCard, ScreenHeader, StockCard } from '../molecules'
+import {
+	GridContainer,
+	GridContainerItem,
+	ScrollContainer,
+} from '@/components/atoms'
+import { BagdeCard, ScreenHeader, StockCard } from '@/components/molecules'
 
 import { breakpointToPx, useBreakpoint } from '@/hooks/useBreakpoint'
 import { Platform, useWindowDimensions } from 'react-native'
-import { VStack } from '../ui/vstack'
+import { VStack } from '@/components/ui/vstack'
 
 export const StockScreen = () => {
 	const screenDimensions = useWindowDimensions()

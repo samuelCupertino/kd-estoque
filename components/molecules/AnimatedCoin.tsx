@@ -1,7 +1,7 @@
 import React, { ComponentProps, useEffect, useRef } from 'react'
-import { Box } from '../ui/box'
+import { Box } from '@/components/ui/box'
 import { twMerge } from 'tailwind-merge'
-import { IconCircle } from '../atoms'
+import { IconCircle } from '@/components/atoms'
 import { Animated, Easing } from 'react-native'
 
 export interface AnimatedCoinProps extends ComponentProps<typeof Box> {

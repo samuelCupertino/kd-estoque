@@ -1,5 +1,5 @@
 import { ScrollView } from 'react-native'
-import { Grid, GridItem } from '../ui/grid'
+import { Grid, GridItem } from '@/components/ui/grid'
 
 export const ProfileScreen = () => (
 	<ScrollView

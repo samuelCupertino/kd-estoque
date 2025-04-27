@@ -1,12 +1,9 @@
-import { Box } from '../ui/box'
+import { Box } from '@/components/ui/box'
 import { ComponentProps } from 'react'
 import { useThemeColor } from '@/hooks/useThemeColor'
-import { Heading } from '../ui/heading'
-import { useBreakpointValue } from '../ui/utils/use-break-point-value'
-import { HStack } from '../ui/hstack'
-import { IconCircle } from '../atoms'
-import { GroupBarChart } from '../molecules/GroupBarChart'
-import { Pressable } from '../ui/pressable'
+import { HStack } from '@/components/ui/hstack'
+import { Heading, ButtonCircle } from '@/components/atoms'
+import { GroupBarChart } from '@/components/molecules'
 
 export interface IProductsEntryAndExitChartProps
 	extends Omit<ComponentProps<typeof Box>, 'children'> {
@@ -20,11 +17,6 @@ export const ProductsEntryAndExitChart = ({
 	style,
 	...props
 }: IProductsEntryAndExitChartProps) => {
-	const titleFontSize = useBreakpointValue({
-		default: 'lg',
-		md: 'xl',
-	})
-
 	const backgroundColor = useThemeColor({
 		light: 'background_0',
 		dark: 'background_50',
@@ -44,18 +36,20 @@ export const ProductsEntryAndExitChart = ({
 			{...props}
 		>
 			<HStack className="justify-between">
-				<Heading size={titleFontSize} style={{ color: typographyColor }}>
+				<Heading
+					size={{ base: 'md', md: 'lg' }}
+					style={{ color: typographyColor }}
+				>
 					Produtos: entrada x saída
 				</Heading>
-				<Box className="h-full ml-auto">
-					<Pressable className="opacity-60 hover:opacity-100">
-						<IconCircle
-							name="Ellipsis"
-							size={12}
-							color={{ light: 'background_500', dark: 'background_700' }}
-						/>
-					</Pressable>
-				</Box>
+				<ButtonCircle
+					size="xs"
+					className="ml-auto mb-auto"
+					iconProps={{
+						name: 'Ellipsis',
+						color: { light: 'background_500', dark: 'background_700' },
+					}}
+				/>
 			</HStack>
 			<GroupBarChart
 				className="mt-4"

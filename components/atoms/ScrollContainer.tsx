@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ScrollView, ScrollViewProps, useWindowDimensions } from 'react-native'
-import { Box } from '../ui/box'
+import { Box } from '@/components/ui/box'
 import { ComponentProps, useEffect, useRef } from 'react'
 import {
 	useBreakpoint,

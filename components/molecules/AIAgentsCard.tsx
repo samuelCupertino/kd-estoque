@@ -1,9 +1,14 @@
 import { ComponentProps } from 'react'
-import { Box } from '../ui/box'
-import { Heading } from '../ui/heading'
-import { HStack } from '../ui/hstack'
-import { IconCircle, IIconCircleProps, Text } from '../atoms'
-import { Divider } from '../ui/divider'
+import { Box } from '@/components/ui/box'
+import { HStack } from '@/components/ui/hstack'
+import {
+	IconCircle,
+	IIconCircleProps,
+	Text,
+	Heading,
+	ButtonCircle,
+} from '@/components/atoms'
+import { Divider } from '@/components/ui/divider'
 
 export interface IAIAgentsCardProps
 	extends Omit<ComponentProps<typeof Box>, 'role'> {
@@ -48,6 +53,14 @@ export const AIAgentsCard = ({
 					{role}
 				</Text>
 			</Box>
+			<ButtonCircle
+				size="xs"
+				className="ml-auto mb-auto"
+				iconProps={{
+					name: 'Ellipsis',
+					color: { light: 'background_500', dark: 'background_700' },
+				}}
+			/>
 		</HStack>
 		<Divider className="mt-2" />
 		<Text className="w-full mt-2" style={{ fontFamily: 'DMSans' }} size="md">

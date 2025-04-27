@@ -1,15 +1,15 @@
-import { Button, ButtonCircle, ScrollContainer } from '../atoms'
+import { Button, ButtonCircle, ScrollContainer } from '@/components/atoms'
 import {
 	Drawer,
 	IDrawerProps,
 	ChatMessageText,
 	InputTextField,
-} from '../molecules'
+} from '@/components/molecules'
 
 import { ComponentProps, useState } from 'react'
-import { HStack } from '../ui/hstack'
-import { VStack } from '../ui/vstack'
-import { Divider } from '../ui/divider'
+import { HStack } from '@/components/ui/hstack'
+import { VStack } from '@/components/ui/vstack'
+import { Divider } from '@/components/ui/divider'
 import { editThemeColor } from '@/hooks/useThemeColor'
 
 import { Controller, useForm } from 'react-hook-form'

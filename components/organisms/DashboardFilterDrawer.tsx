@@ -1,5 +1,5 @@
-import { Drawer, IDrawerProps } from '../molecules'
-import { ButtonCircle, Badge } from '../atoms'
+import { Drawer, IDrawerProps } from '@/components/molecules'
+import { ButtonCircle, Badge } from '@/components/atoms'
 
 export interface IDashboardFilterDrawerProps
 	extends Omit<

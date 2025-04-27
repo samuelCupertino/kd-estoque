@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react'
 import { isThemeColor, IThemeColor, useThemeColor } from '@/hooks/useThemeColor'
-import { Badge, BadgeText } from '../ui/badge'
-import { Box } from '../ui/box'
+import { Badge, BadgeText } from '@/components/ui/badge'
+import { Box } from '@/components/ui/box'
 
 export interface IBagdeProps extends ComponentProps<typeof Box> {
 	position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'

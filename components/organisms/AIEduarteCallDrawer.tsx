@@ -1,16 +1,16 @@
-import { Button, ButtonCircle } from '../atoms'
+import { Button, ButtonCircle } from '@/components/atoms'
 import {
 	Drawer,
 	IDrawerProps,
 	AnimatedAI,
 	IAnimatedAIStatus,
-} from '../molecules'
+} from '@/components/molecules'
 
 import { ComponentProps, useRef, useState } from 'react'
-import { HStack } from '../ui/hstack'
-import { VStack } from '../ui/vstack'
-import { Divider } from '../ui/divider'
-import { Image } from '../ui/image'
+import { HStack } from '@/components/ui/hstack'
+import { VStack } from '@/components/ui/vstack'
+import { Divider } from '@/components/ui/divider'
+import { Image } from '@/components/ui/image'
 import { useSpeechRecognitionWeb } from '@/hooks/useSpeechRecognitionWeb'
 import { useTextToSpeechWeb } from '@/hooks/useTextToSpeechWeb'
 import { useEduarteAI } from '@/hooks/useEduarteAI'

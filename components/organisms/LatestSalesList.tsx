@@ -1,27 +1,23 @@
-import { Box } from '../ui/box'
+import { Box } from '@/components/ui/box'
 import { ComponentProps } from 'react'
 import { useThemeColor } from '@/hooks/useThemeColor'
-import { Heading } from '../ui/heading'
-import { useBreakpointValue } from '../ui/utils/use-break-point-value'
-import { HStack } from '../ui/hstack'
-import { IconCircle, ScrollContainer } from '../atoms'
-import { VStack } from '../ui/vstack'
-import { Image } from '../ui/image'
-import { Text } from '../ui/text'
-import { Divider } from '../ui/divider'
+import { HStack } from '@/components/ui/hstack'
+import {
+	ScrollContainer,
+	Text,
+	Heading,
+	ButtonCircle,
+} from '@/components/atoms'
+import { VStack } from '@/components/ui/vstack'
+import { Image } from '@/components/ui/image'
+import { Divider } from '@/components/ui/divider'
 import React from 'react'
 import { formatNumberShort } from '@/utils'
-import { Pressable } from '../ui/pressable'
 
 export interface ILatestSalesListProps
 	extends Omit<ComponentProps<typeof Box>, 'children'> {}
 
 export const LatestSalesList = ({ style, ...props }: ILatestSalesListProps) => {
-	const titleFontSize = useBreakpointValue({
-		default: 'lg',
-		md: 'xl',
-	})
-
 	const backgroundColor = useThemeColor({
 		light: 'background_0',
 		dark: 'background_50',
@@ -50,18 +46,20 @@ export const LatestSalesList = ({ style, ...props }: ILatestSalesListProps) => {
 			{...props}
 		>
 			<HStack className="justify-between">
-				<Heading size={titleFontSize} className="color-typography-600">
+				<Heading
+					size={{ base: 'md', md: 'lg' }}
+					className="color-typography-600"
+				>
 					Últimas vendas
 				</Heading>
-				<Box className="h-full ml-auto">
-					<Pressable className="opacity-60 hover:opacity-100">
-						<IconCircle
-							name="Ellipsis"
-							size={12}
-							color={{ light: 'background_500', dark: 'background_700' }}
-						/>
-					</Pressable>
-				</Box>
+				<ButtonCircle
+					size="xs"
+					className="ml-auto mb-auto"
+					iconProps={{
+						name: 'Ellipsis',
+						color: { light: 'background_500', dark: 'background_700' },
+					}}
+				/>
 			</HStack>
 
 			<Box className="mt-6">
@@ -78,7 +76,7 @@ export const LatestSalesList = ({ style, ...props }: ILatestSalesListProps) => {
 									alt="Imagem do produto"
 								/>
 								<VStack>
-									<Heading size="md" className="color-typography-600">
+									<Heading size="sm" className="color-typography-600">
 										Controle IR tuya
 									</Heading>
 									<Text size="sm" className="color-typography-500 -mt-1">

@@ -1,9 +1,9 @@
 import { useSharedValue } from 'react-native-reanimated'
 import Carousel, { ICarouselInstance } from 'react-native-reanimated-carousel'
 
-import { Box } from '../ui/box'
-import { Pressable } from '../ui/pressable'
-import { HStack } from '../ui/hstack'
+import { Box } from '@/components/ui/box'
+import { Pressable } from '@/components/ui/pressable'
+import { HStack } from '@/components/ui/hstack'
 import { ComponentProps, useRef, useState } from 'react'
 
 // import { View, PanResponder } from 'react-native'

@@ -1,6 +1,6 @@
 import { ComponentProps } from 'react'
-import { HStack } from '../ui/hstack'
-import { Heading } from '../ui/heading'
+import { HStack } from '@/components/ui/hstack'
+import { Heading } from '@/components/atoms'
 import { Platform } from 'react-native'
 
 interface IScreenHeaderProps extends ComponentProps<typeof HStack> {

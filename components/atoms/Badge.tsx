@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react'
 import { Icon, IIconProps } from './Icon'
 import { twMerge } from 'tailwind-merge'
-import { Badge as BadgeUi, BadgeText } from '../ui/badge'
+import { Badge as BadgeUi, BadgeText } from '@/components/ui/badge'
 
 export interface IBadgeProps extends ComponentProps<typeof BadgeUi> {
 	iconProps?: IIconProps

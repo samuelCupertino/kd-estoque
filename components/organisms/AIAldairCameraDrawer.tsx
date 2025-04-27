@@ -1,15 +1,15 @@
-import { Button } from '../atoms'
+import { Button } from '@/components/atoms'
 import {
 	Drawer,
 	IDrawerProps,
 	AnimatedAI,
 	IAnimatedAIStatus,
-} from '../molecules'
+} from '@/components/molecules'
 
 import { useRef } from 'react'
-import { HStack } from '../ui/hstack'
-import { VStack } from '../ui/vstack'
-import { Divider } from '../ui/divider'
+import { HStack } from '@/components/ui/hstack'
+import { VStack } from '@/components/ui/vstack'
+import { Divider } from '@/components/ui/divider'
 
 export interface IAIAldairCameraDrawerProps
 	extends Omit<

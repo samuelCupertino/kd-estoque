@@ -2,7 +2,7 @@ import { ComponentProps } from 'react'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 import AnimateNumberUi from 'react-native-animate-number'
-import { Box } from '../ui/box'
+import { Box } from '@/components/ui/box'
 import { Text } from './Text'
 
 export interface IAnimateNumberProps extends ComponentProps<typeof Box> {

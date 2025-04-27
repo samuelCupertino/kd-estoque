@@ -1,10 +1,10 @@
-import { Button, IconCircle, Text } from '../atoms'
-import { Card } from '../ui/card'
+import { Button, IconCircle, Text } from '@/components/atoms'
+import { Card } from '@/components/ui/card'
 import { twMerge } from 'tailwind-merge'
-import { HStack } from '../ui/hstack'
+import { HStack } from '@/components/ui/hstack'
 import { ComponentProps } from 'react'
-import { Divider } from '../ui/divider'
-import { VStack } from '../ui/vstack'
+import { Divider } from '@/components/ui/divider'
+import { VStack } from '@/components/ui/vstack'
 
 interface IAddCoinByPixCardProps
 	extends Omit<ComponentProps<typeof Card>, 'children'> {
