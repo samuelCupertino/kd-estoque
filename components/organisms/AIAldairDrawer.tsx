@@ -11,15 +11,13 @@ import { HStack } from '@/components/ui/hstack'
 import { VStack } from '@/components/ui/vstack'
 import { Divider } from '@/components/ui/divider'
 
-export interface IAIAldairCameraDrawerProps
+export interface IAIAldairDrawerProps
 	extends Omit<
 		IDrawerProps,
 		'renderButton' | 'title' | 'subtitle' | 'iconName'
 	> {}
 
-export const AIAldairCameraDrawer = ({
-	...props
-}: IAIAldairCameraDrawerProps) => {
+export const AIAldairDrawer = ({ ...props }: IAIAldairDrawerProps) => {
 	const statusRef = useRef<IAnimatedAIStatus>('listening')
 
 	return (
@@ -35,7 +33,7 @@ export const AIAldairCameraDrawer = ({
 					baseColor="quinary"
 					onPress={() => setShowDrawer(true)}
 				>
-					Foto
+					Iniciar
 				</Button>
 			)}
 			renderFooter={({ setShowDrawer }) => (

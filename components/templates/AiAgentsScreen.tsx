@@ -9,9 +9,9 @@ import {
 	AIEduarteCallDrawer,
 	AIPolianaCameraDrawer,
 	AIAgentsChatDrawer,
-	AIAldairCameraDrawer,
-	AILidiaCameraDrawer,
-	AIClaraFeedCameraDrawer,
+	AIAldairDrawer,
+	AILidiaDrawer,
+	AIClaraFeedDrawer,
 } from '@/components/organisms'
 import { VStack } from '@/components/ui/vstack'
 import { HStack } from '@/components/ui/hstack'
@@ -147,7 +147,7 @@ export const AIAgentsScreen = () => {
 									name="Aldair"
 									role="Auditor de Produtos"
 									description="Avalia produtos cadastrados e sugere melhorias como inclusão de imagens, datas de validade e descrições, mantendo o catálogo completo, atrativo e atualizado."
-									renderFooter={() => <AIAldairCameraDrawer />}
+									renderFooter={() => <AIAldairDrawer />}
 									style={{ width, height }}
 								/>
 							</BagdeCard>
@@ -165,7 +165,7 @@ export const AIAgentsScreen = () => {
 									name="Lídia"
 									role="Vendedora Artificial"
 									description="Responde dúvidas dos clientes, sugere produtos com base no estoque e ajuda a impulsionar as vendas com recomendações inteligentes e atendimento automatizado."
-									renderFooter={() => <AILidiaCameraDrawer />}
+									renderFooter={() => <AILidiaDrawer />}
 									style={{ width, height }}
 								/>
 							</BagdeCard>
@@ -183,7 +183,7 @@ export const AIAgentsScreen = () => {
 									name="Clara Feed"
 									role="Social Media"
 									description="Cria posts criativos de produtos e datas comemorativas com dados da Lídia e imagens do Eduarte. Publica automaticamente nas redes sociais, fazendo o marketing digital da sua loja."
-									renderFooter={() => <AIClaraFeedCameraDrawer />}
+									renderFooter={() => <AIClaraFeedDrawer />}
 									style={{ width, height }}
 								/>
 							</BagdeCard>

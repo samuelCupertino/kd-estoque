@@ -11,15 +11,13 @@ import { HStack } from '@/components/ui/hstack'
 import { VStack } from '@/components/ui/vstack'
 import { Divider } from '@/components/ui/divider'
 
-export interface IAIClaraFeedCameraDrawerProps
+export interface IAIClaraFeedDrawerProps
 	extends Omit<
 		IDrawerProps,
 		'renderButton' | 'title' | 'subtitle' | 'iconName'
 	> {}
 
-export const AIClaraFeedCameraDrawer = ({
-	...props
-}: IAIClaraFeedCameraDrawerProps) => {
+export const AIClaraFeedDrawer = ({ ...props }: IAIClaraFeedDrawerProps) => {
 	const statusRef = useRef<IAnimatedAIStatus>('listening')
 
 	return (
@@ -34,7 +32,7 @@ export const AIClaraFeedCameraDrawer = ({
 					baseColor="tertiary"
 					onPress={() => setShowDrawer(true)}
 				>
-					Foto
+					Iniciar
 				</Button>
 			)}
 			renderFooter={({ setShowDrawer }) => (
