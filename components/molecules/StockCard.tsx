@@ -50,7 +50,7 @@ export const StockCard = ({
 				}}
 			/>
 		</HStack>
-		<Divider className="mt-4 p-[1px] rounded-full bg-background-100" />
+		<Divider className="mt-4 rounded-full bg-background-100" />
 		<Text className="w-full mt-2" style={{ fontFamily: 'DMSans' }} size="md">
 			{text}
 		</Text>

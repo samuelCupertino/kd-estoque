@@ -9,7 +9,13 @@ export interface IButtonProps extends ComponentProps<typeof Pressable> {
 	iconProps?: IIconProps
 	textProps?: ITextProps
 	children?: JSX.Element | string
-	baseColor?: 'primary' | 'secondary' | 'tertiary' | 'quaternary' | 'quinary'
+	baseColor?:
+		| 'primary'
+		| 'secondary'
+		| 'tertiary'
+		| 'quaternary'
+		| 'quinary'
+		| 'background'
 }
 
 export const Button = ({

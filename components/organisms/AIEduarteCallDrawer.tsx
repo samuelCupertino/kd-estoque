@@ -10,7 +10,7 @@ import { ComponentProps, useRef, useState } from 'react'
 import { HStack } from '@/components/ui/hstack'
 import { VStack } from '@/components/ui/vstack'
 import { Divider } from '@/components/ui/divider'
-import { Image } from '@/components/ui/image'
+import { Image } from '@/components/atoms'
 import { useSpeechRecognitionWeb } from '@/hooks/useSpeechRecognitionWeb'
 import { useTextToSpeechWeb } from '@/hooks/useTextToSpeechWeb'
 import { useEduarteAI } from '@/hooks/useEduarteAI'
@@ -130,9 +130,9 @@ export const AIEduarteCallDrawer = ({
 
 			{!!imageUri && (
 				<Image
+					className="w-72 h-72 mx-auto mt-8 rounded-xl"
 					source={{ uri: imageUri }}
 					alt="imagem gerada pelo Eduardo"
-					className="w-72 h-72 mx-auto mt-8 rounded-xl"
 				/>
 			)}
 		</Drawer>

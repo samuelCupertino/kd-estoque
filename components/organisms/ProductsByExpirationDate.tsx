@@ -9,7 +9,7 @@ import {
 	ButtonCircle,
 } from '@/components/atoms'
 import { VStack } from '@/components/ui/vstack'
-import { Image } from '@/components/ui/image'
+import { Image } from '@/components/atoms'
 import { Divider } from '@/components/ui/divider'
 import React from 'react'
 

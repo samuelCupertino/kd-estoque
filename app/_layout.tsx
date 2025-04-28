@@ -18,9 +18,7 @@ import { StatusBar } from 'expo-status-bar'
 import * as NavigationBar from 'expo-navigation-bar'
 import { useThemeColor } from '@/hooks/useThemeColor'
 import { Center } from '@/components/ui/center'
-import { Image } from '@/components/ui/image'
-
-const LogoPng = require('@/assets/images/icon.png')
+import { Image } from '@/components/atoms'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -33,7 +31,9 @@ export default function RootLayout() {
 	const colorScheme = useColorScheme()
 	const isDark = colorScheme === 'dark'
 	const backgroundLight = useThemeColor('background_100')
-	const [isLoadingResponsive, setIsLoadingResponsive] = useState(false)
+	const [isLoadingResponsive, setIsLoadingResponsive] = useState(
+		Platform.OS === 'web',
+	)
 
 	const currentTheme: Theme = {
 		dark: isDark,
@@ -47,6 +47,17 @@ export default function RootLayout() {
 		},
 		fonts: DefaultTheme.fonts,
 	}
+
+	useEffect(() => {
+		const onChange = () => {
+			setIsLoadingResponsive(true)
+			setTimeout(() => setIsLoadingResponsive(false), 1)
+		}
+		if (Platform.OS === 'web') onChange()
+
+		const subscription = Dimensions.addEventListener('change', onChange)
+		return () => subscription.remove()
+	}, [])
 
 	useEffect(() => {
 		async function configureNavigationBar() {
@@ -64,29 +75,6 @@ export default function RootLayout() {
 		if (loaded) SplashScreen.hideAsync()
 	}, [loaded])
 
-	useEffect(() => {
-		const onChange = () => {
-			setIsLoadingResponsive(true)
-			setTimeout(() => setIsLoadingResponsive(false), 250)
-		}
-		if (Platform.OS === 'web') onChange()
-
-		const subscription = Dimensions.addEventListener('change', onChange)
-		return () => subscription.remove()
-	}, [])
-
-	if (isLoadingResponsive || !loaded) {
-		return (
-			<Center className="absolute inset-0 bg-background-100">
-				<Image
-					className="w-36 h-36 rounded-xl mx-auto"
-					source={LogoPng}
-					alt="Imagem do produto"
-				/>
-			</Center>
-		)
-	}
-
 	return (
 		<GluestackUIProvider mode="system">
 			<ThemeProvider value={currentTheme}>
@@ -101,6 +89,15 @@ export default function RootLayout() {
 						backgroundColor: currentTheme.colors.background,
 					}}
 				>
+					{(isLoadingResponsive || !loaded) && (
+						<Center className="absolute inset-0 bg-background-100 z-50">
+							<Image
+								size="xl"
+								src="@/assets/images/icon.png"
+								alt="Logo do iae"
+							/>
+						</Center>
+					)}
 					<Stack>
 						<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 						<Stack.Screen name="+not-found" />

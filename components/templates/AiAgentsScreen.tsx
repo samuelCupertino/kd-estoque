@@ -50,7 +50,7 @@ export const AIAgentsScreen = () => {
 					cols={12}
 					gap={{ base: 4, sm: 6 }}
 					style={{
-						marginBottom: Platform.OS === 'web' ? 0 : isNavLeft ? 160 : 248,
+						marginBottom: Platform.OS === 'web' ? 24 : isNavLeft ? 160 : 248,
 					}}
 				>
 					<GridContainerItem

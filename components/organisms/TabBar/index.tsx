@@ -11,10 +11,7 @@ import Animated, {
 import { useThemeColor } from '@/hooks/useThemeColor'
 import { NavigationRoute, ParamListBase } from '@react-navigation/native'
 import { Box } from '@/components/ui/box'
-import { Image } from '@/components/ui/image'
-import { Center } from '@/components/ui/center'
-
-const LogoPng = require('@/assets/images/icon.png')
+import { Image } from '@/components/atoms'
 
 interface ITabBarProps extends BottomTabBarProps {
 	onRouterChange?: (route: NavigationRoute<ParamListBase, string>) => void
@@ -79,18 +76,17 @@ export const TabBar = ({
 
 	useEffect(() => {
 		setIsLoadingResponsive(true)
-		setTimeout(() => setIsLoadingResponsive(false), 100)
+		setTimeout(() => setIsLoadingResponsive(false), 1)
 	}, [screenDimensions])
 
 	if (isLoadingResponsive) {
 		return (
-			<Center className="absolute inset-0 bg-background-100">
-				<Image
-					className="w-36 h-36 rounded-xl mx-auto"
-					source={LogoPng}
-					alt="Imagem do logo"
-				/>
-			</Center>
+			<Image
+				containerProps={{ className: 'absolute inset-0 bg-background-100' }}
+				className="w-36 h-36 rounded-xl mx-auto"
+				src="@/assets/images/icon.png"
+				alt="Imagem do logo"
+			/>
 		)
 	}
 
@@ -115,7 +111,7 @@ export const TabBar = ({
 			{isNavPlus && (
 				<Image
 					className="w-14 h-14 rounded-xl mx-auto opacity-75"
-					source={LogoPng}
+					src="@/assets/images/icon.png"
 					alt="Imagem do produto"
 				/>
 			)}

@@ -33,7 +33,7 @@ export const HomeScreen = () => {
 	return (
 		<VStack style={style}>
 			<ScreenHeader
-				title="Dashboard"
+				title="Relatórios de Estoque"
 				style={{
 					marginLeft: isNavLeft ? 92 : 6,
 					marginRight: isNavLeft ? 12 : 6,
@@ -56,7 +56,7 @@ export const HomeScreen = () => {
 						cols={12}
 						gap={{ base: 4, sm: 6 }}
 						style={{
-							marginBottom: Platform.OS === 'web' ? 0 : isNavLeft ? 160 : 248,
+							marginBottom: Platform.OS === 'web' ? 24 : isNavLeft ? 160 : 248,
 						}}
 					>
 						<GridContainerItem
