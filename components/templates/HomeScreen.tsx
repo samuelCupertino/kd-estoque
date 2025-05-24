@@ -33,7 +33,7 @@ export const HomeScreen = () => {
 	return (
 		<VStack style={style}>
 			<ScreenHeader
-				title="Relatórios de Estoque"
+				paths={[{ label: 'Relatórios de Estoque' }]}
 				style={{
 					marginLeft: isNavLeft ? 92 : 6,
 					marginRight: isNavLeft ? 12 : 6,

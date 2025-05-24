@@ -29,7 +29,6 @@ export const TabBar = ({
 	})
 	const activeBackgroundColor = useThemeColor('primary_700')
 	const iconColor = useThemeColor('primary_700')
-	const [isLoadingResponsive, setIsLoadingResponsive] = useState(true)
 	const [navBarDimensions, setNavBarDimensions] = useState({
 		width: 100,
 		height: 20,
@@ -73,22 +72,6 @@ export const TabBar = ({
 			duration: 2000,
 		})
 	}, [state.index, buttonWidth, tabPositionX, state.routes])
-
-	useEffect(() => {
-		setIsLoadingResponsive(true)
-		setTimeout(() => setIsLoadingResponsive(false), 1)
-	}, [screenDimensions])
-
-	if (isLoadingResponsive) {
-		return (
-			<Image
-				containerProps={{ className: 'absolute inset-0 bg-background-100' }}
-				className="w-36 h-36 rounded-xl mx-auto"
-				src="@/assets/images/icon.png"
-				alt="Imagem do logo"
-			/>
-		)
-	}
 
 	return (
 		<Box

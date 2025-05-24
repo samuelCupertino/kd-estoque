@@ -9,6 +9,7 @@ import { BagdeCard, ScreenHeader, StockCard } from '@/components/molecules'
 import { breakpointToPx, useBreakpoint } from '@/hooks/useBreakpoint'
 import { Platform, useWindowDimensions } from 'react-native'
 import { VStack } from '@/components/ui/vstack'
+import { router } from 'expo-router'
 
 export const StockScreen = () => {
 	const screenDimensions = useWindowDimensions()
@@ -21,7 +22,7 @@ export const StockScreen = () => {
 	return (
 		<VStack style={style}>
 			<ScreenHeader
-				title="Gestão de Estoque"
+				paths={[{ label: 'Gestão de Estoque' }]}
 				style={{
 					marginLeft: isNavLeft ? 92 : 6,
 					marginRight: isNavLeft ? 12 : 6,
@@ -55,6 +56,7 @@ export const StockScreen = () => {
 								title="Produtos"
 								text="Visualizar, criar, editar, excluir, exportar csv..."
 								style={{ width, height }}
+								onPress={() => router.push('/stock/products')}
 							/>
 						)}
 					</GridContainerItem>

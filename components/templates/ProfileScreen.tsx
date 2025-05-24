@@ -32,7 +32,7 @@ export const ProfileScreen = () => {
 	return (
 		<VStack style={style}>
 			<ScreenHeader
-				title="Configurações"
+				paths={[{ label: 'Configurações' }]}
 				style={{
 					marginLeft: isNavLeft ? 92 : 6,
 					marginRight: isNavLeft ? 12 : 6,

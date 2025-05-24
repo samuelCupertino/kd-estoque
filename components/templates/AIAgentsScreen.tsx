@@ -28,7 +28,7 @@ export const AIAgentsScreen = () => {
 	return (
 		<VStack style={style}>
 			<ScreenHeader
-				title="Agentes de IA"
+				paths={[{ label: 'Agentes de IA' }]}
 				style={{
 					marginLeft: isNavLeft ? 92 : 6,
 					marginRight: isNavLeft ? 12 : 6,

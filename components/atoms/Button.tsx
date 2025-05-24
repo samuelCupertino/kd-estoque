@@ -40,6 +40,11 @@ export const Button = ({
 		<Pressable
 			className={twMerge(
 				`flex-1 flex-row gap-3 justify-center items-center py-3 rounded-xl duration-300`,
+				`bg-primary-200 hover:bg-primary-300 dark:bg-primary-100 hover:dark:bg-primary-200`,
+				`bg-secondary-200 hover:bg-secondary-300 dark:bg-secondary-100 hover:dark:bg-secondary-200`,
+				`bg-tertiary-200 hover:bg-tertiary-300 dark:bg-tertiary-100 hover:dark:bg-tertiary-200`,
+				`bg-quaternary-200 hover:bg-quaternary-300 dark:bg-quaternary-100 hover:dark:bg-quaternary-200`,
+				`bg-quinary-200 hover:bg-quinary-300 dark:bg-quinary-100 hover:dark:bg-quinary-200`,
 				btnClassNames,
 				className,
 			)}

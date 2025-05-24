@@ -1,6 +1,14 @@
 import React from 'react'
-import { ScrollContainer, Text, IconCircle, Heading } from '@/components/atoms'
-import { ScreenHeader } from '@/components/molecules'
+import {
+	ScrollContainer,
+	Image,
+	Text,
+	Stack,
+	IconCircle,
+	Icon,
+	ButtonCircle,
+} from '@/components/atoms'
+import { ScreenHeader, Table } from '@/components/molecules'
 
 import { breakpointToPx, useBreakpoint } from '@/hooks/useBreakpoint'
 import { Platform, useWindowDimensions } from 'react-native'
@@ -8,7 +16,7 @@ import { VStack } from '@/components/ui/vstack'
 import { HStack } from '@/components/ui/hstack'
 import { Box } from '@/components/ui/box'
 
-export const NotificationScreen = () => {
+export const StockProductsScreen = () => {
 	const screenDimensions = useWindowDimensions()
 	const isNavLeft = screenDimensions.width > screenDimensions.height
 	const style = useBreakpoint({
@@ -24,14 +32,17 @@ export const NotificationScreen = () => {
 	return (
 		<VStack style={style}>
 			<ScreenHeader
-				paths={[{ label: 'Notificações' }]}
+				paths={[
+					{ label: 'Gestão de Estoque', href: '/stock' },
+					{ label: 'Produtos' },
+				]}
 				style={{
 					marginLeft: isNavLeft ? 92 : 6,
 					marginRight: isNavLeft ? 12 : 6,
 				}}
 			/>
 
-			<Box style={wrapMenuStyle}>
+			<Box style={wrapMenuStyle} className="bg-blue-800 w-full">
 				<ScrollContainer
 					borderRadius={24}
 					style={{
@@ -39,38 +50,15 @@ export const NotificationScreen = () => {
 						marginLeft: isNavLeft ? 92 : 6,
 						marginRight: isNavLeft ? 12 : 6,
 					}}
+					className="bg-blue-800 w-full"
 				>
 					<VStack
-						className="gap-2"
+						className="gap-4 w-full"
 						style={{
 							paddingBottom: Platform.OS === 'web' ? 24 : isNavLeft ? 160 : 248,
 						}}
 					>
-						{Array.from({ length: 12 }, (e, i) => (
-							<HStack
-								key={i}
-								className="gap-3 p-3 items-center border-2 border-background-100 bg-background-0 dark:bg-background-50"
-								style={{ borderRadius: 24 }}
-							>
-								<IconCircle
-									name="Database"
-									color="tertiary_400"
-									size={32}
-									borderRadius={8}
-								/>
-								<VStack className="flex-1">
-									<Heading size="md">Anna Lisa</Heading>
-									<Text size="sm">
-										Ligação de 30 minutos, realizada por Samuel Cupertino às
-										12:30 de 12/05/2025, usando 137 moedas.
-									</Text>
-								</VStack>
-
-								<Text size="lg" color="typography_300" className="ml-auto">
-									há 1h
-								</Text>
-							</HStack>
-						))}
+						<Table data={[]} columns={[]} />
 					</VStack>
 				</ScrollContainer>
 			</Box>
