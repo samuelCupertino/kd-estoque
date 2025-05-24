@@ -8,7 +8,7 @@ type IButtonUiProps = ComponentProps<typeof ButtonUi>
 
 export interface IButtonCircleProps
 	extends Omit<ComponentProps<typeof ButtonUi>, 'size'> {
-	iconProps: IIconProps
+	iconProps?: IIconProps
 	children?: JSX.Element | string
 	size?: IBreakPoint<IButtonUiProps['size']> | IButtonUiProps['size']
 }

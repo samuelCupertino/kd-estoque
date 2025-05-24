@@ -15,10 +15,12 @@ import { Platform, useWindowDimensions } from 'react-native'
 import { VStack } from '@/components/ui/vstack'
 import { HStack } from '@/components/ui/hstack'
 import { Box } from '@/components/ui/box'
+import { useLayoutTheme } from '@/app/_layout'
 
 export const StockProductsScreen = () => {
 	const screenDimensions = useWindowDimensions()
 	const isNavLeft = screenDimensions.width > screenDimensions.height
+	const { currentTheme } = useLayoutTheme()
 	const style = useBreakpoint({
 		base: undefined,
 		'2xl': { width: breakpointToPx['2xl'], marginInline: 'auto' },
@@ -30,7 +32,9 @@ export const StockProductsScreen = () => {
 	})
 
 	return (
-		<VStack style={style}>
+		<VStack
+			style={{ ...style, backgroundColor: currentTheme.colors.background }}
+		>
 			<ScreenHeader
 				paths={[
 					{ label: 'Gestão de Estoque', href: '/stock' },

@@ -64,7 +64,9 @@ export const GridContainer = ({
 		<Box style={styleResponsive} {...props}>
 			<Grid
 				_extra={{ className: `grid-cols-${cols}` }}
-				style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}
+				style={{
+					gridTemplateColumns: `repeat(${cols}, 1fr)`,
+				}}
 			>
 				{overrideElementsProps(
 					typeof children === 'function'

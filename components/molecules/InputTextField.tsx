@@ -1,7 +1,7 @@
 import React, { ComponentProps } from 'react'
-import { Input, InputField } from '@/components/ui/input'
+import { Input, InputField, InputSlot } from '@/components/ui/input'
 import { VStack } from '@/components/ui/vstack'
-import { Text } from '@/components/atoms'
+import { Icon, IIconProps, Text } from '@/components/atoms'
 
 type IInputField = ComponentProps<typeof InputField>
 
@@ -16,8 +16,10 @@ interface IInputTextFieldProps
 	value?: IInputField['value']
 	type?: IInputField['type']
 	onBlur?: IInputField['onBlur']
-	onSubmitEditing: IInputField['onSubmitEditing']
-	onChange: IInputField['onChangeText']
+	leftIconProps?: Partial<IIconProps>
+	rightIconProps?: Partial<IIconProps>
+	onSubmitEditing?: IInputField['onSubmitEditing']
+	onChange?: IInputField['onChangeText']
 }
 
 export const InputTextField = ({
@@ -30,11 +32,13 @@ export const InputTextField = ({
 	value,
 	type = 'text',
 	onBlur,
+	leftIconProps,
+	rightIconProps,
 	onSubmitEditing,
 	onChange,
 	...props
 }: IInputTextFieldProps) => (
-	<VStack className="flex-1" {...props}>
+	<VStack {...props}>
 		{label && (
 			<Text size="md" color="typography_500">
 				{label}
@@ -45,8 +49,20 @@ export const InputTextField = ({
 			isDisabled={isDisabled}
 			isInvalid={!!error}
 			isReadOnly={isReadOnly}
-			className="h-auto flex-1"
+			className="h-auto flex-1 bg-primary-0"
 		>
+			{leftIconProps && (
+				<InputSlot>
+					<Icon
+						name="Search"
+						color="typography_400"
+						size={24}
+						className="ml-3"
+						{...leftIconProps}
+					/>
+				</InputSlot>
+			)}
+
 			<InputField
 				placeholder={placeholder}
 				type={type}
@@ -56,6 +72,18 @@ export const InputTextField = ({
 				onSubmitEditing={onSubmitEditing}
 				returnKeyType="send"
 			/>
+
+			{rightIconProps && (
+				<InputSlot>
+					<Icon
+						name="Search"
+						color="typography_400"
+						size={24}
+						className="mr-3"
+						{...rightIconProps}
+					/>
+				</InputSlot>
+			)}
 		</Input>
 		{helper && (
 			<Text size="sm" color="typography_400">

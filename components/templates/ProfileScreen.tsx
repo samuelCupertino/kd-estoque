@@ -11,51 +11,29 @@ import {
 import { ScreenHeader } from '@/components/molecules'
 
 import { breakpointToPx, useBreakpoint } from '@/hooks/useBreakpoint'
-import { Platform, useWindowDimensions } from 'react-native'
 import { VStack } from '@/components/ui/vstack'
 import { HStack } from '@/components/ui/hstack'
 import { Box } from '@/components/ui/box'
 
 export const ProfileScreen = () => {
-	const screenDimensions = useWindowDimensions()
-	const isNavLeft = screenDimensions.width > screenDimensions.height
-	const style = useBreakpoint({
-		base: undefined,
-		'2xl': { width: breakpointToPx['2xl'], marginInline: 'auto' },
-	})
-
 	const wrapMenuStyle = useBreakpoint({
 		base: undefined,
 		lg: { width: breakpointToPx['lg'], marginInline: 'auto' },
 	})
 
 	return (
-		<VStack style={style}>
-			<ScreenHeader
-				paths={[{ label: 'Configurações' }]}
-				style={{
-					marginLeft: isNavLeft ? 92 : 6,
-					marginRight: isNavLeft ? 12 : 6,
-				}}
-			>
+		<VStack>
+			<ScreenHeader paths={[{ label: 'Configurações' }]}>
 				<ButtonCircle className="bg-background-0" iconProps={{ name: 'Gem' }} />
 			</ScreenHeader>
 
 			<Box style={wrapMenuStyle}>
 				<ScrollContainer
 					borderRadius={24}
-					style={{
-						marginInline: 6,
-						marginLeft: isNavLeft ? 92 : 6,
-						marginRight: isNavLeft ? 12 : 6,
-					}}
+					innerMargin={{ base: -4, sm: -6 }}
+					paddingBottom={86}
 				>
-					<VStack
-						className="gap-4"
-						style={{
-							paddingBottom: Platform.OS === 'web' ? 24 : isNavLeft ? 160 : 248,
-						}}
-					>
+					<VStack className="gap-4">
 						<VStack className="gap-4">
 							<Image
 								size="xl"

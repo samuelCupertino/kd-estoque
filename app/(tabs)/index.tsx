@@ -1,3 +1,8 @@
+import { ScreenContainer } from '@/components/atoms'
 import { HomeScreen } from '@/components/templates'
 
-export default () => <HomeScreen />
+export default () => (
+	<ScreenContainer>
+		<HomeScreen />
+	</ScreenContainer>
+)

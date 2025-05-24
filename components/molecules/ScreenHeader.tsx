@@ -25,7 +25,7 @@ export const ScreenHeader = ({
 					{index > 0 && <Icon name="ChevronRight" />}
 					<Pressable
 						onPress={() => path.href && router.push(path.href)}
-						pointerEvents={path.href ? 'auto' : 'none'}
+						disabled={!path.href}
 					>
 						<Heading
 							size="xl"
@@ -33,6 +33,7 @@ export const ScreenHeader = ({
 							className={
 								path.href ? 'hover:underline hover:underline-offset-8' : ''
 							}
+							pointerEvents="none"
 						>
 							{path.label}
 						</Heading>

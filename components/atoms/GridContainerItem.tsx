@@ -3,6 +3,7 @@ import { GridItem } from '@/components/ui/grid'
 import {
 	findNodeHandle,
 	LayoutChangeEvent,
+	Platform,
 	UIManager,
 	useWindowDimensions,
 } from 'react-native'
@@ -52,6 +53,12 @@ export const GridContainerItem = ({
 
 	useEffect(() => {
 		if (!gridItemRef.current) return
+
+		if (Platform.OS === 'web') {
+			const { offsetWidth: width, offsetHeight: height } = gridItemRef.current
+			return setSize({ width, height })
+		}
+
 		const nodeHandle = findNodeHandle(gridItemRef.current)
 		if (!nodeHandle) return
 

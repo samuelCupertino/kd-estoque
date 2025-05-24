@@ -1,8 +1,8 @@
 import { ScreenContainer } from '@/components/atoms'
-import { NotificationScreen } from '@/components/templates'
+import { StockScreen } from '@/components/templates'
 
 export default () => (
 	<ScreenContainer>
-		<NotificationScreen />
+		<StockScreen />
 	</ScreenContainer>
 )

@@ -1,3 +1,8 @@
+import { ScreenContainer } from '@/components/atoms'
 import { AIAgentsScreen } from '@/components/templates'
 
-export default () => <AIAgentsScreen />
+export default () => (
+	<ScreenContainer>
+		<AIAgentsScreen />
+	</ScreenContainer>
+)

@@ -2,7 +2,7 @@ import { View, LayoutChangeEvent, useWindowDimensions } from 'react-native'
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs'
 import { ButtonCircle, Icon, IIconProps } from '@/components/atoms'
 import { TabBarButtom } from './TabBarButton'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, JSX, useCallback } from 'react'
 import Animated, {
 	useAnimatedStyle,
 	useSharedValue,
@@ -13,7 +13,7 @@ import { NavigationRoute, ParamListBase } from '@react-navigation/native'
 import { Box } from '@/components/ui/box'
 import { Image } from '@/components/atoms'
 
-interface ITabBarProps extends BottomTabBarProps {
+export interface ITabBarProps extends BottomTabBarProps {
 	onRouterChange?: (route: NavigationRoute<ParamListBase, string>) => void
 }
 
@@ -23,6 +23,19 @@ export const TabBar = ({
 	navigation,
 	onRouterChange,
 }: ITabBarProps) => {
+	const [selectedIndex, setSelectedIndex] = useState(state.index)
+	const baseRouteNames = [
+		...new Set(state.routeNames.map((e) => e.split('/')[0])),
+	]
+	const baseRoutes = state.routes.filter((route) =>
+		baseRouteNames.some((name) => [name, `${name}/index`].includes(route.name)),
+	)
+
+	const currentRouteName = state.routeNames[selectedIndex].split('/')[0]
+	const currentRouteIndex = baseRoutes[selectedIndex]
+		? selectedIndex
+		: baseRouteNames.findIndex((name) => name === currentRouteName)
+
 	const backgroundColor = useThemeColor({
 		light: 'background_0',
 		dark: 'background_50',
@@ -34,7 +47,7 @@ export const TabBar = ({
 		height: 20,
 	})
 	const screenDimensions = useWindowDimensions()
-	const buttonWidth = navBarDimensions.width / state.routes.length
+	const buttonWidth = navBarDimensions.width / baseRoutes.length
 	const isNavLeft = screenDimensions.width > screenDimensions.height
 
 	const navBarWidth = Math.min(screenDimensions.width * 0.75, 300)
@@ -62,16 +75,20 @@ export const TabBar = ({
 		})
 	}
 
-	useEffect(() => {
-		const currentRoute = state.routes[state.index]
-		const currentRouteName = currentRoute.name
-		const routeIndex = state.routes.findIndex(
-			(route) => route.name === currentRouteName,
-		)
-		tabPositionX.value = withSpring(buttonWidth * routeIndex, {
-			duration: 2000,
-		})
-	}, [state.index, buttonWidth, tabPositionX, state.routes])
+	const animateNavigation = useCallback(
+		(index: number) => {
+			tabPositionX.value = withSpring(buttonWidth * index, {
+				duration: 1000,
+			})
+			setSelectedIndex(index)
+		},
+		[buttonWidth, tabPositionX],
+	)
+
+	useEffect(
+		() => animateNavigation(currentRouteIndex),
+		[animateNavigation, currentRouteIndex],
+	)
 
 	return (
 		<Box
@@ -134,9 +151,9 @@ export const TabBar = ({
 						},
 					]}
 				/>
-				{state.routes.map((route, index) => {
+				{baseRoutes.map((route, index) => {
 					const { options } = descriptors[route.key]
-					const isFocused = state.index === index
+					const isFocused = currentRouteIndex === index
 
 					return (
 						<TabBarButtom
@@ -145,19 +162,20 @@ export const TabBar = ({
 							accessibilityLabel={options.tabBarAccessibilityLabel}
 							testID={options.tabBarButtonTestID}
 							onPress={() => {
-								onRouterChange?.(route)
-								tabPositionX.value = withSpring(buttonWidth * index, {
-									duration: 2000,
-								})
-								const event = navigation.emit({
-									type: 'tabPress',
-									target: route.key,
-									canPreventDefault: true,
-								})
+								animateNavigation(index)
 
-								if (!isFocused && !event.defaultPrevented) {
-									navigation.navigate(route.name, route.params)
-								}
+								setTimeout(() => {
+									onRouterChange?.(route)
+									const event = navigation.emit({
+										type: 'tabPress',
+										target: route.key,
+										canPreventDefault: true,
+									})
+
+									if (!event.defaultPrevented) {
+										navigation.navigate(route.name, route.params)
+									}
+								}, 0)
 							}}
 							onLongPress={() =>
 								navigation.emit({
@@ -169,18 +187,11 @@ export const TabBar = ({
 							style={{
 								height: buttonWidth,
 								...(isNavLeft
-									? {
-											transform: [
-												{ scale: 0.95 },
-												{
-													rotate: '-90deg',
-												},
-											],
-										}
+									? { transform: [{ scale: 0.95 }, { rotate: '-90deg' }] }
 									: {}),
 							}}
 						>
-							{tabIcons?.[route.name]?.({
+							{tabIcons?.[route.name.split('/')[0]]?.({
 								color: isFocused ? backgroundColor : iconColor,
 							})}
 						</TabBarButtom>

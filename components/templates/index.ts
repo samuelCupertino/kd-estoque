@@ -1,6 +1,6 @@
 export * from './HomeScreen'
 export * from './StockScreen'
-export * from './AIAgentsScreen'
+export * from './AiAgentsScreen'
 export * from './NotificationScreen'
 export * from './ProfileScreen'
 export * from './StockProductsScreen'

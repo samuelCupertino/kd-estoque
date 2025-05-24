@@ -1,11 +1,11 @@
 import { Tabs } from 'expo-router'
 import { Icon } from '@/components/atoms'
-import { TabBar } from '@/components/organisms'
+import { ITabBarProps, TabBar } from '@/components/organisms'
 
 export default function TabLayout() {
 	return (
 		<Tabs
-			tabBar={(props) => <TabBar {...props} />}
+			tabBar={(props) => <TabBar {...(props as unknown as ITabBarProps)} />}
 			screenOptions={{
 				headerShown: false,
 				tabBarShowLabel: false,
@@ -22,7 +22,7 @@ export default function TabLayout() {
 				}}
 			/>
 			<Tabs.Screen
-				name="stock"
+				name="stock/index"
 				options={{
 					tabBarIcon: ({ color }) => (
 						<Icon name="PackageSearch" size="xl" color={color} />

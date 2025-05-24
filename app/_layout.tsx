@@ -6,34 +6,18 @@ import { Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import 'react-native-reanimated'
 
-import {
-	Dimensions,
-	Platform,
-	SafeAreaView,
-	useColorScheme,
-} from 'react-native'
+import { SafeAreaView, useColorScheme, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar'
-import * as NavigationBar from 'expo-navigation-bar'
 import { useThemeColor } from '@/hooks/useThemeColor'
-import { Center } from '@/components/ui/center'
-import { Image } from '@/components/atoms'
 
 SplashScreen.preventAutoHideAsync()
 
-export default function RootLayout() {
-	const insets = useSafeAreaInsets()
-	const [loaded] = useFonts({
-		SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-		DMSans: require('../assets/fonts/DMSans-VariableFont_opsz,wght.ttf'),
-	})
+export const useLayoutTheme = () => {
 	const colorScheme = useColorScheme()
 	const isDark = colorScheme === 'dark'
 	const backgroundLight = useThemeColor('background_100')
-	const [isLoadingResponsive, setIsLoadingResponsive] = useState(
-		Platform.OS === 'web',
-	)
 
 	const currentTheme: Theme = {
 		dark: isDark,
@@ -48,28 +32,16 @@ export default function RootLayout() {
 		fonts: DefaultTheme.fonts,
 	}
 
-	useEffect(() => {
-		const onChange = () => {
-			setIsLoadingResponsive(true)
-			setTimeout(() => setIsLoadingResponsive(false), 1)
-		}
-		if (Platform.OS === 'web') onChange()
+	return { currentTheme, isDark }
+}
 
-		const subscription = Dimensions.addEventListener('change', onChange)
-		return () => subscription.remove()
-	}, [])
-
-	useEffect(() => {
-		async function configureNavigationBar() {
-			if (Platform.OS === 'android') {
-				await NavigationBar.setBackgroundColorAsync(
-					currentTheme.colors.background,
-				)
-				await NavigationBar.setButtonStyleAsync(isDark ? 'light' : 'dark')
-			}
-		}
-		configureNavigationBar()
-	}, [currentTheme.colors.background, isDark])
+export default function RootLayout() {
+	const insets = useSafeAreaInsets()
+	const [loaded] = useFonts({
+		SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+		DMSans: require('../assets/fonts/DMSans-VariableFont_opsz,wght.ttf'),
+	})
+	const { currentTheme, isDark } = useLayoutTheme()
 
 	useEffect(() => {
 		if (loaded) SplashScreen.hideAsync()
@@ -78,10 +50,14 @@ export default function RootLayout() {
 	return (
 		<GluestackUIProvider mode="system">
 			<ThemeProvider value={currentTheme}>
-				<StatusBar
-					backgroundColor={currentTheme.colors.background}
-					style={isDark ? 'light' : 'dark'}
+				<StatusBar style={isDark ? 'light' : 'dark'} />
+				<View
+					style={{
+						height: insets.top,
+						backgroundColor: currentTheme.colors.background,
+					}}
 				/>
+
 				<SafeAreaView
 					style={{
 						flex: 1,
@@ -89,16 +65,11 @@ export default function RootLayout() {
 						backgroundColor: currentTheme.colors.background,
 					}}
 				>
-					{(isLoadingResponsive || !loaded) && (
-						<Center className="absolute inset-0 bg-background-100 z-50">
-							<Image
-								size="xl"
-								src="@/assets/images/icon.png"
-								alt="Logo do iae"
-							/>
-						</Center>
-					)}
-					<Stack>
+					<Stack
+						screenOptions={{
+							contentStyle: { backgroundColor: currentTheme.colors.background },
+						}}
+					>
 						<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 						<Stack.Screen name="+not-found" />
 					</Stack>

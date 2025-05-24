@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ScrollView, ScrollViewProps, useWindowDimensions } from 'react-native'
 import { Box } from '@/components/ui/box'
-import { ComponentProps, useEffect, useRef } from 'react'
+import { ComponentProps, useEffect, useRef, useState } from 'react'
 import {
 	useBreakpoint,
 	IBreakpointKey,
@@ -12,6 +12,8 @@ import {
 interface IScrollContainerChildrenProps {
 	isLandscape: boolean
 	breakpoint: IBreakpointKey
+	width: number
+	height: number
 }
 
 export interface IScrollContainerProps
@@ -42,6 +44,7 @@ export const ScrollContainer = ({
 	...props
 }: IScrollContainerProps) => {
 	const scrollViewRef = useRef(null)
+	const [size, setSize] = useState({ width: 0, height: 0 })
 	const innerMarginResponsive = useBreakpoint(
 		isBreakPoint(innerMargin) ? innerMargin : { base: innerMargin },
 	)
@@ -73,7 +76,13 @@ export const ScrollContainer = ({
 		>
 			<ScrollView
 				ref={scrollViewRef}
+				onLayout={(event) => {
+					const { width, height } = event.nativeEvent.layout
+					setSize({ width, height })
+				}}
 				showsVerticalScrollIndicator={false}
+				bounces={false}
+				overScrollMode="never"
 				onContentSizeChange={() => {
 					if (autoScrollToEnd)
 						(scrollViewRef.current as any)?.scrollToEnd?.({ animated: true })
@@ -88,7 +97,7 @@ export const ScrollContainer = ({
 					}}
 				>
 					{typeof children === 'function'
-						? children({ breakpoint, isLandscape })
+						? children({ breakpoint, isLandscape, ...size })
 						: children}
 				</Box>
 			</ScrollView>
