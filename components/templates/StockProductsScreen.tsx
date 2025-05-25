@@ -1,71 +1,184 @@
 import React from 'react'
 import {
-	ScrollContainer,
-	Image,
-	Text,
-	Stack,
-	IconCircle,
-	Icon,
+	Badge,
 	ButtonCircle,
+	IBadgeProps,
+	ScrollContainer,
 } from '@/components/atoms'
-import { ScreenHeader, Table } from '@/components/molecules'
+import { InputTextField, ScreenHeader, Table } from '@/components/molecules'
 
-import { breakpointToPx, useBreakpoint } from '@/hooks/useBreakpoint'
-import { Platform, useWindowDimensions } from 'react-native'
 import { VStack } from '@/components/ui/vstack'
 import { HStack } from '@/components/ui/hstack'
-import { Box } from '@/components/ui/box'
-import { useLayoutTheme } from '@/app/_layout'
 
-export const StockProductsScreen = () => {
-	const screenDimensions = useWindowDimensions()
-	const isNavLeft = screenDimensions.width > screenDimensions.height
-	const { currentTheme } = useLayoutTheme()
-	const style = useBreakpoint({
-		base: undefined,
-		'2xl': { width: breakpointToPx['2xl'], marginInline: 'auto' },
-	})
+const DATA = [
+	{
+		id: '5771',
+		name: 'Rajesh Kumar',
+		quantity: 3,
+		location: 'New Jersey',
+		amount: 200,
+		status: 'Completed',
+		actions: null,
+	},
+	{
+		id: '5232',
+		name: 'Priya Sharma',
+		quantity: 2,
+		location: 'Austin',
+		amount: 150,
+		status: 'Processing',
+		actions: null,
+	},
+	{
+		id: '5773',
+		name: 'Ravi Patel',
+		quantity: 3,
+		location: 'Seattle',
+		amount: 215,
+		status: 'Shipped',
+		actions: null,
+	},
+	{
+		id: '5234',
+		name: 'Ananya Gupta',
+		quantity: 4,
+		location: 'California',
+		amount: 88,
+		status: 'Processing',
+		actions: null,
+	},
+	{
+		id: '5775',
+		name: 'Arjun Singh',
+		quantity: 3,
+		location: 'Seattle',
+		amount: 115,
+		status: 'Completed',
+		actions: null,
+	},
+	{
+		id: '5776',
+		name: 'Nisha Verma',
+		quantity: 3,
+		location: 'Seattle',
+		amount: 115,
+		status: 'Processing',
+		actions: null,
+	},
+	{
+		id: '6347',
+		name: 'Vikram Desai',
+		quantity: 1,
+		location: 'Chicago',
+		amount: 175,
+		status: 'Pending',
+		actions: null,
+	},
+	{
+		id: '4128',
+		name: 'Meera Joshi',
+		quantity: 5,
+		location: 'Miami',
+		amount: 320,
+		status: 'Completed',
+		actions: null,
+	},
+	{
+		id: '7859',
+		name: 'Amitabh Sen',
+		quantity: 2,
+		location: 'Boston',
+		amount: 140,
+		status: 'Cancelled',
+		actions: null,
+	},
+	{
+		id: '9010',
+		name: 'Kiran Nair',
+		quantity: 6,
+		location: 'San Francisco',
+		amount: 400,
+		status: 'Processing',
+		actions: null,
+	},
+]
 
-	const wrapMenuStyle = useBreakpoint({
-		base: undefined,
-		lg: { width: breakpointToPx['lg'], marginInline: 'auto' },
-	})
+export const StockProductsScreen = () => (
+	<VStack>
+		<ScreenHeader
+			paths={[
+				{ label: 'Gestão de Estoque', href: '/stock' },
+				{ label: 'Produtos' },
+			]}
+		/>
 
-	return (
-		<VStack
-			style={{ ...style, backgroundColor: currentTheme.colors.background }}
-		>
-			<ScreenHeader
-				paths={[
-					{ label: 'Gestão de Estoque', href: '/stock' },
-					{ label: 'Produtos' },
-				]}
-				style={{
-					marginLeft: isNavLeft ? 92 : 6,
-					marginRight: isNavLeft ? 12 : 6,
-				}}
+		<HStack className="gap-1 md:gap-2 mb-4">
+			<InputTextField
+				className="mr-auto flex-1 max-w-[400px]"
+				placeholder="Pesquisar..."
+				leftIconProps={{ name: 'Search' }}
 			/>
+			<ButtonCircle size="md" iconProps={{ name: 'Plus' }} />
+			<ButtonCircle size="md" iconProps={{ name: 'RefreshCcw' }} />
+			<ButtonCircle size="md" iconProps={{ name: 'Eye' }} />
+			<ButtonCircle size="md" iconProps={{ name: 'Download' }} />
+			<ButtonCircle size="md" iconProps={{ name: 'Filter' }} />
+		</HStack>
 
-			<Box style={wrapMenuStyle} className="bg-blue-800 w-full">
-				<ScrollContainer
-					borderRadius={24}
-					style={{
-						marginInline: 6,
-						marginLeft: isNavLeft ? 92 : 6,
-						marginRight: isNavLeft ? 12 : 6,
+		<ScrollContainer
+			borderRadius={24}
+			innerMargin={{ base: -4, sm: -6 }}
+			paddingBottom={86}
+		>
+			{({ width }) => (
+				<Table
+					data={DATA}
+					mapTitle={{
+						id: 'CÓDIGO',
+						name: 'NOME',
+						location: 'LOCALIZAÇÃO',
+						quantity: 'QUANTIDADE',
+						amount: 'PREÇO',
+						status: 'STATUS',
+						actions: 'AÇÕES',
 					}}
-					className="bg-blue-800 w-full"
-				>
-					<VStack
-						className="gap-4 w-full"
-						style={{
-							paddingBottom: Platform.OS === 'web' ? 24 : isNavLeft ? 160 : 248,
-						}}
-					>
-						<Table data={[]} columns={[]} />
-					</VStack>
-				</ScrollContainer>
-			</Box>
-		</VStack>
-	)
-}
+					mapTableColProps={{
+						actions: { style: { minWidth: 110 } },
+					}}
+					mapItemColRender={{
+						status: (row) => (
+							<Badge
+								size="sm"
+								action={
+									{
+										Completed: 'success',
+										Processing: 'info',
+										Shipped: 'warning',
+										Pending: 'success',
+										Cancelled: 'error',
+									}[row?.status ?? 'error'] as IBadgeProps['action']
+								}
+								className="w-fit justify-center"
+							>
+								{row?.status}
+							</Badge>
+						),
+						actions: () => (
+							<HStack className="gap-2">
+								<ButtonCircle
+									size="sm"
+									iconProps={{ name: 'Edit', color: 'success_600' }}
+								/>
+								<ButtonCircle
+									size="sm"
+									iconProps={{ name: 'Trash', color: 'error_600' }}
+								/>
+							</HStack>
+						),
+					}}
+					style={{ width }}
+				/>
+			)}
+		</ScrollContainer>
+	</VStack>
+)

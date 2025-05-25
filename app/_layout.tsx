@@ -6,7 +6,7 @@ import { Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import 'react-native-reanimated'
 
-import { SafeAreaView, useColorScheme, View } from 'react-native'
+import { SafeAreaView, useColorScheme } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar'
@@ -51,12 +51,6 @@ export default function RootLayout() {
 		<GluestackUIProvider mode="system">
 			<ThemeProvider value={currentTheme}>
 				<StatusBar style={isDark ? 'light' : 'dark'} />
-				<View
-					style={{
-						height: insets.top,
-						backgroundColor: currentTheme.colors.background,
-					}}
-				/>
 
 				<SafeAreaView
 					style={{

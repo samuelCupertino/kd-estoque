@@ -142,6 +142,7 @@ export const AIAgentsChatDrawer = ({
 							rules={{ required: 'A mensagem é obrigatória.' }}
 							render={({ field }) => (
 								<InputTextField
+									className="flex-1"
 									placeholder="Escreva aqui..."
 									onSubmitEditing={handleSubmit(handleSendMessagesChat)}
 									{...field}

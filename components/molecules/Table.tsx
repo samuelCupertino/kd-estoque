@@ -21,6 +21,7 @@ interface ITableProps<T extends IDataRow>
 	minFirstColWidth?: number
 	data: T[]
 	mapItemColRender?: Partial<Record<keyof T, (row: T) => JSX.Element>>
+	mapTableColProps?: Partial<Record<keyof T, ComponentProps<typeof TableData>>>
 	mapTitle?: Partial<Record<keyof T, string>>
 	perPage?: number
 	onChangePerPage?: (newPerpage: number) => void
@@ -29,15 +30,19 @@ interface ITableProps<T extends IDataRow>
 export function Table<T extends IDataRow>({
 	data,
 	minColWidth = 180,
-	minFirstColWidth = 100,
+	minFirstColWidth = 84,
 	mapItemColRender,
+	mapTableColProps,
 	mapTitle,
 	perPage = 10,
 	onChangePerPage,
 	...props
 }: ITableProps<T>) {
 	const dataCols = Object.keys(data[0] || {}) as (keyof T)[]
-	const headerTitles = dataCols.map((col) => String(mapTitle?.[col] ?? col))
+	const headers = dataCols.map((col) => ({
+		col: col,
+		title: String(mapTitle?.[col] ?? col),
+	}))
 	const totalRows = data.length
 	const totalPages = Math.ceil(totalRows / perPage)
 
@@ -57,13 +62,17 @@ export function Table<T extends IDataRow>({
 				<TableUI className="w-full">
 					<TableHeader>
 						<TableRow className="border-b-0 bg-background-0 dark:bg-background-50">
-							{headerTitles.map((e, i) => (
+							{headers.map((e, i) => (
 								<TableHead
-									key={e}
-									className="px-4"
-									style={{ minWidth: i === 0 ? minFirstColWidth : minColWidth }}
+									key={e.title}
+									className="pl-4 pr-2"
+									{...(mapTableColProps?.[e.col] ?? {})}
+									style={{
+										minWidth: i === 0 ? minFirstColWidth : minColWidth,
+										...((mapTableColProps?.[e.col]?.style ?? {}) as object),
+									}}
 								>
-									<Text size="lg">{e}</Text>
+									<Text size="lg">{e.title}</Text>
 								</TableHead>
 							))}
 						</TableRow>
@@ -75,17 +84,23 @@ export function Table<T extends IDataRow>({
 							return (
 								<TableRow
 									key={row.id}
-									className={`border-b-0 bg-background-${rowIdx % 2 === 0 ? 100 : 200}`}
+									className={`border-b-0 min-h-14 bg-background-${rowIdx % 2 === 0 ? 100 : 200}`}
 								>
 									{rowCols.map((col, colIdx) => (
 										<TableData
 											key={String(col)}
-											className="px-4"
+											className="pl-4 pr-2 py-0"
+											{...(mapTableColProps?.[col] ?? {})}
 											style={{
 												minWidth: colIdx === 0 ? minFirstColWidth : minColWidth,
+												...((mapTableColProps?.[col]?.style ?? {}) as object),
 											}}
 										>
-											{mapItemColRender?.[col]?.(row) ?? String(row[col])}
+											<Box className="w-full h-full min-h-14 justify-center items-start">
+												{mapItemColRender?.[col]?.(row) ?? (
+													<Text size="md">{String(row[col])}</Text>
+												)}
+											</Box>
 										</TableData>
 									))}
 								</TableRow>
@@ -98,8 +113,8 @@ export function Table<T extends IDataRow>({
 			<TableUI className="absolute" style={{ width: minFirstColWidth }}>
 				<TableHeader>
 					<TableRow className="border-b-0 bg-background-0 dark:bg-background-50">
-						<TableHead className="px-4">
-							<Text size="lg">{headerTitles[0]}</Text>
+						<TableHead className="pl-4 pr-2">
+							<Text size="lg">{headers[0].title}</Text>
 						</TableHead>
 					</TableRow>
 				</TableHeader>
@@ -107,15 +122,25 @@ export function Table<T extends IDataRow>({
 					{data.slice(0, perPage).map((row, i) => (
 						<TableRow
 							key={row.id}
-							className={`border-b-0 bg-background-${i % 2 === 0 ? 100 : 200}`}
+							className={`border-b-0 min-h-14 bg-background-${i % 2 === 0 ? 100 : 200}`}
 						>
-							<TableData className="px-4">{row.id}</TableData>
+							<TableData
+								key={row.id}
+								className="pl-4 pr-2 py-0"
+								{...(mapTableColProps?.['id'] ?? {})}
+							>
+								<Box className="w-full h-full min-h-14 justify-center items-start">
+									{mapItemColRender?.['id']?.(row) ?? (
+										<Text size="md">{row.id}</Text>
+									)}
+								</Box>
+							</TableData>
 						</TableRow>
 					))}
 				</TableBody>
 			</TableUI>
 
-			<HStack className="items-center gap-1 pl-4 pr-1 py-3">
+			<HStack className="items-center gap-1 pl-4 pr-1 py-2">
 				<Pressable onPress={() => onChangePerPage?.(10)}>
 					<HStack className="items-center gap-1">
 						<Text size="md">
