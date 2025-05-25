@@ -1,71 +1,51 @@
 import React from 'react'
-import {
-	ScrollContainer,
-	Image,
-	Text,
-	Stack,
-	IconCircle,
-	Icon,
-	ButtonCircle,
-} from '@/components/atoms'
-import { ScreenHeader, Table } from '@/components/molecules'
+import { ButtonCircle } from '@/components/atoms'
+import { InputTextField, ScreenHeader } from '@/components/molecules'
 
-import { breakpointToPx, useBreakpoint } from '@/hooks/useBreakpoint'
-import { Platform, useWindowDimensions } from 'react-native'
 import { VStack } from '@/components/ui/vstack'
 import { HStack } from '@/components/ui/hstack'
-import { Box } from '@/components/ui/box'
-import { useLayoutTheme } from '@/app/_layout'
+import { StockProductsTable } from '@/components/organisms'
 
-export const StockProductsScreen = () => {
-	const screenDimensions = useWindowDimensions()
-	const isNavLeft = screenDimensions.width > screenDimensions.height
-	const { currentTheme } = useLayoutTheme()
-	const style = useBreakpoint({
-		base: undefined,
-		'2xl': { width: breakpointToPx['2xl'], marginInline: 'auto' },
-	})
+export const StockProductsScreen = () => (
+	<VStack>
+		<ScreenHeader
+			paths={[
+				{ label: 'Gestão de Estoque', href: '/stock' },
+				{ label: 'Produtos' },
+			]}
+		/>
 
-	const wrapMenuStyle = useBreakpoint({
-		base: undefined,
-		lg: { width: breakpointToPx['lg'], marginInline: 'auto' },
-	})
-
-	return (
-		<VStack
-			style={{ ...style, backgroundColor: currentTheme.colors.background }}
-		>
-			<ScreenHeader
-				paths={[
-					{ label: 'Gestão de Estoque', href: '/stock' },
-					{ label: 'Produtos' },
-				]}
-				style={{
-					marginLeft: isNavLeft ? 92 : 6,
-					marginRight: isNavLeft ? 12 : 6,
-				}}
+		<HStack className="gap-1 md:gap-2 mb-4">
+			<InputTextField
+				size="xl"
+				className="mr-auto flex-1 max-w-[400px]"
+				placeholder="Pesquisar por nome..."
+				leftIconProps={{ name: 'Search' }}
 			/>
+			<ButtonCircle size="md" iconProps={{ name: 'Plus' }} />
+			<ButtonCircle size="md" iconProps={{ name: 'RefreshCcw' }} />
+			<ButtonCircle size="md" iconProps={{ name: 'Filter' }} />
+			<ButtonCircle size="md" iconProps={{ name: 'Settings' }} />
+			{/* 
+			Filter: 
+				- quantidade (min, max)
+				- categoria (select multiplo)
+				- preco de custo (min, max)
+				- preco de venda (min, max)
+				- data de validade (min, max)
+				- data de criacao (min, max)
+			Settings: 
+				- perquisar por (name, ...)
+				- ordernar por (data de criacao, ...)
+				- formato exibicao (tabela, card)
+					+ tabela: colunas visiveis
+					+ tabela: coluna fixada
+					+ tabela: registros por pagina 
+				- exportar registros
+				- importar registros 
+			*/}
+		</HStack>
 
-			<Box style={wrapMenuStyle} className="bg-blue-800 w-full">
-				<ScrollContainer
-					borderRadius={24}
-					style={{
-						marginInline: 6,
-						marginLeft: isNavLeft ? 92 : 6,
-						marginRight: isNavLeft ? 12 : 6,
-					}}
-					className="bg-blue-800 w-full"
-				>
-					<VStack
-						className="gap-4 w-full"
-						style={{
-							paddingBottom: Platform.OS === 'web' ? 24 : isNavLeft ? 160 : 248,
-						}}
-					>
-						<Table data={[]} columns={[]} />
-					</VStack>
-				</ScrollContainer>
-			</Box>
-		</VStack>
-	)
-}
+		<StockProductsTable />
+	</VStack>
+)

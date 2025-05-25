@@ -1,4 +1,9 @@
-import { View, LayoutChangeEvent, useWindowDimensions } from 'react-native'
+import {
+	View,
+	LayoutChangeEvent,
+	useWindowDimensions,
+	Platform,
+} from 'react-native'
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs'
 import { ButtonCircle, Icon, IIconProps } from '@/components/atoms'
 import { TabBarButtom } from './TabBarButton'
@@ -164,18 +169,21 @@ export const TabBar = ({
 							onPress={() => {
 								animateNavigation(index)
 
-								setTimeout(() => {
-									onRouterChange?.(route)
-									const event = navigation.emit({
-										type: 'tabPress',
-										target: route.key,
-										canPreventDefault: true,
-									})
+								setTimeout(
+									() => {
+										onRouterChange?.(route)
+										const event = navigation.emit({
+											type: 'tabPress',
+											target: route.key,
+											canPreventDefault: true,
+										})
 
-									if (!event.defaultPrevented) {
-										navigation.navigate(route.name, route.params)
-									}
-								}, 0)
+										if (!event.defaultPrevented) {
+											navigation.navigate(route.name, route.params)
+										}
+									},
+									Platform.OS === 'web' ? 0 : 500,
+								)
 							}}
 							onLongPress={() =>
 								navigation.emit({

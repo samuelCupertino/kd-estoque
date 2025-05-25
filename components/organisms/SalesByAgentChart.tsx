@@ -56,7 +56,7 @@ export const SalesByAgentChart = ({
 						size={{ base: 'md', md: 'lg' }}
 						style={{ color: typographyColor }}
 					>
-						Vendas por fornecedor
+						Vendas por categoria
 					</Heading>
 					<ButtonCircle
 						size="xs"
@@ -76,6 +76,25 @@ export const SalesByAgentChart = ({
 						style={{ color: typographyColor }}
 					>
 						Vendas por loja
+					</Heading>
+					<ButtonCircle
+						size="xs"
+						className="ml-auto mb-auto"
+						iconProps={{
+							name: 'Ellipsis',
+							color: { light: 'background_500', dark: 'background_700' },
+						}}
+					/>
+				</HStack>
+				<PieChart className="mt-4" width={width - 48} height={height - 82} />
+			</Box>
+			<Box className="items-cente p-5">
+				<HStack className="justify-between">
+					<Heading
+						size={{ base: 'md', md: 'lg' }}
+						style={{ color: typographyColor }}
+					>
+						Vendas por fornecedor
 					</Heading>
 					<ButtonCircle
 						size="xs"

@@ -29,7 +29,7 @@ export interface IDrawerProps
 	bodyProps?: ComponentProps<typeof DrawerBody>
 	children?:
 		| ((size: { width: number; height: number }) => JSX.Element)
-		| ComponentProps<typeof DrawerUI>['children']
+		| JSX.Element
 	renderButton: (prop: {
 		showDrawer: boolean
 		setShowDrawer: React.Dispatch<React.SetStateAction<boolean>>

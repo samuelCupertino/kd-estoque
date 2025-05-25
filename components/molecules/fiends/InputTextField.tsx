@@ -8,6 +8,7 @@ type IInputField = ComponentProps<typeof InputField>
 interface IInputTextFieldProps
 	extends Omit<ComponentProps<typeof VStack>, 'children'> {
 	label?: string
+	size?: ComponentProps<typeof Input>['size']
 	placeholder?: string
 	helper?: string
 	error?: string
@@ -24,6 +25,7 @@ interface IInputTextFieldProps
 
 export const InputTextField = ({
 	label,
+	size,
 	placeholder,
 	helper,
 	error,
@@ -45,11 +47,12 @@ export const InputTextField = ({
 			</Text>
 		)}
 		<Input
+			size={size}
 			variant="rounded"
 			isDisabled={isDisabled}
 			isInvalid={!!error}
 			isReadOnly={isReadOnly}
-			className="h-auto flex-1 bg-primary-0"
+			className="bg-primary-0"
 		>
 			{leftIconProps && (
 				<InputSlot>
@@ -71,6 +74,7 @@ export const InputTextField = ({
 				onChangeText={onChange}
 				onSubmitEditing={onSubmitEditing}
 				returnKeyType="send"
+				className="text-md"
 			/>
 
 			{rightIconProps && (

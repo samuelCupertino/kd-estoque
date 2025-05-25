@@ -2,6 +2,7 @@ import { Text as TextUI } from '@/components/ui/text'
 import { ComponentProps } from 'react'
 import { IThemeColor, useThemeColor } from '@/hooks/useThemeColor'
 import { IBreakPoint, isBreakPoint, useBreakpoint } from '@/hooks/useBreakpoint'
+import { twMerge } from 'tailwind-merge'
 
 type ITextUIProps = ComponentProps<typeof TextUI>
 
@@ -15,6 +16,7 @@ export const Text = ({
 	font = 'DMSans',
 	size,
 	color,
+	numberOfLines,
 	style,
 	...props
 }: ITextProps) => {
@@ -32,6 +34,11 @@ export const Text = ({
 				fontFamily: font,
 			}}
 			{...props}
+			numberOfLines={numberOfLines}
+			className={twMerge(
+				props.className,
+				numberOfLines && `line-clamp-${numberOfLines}`,
+			)}
 		/>
 	)
 }

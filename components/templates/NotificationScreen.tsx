@@ -18,11 +18,7 @@ export const NotificationScreen = () => {
 			<ScreenHeader paths={[{ label: 'Notificações' }]} />
 
 			<Box style={wrapMenuStyle}>
-				<ScrollContainer
-					borderRadius={24}
-					innerMargin={{ base: -4, sm: -6 }}
-					paddingBottom={86}
-				>
+				<ScrollContainer borderRadius={24} paddingBottom={86}>
 					<VStack className="gap-2">
 						{Array.from({ length: 12 }, (e, i) => (
 							<HStack

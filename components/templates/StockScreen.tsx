@@ -28,7 +28,7 @@ export const StockScreen = () => (
 							iconName="Package"
 							iconColor="secondary_400"
 							title="Produtos"
-							text="Visualizar, criar, editar, excluir, exportar csv..."
+							text="Visualizar, criar, editar, excluir, pesquisar, filtrar, importar csv, exportar csv..."
 							style={{ width, height }}
 							onPress={() => router.push('/stock/products')}
 						/>
@@ -43,7 +43,7 @@ export const StockScreen = () => (
 							iconName="ShoppingCart"
 							iconColor="tertiary_400"
 							title="Vendas"
-							text="Visualizar, criar, editar, excluir, exportar csv, emitir nota fiscal..."
+							text="Visualizar, criar, editar, excluir, pesquisar, filtrar, importar csv, exportar csv, emitir nota fiscal..."
 							style={{ width, height }}
 						/>
 					)}
@@ -57,7 +57,7 @@ export const StockScreen = () => (
 							iconName="Tags"
 							iconColor="quaternary_400"
 							title="Categorias"
-							text="Visualizar, criar, editar, excluir..."
+							text="Visualizar, criar, editar, excluir, pesquisar, filtrar..."
 							style={{ width, height }}
 						/>
 					)}
@@ -71,7 +71,7 @@ export const StockScreen = () => (
 							iconName="Store"
 							iconColor="quinary_400"
 							title="Lojas"
-							text="Visualizar, criar, editar, excluir..."
+							text="Visualizar, criar, editar, excluir, pesquisar, filtrar"
 							style={{ width, height }}
 						/>
 					)}
@@ -85,7 +85,7 @@ export const StockScreen = () => (
 							iconName="Users"
 							iconColor="quaternary_400"
 							title="Usuários"
-							text="Visualizar, criar, editar, excluir..."
+							text="Visualizar, criar, editar, excluir, pesquisar, filtrar"
 							style={{ width, height }}
 						/>
 					)}
@@ -100,7 +100,7 @@ export const StockScreen = () => (
 								iconName="Handshake"
 								iconColor="secondary_400"
 								title="Fornecedores"
-								text="Visualizar, criar, editar, excluir..."
+								text="Visualizar, criar, editar, excluir, pesquisar, filtrar"
 								style={{ width, height }}
 							/>
 						</BagdeCard>
@@ -116,7 +116,7 @@ export const StockScreen = () => (
 								iconName="Contact"
 								iconColor="tertiary_400"
 								title="Clientes"
-								text="Visualizar, criar, editar, excluir..."
+								text="Visualizar, criar, editar, excluir, pesquisar, filtrar"
 								style={{ width, height }}
 							/>
 						</BagdeCard>
