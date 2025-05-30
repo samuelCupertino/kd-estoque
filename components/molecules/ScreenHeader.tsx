@@ -1,8 +1,9 @@
 import { ComponentProps } from 'react'
 import { HStack } from '@/components/ui/hstack'
 import { Heading, Icon } from '@/components/atoms'
-import { Platform, Pressable } from 'react-native'
+import { Platform } from 'react-native'
 import { Href, router } from 'expo-router'
+import { twMerge } from 'tailwind-merge'
 
 interface IScreenHeaderProps extends ComponentProps<typeof HStack> {
 	paths: { label: string; href?: Href }[]
@@ -23,21 +24,17 @@ export const ScreenHeader = ({
 			{paths.map((path, index) => (
 				<HStack key={path.label} space="sm" className="items-center">
 					{index > 0 && <Icon name="ChevronRight" />}
-					<Pressable
+					<Heading
+						size="xl"
+						color={path.href ? 'typography_500' : 'typography_700'}
+						className={twMerge(
+							'py-3',
+							path.href ? 'hover:underline hover:underline-offset-8' : '',
+						)}
 						onPress={() => path.href && router.push(path.href)}
-						disabled={!path.href}
 					>
-						<Heading
-							size="xl"
-							color={path.href ? 'typography_500' : 'typography_700'}
-							className={
-								path.href ? 'hover:underline hover:underline-offset-8' : ''
-							}
-							pointerEvents="none"
-						>
-							{path.label}
-						</Heading>
-					</Pressable>
+						{path.label}
+					</Heading>
 				</HStack>
 			))}
 		</HStack>

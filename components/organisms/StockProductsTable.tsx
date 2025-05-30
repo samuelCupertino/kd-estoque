@@ -212,11 +212,11 @@ const PRODUCTS = [
 	{
 		id: 9010,
 		images: [
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
 		],
 		name: 'Cola Bastão',
 		quantity: 7,
@@ -232,11 +232,11 @@ const PRODUCTS = [
 	{
 		id: 9011,
 		images: [
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
 		],
 		name: 'Grampeador Pequeno',
 		quantity: 4,
@@ -252,11 +252,11 @@ const PRODUCTS = [
 	{
 		id: 9012,
 		images: [
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
 		],
 		name: 'Borracha Escolar',
 		quantity: 4,
@@ -272,11 +272,11 @@ const PRODUCTS = [
 	{
 		id: 9013,
 		images: [
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
 		],
 		name: 'Agenda Escolar',
 		quantity: 1,
@@ -292,11 +292,11 @@ const PRODUCTS = [
 	{
 		id: 9014,
 		images: [
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
 		],
 		name: 'Corretivo Líquido',
 		quantity: 1,
@@ -312,11 +312,11 @@ const PRODUCTS = [
 	{
 		id: 9015,
 		images: [
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
 		],
 		name: 'Clips de Papel',
 		quantity: 7,
@@ -332,11 +332,11 @@ const PRODUCTS = [
 	{
 		id: 9016,
 		images: [
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
 		],
 		name: 'Cola Bastão',
 		quantity: 6,
@@ -352,11 +352,11 @@ const PRODUCTS = [
 	{
 		id: 9017,
 		images: [
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
 		],
 		name: 'Régua 30cm',
 		quantity: 6,
@@ -372,11 +372,11 @@ const PRODUCTS = [
 	{
 		id: 9018,
 		images: [
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
 		],
 		name: 'Calculadora Básica',
 		quantity: 4,
@@ -392,11 +392,11 @@ const PRODUCTS = [
 	{
 		id: 9019,
 		images: [
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
 		],
 		name: 'Papel Sulfite A4',
 		quantity: 4,
@@ -412,11 +412,11 @@ const PRODUCTS = [
 	{
 		id: 9020,
 		images: [
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
-			'https://img.kalunga.com.br/fotosdeprodutos/174950z_1.jpg',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
+			'https://nivalmix.vteximg.com.br/arquivos/ids/178709-1000-1000/Nivalmix_Compasso_Escolar_STira_Linha_C-115_Sertic_599976.jpg?v=637334586376070000',
 		],
 		name: 'Papel Sulfite A4',
 		quantity: 4,
@@ -437,14 +437,14 @@ export interface IStockProductsTableProps
 	extends Omit<ITableProps<IProduct>, 'data'> {}
 
 export const StockProductsTable = ({
-	fixedCol = 'quantity',
+	fixedCol = 'id',
 	...props
 }: IStockProductsTableProps) => {
 	const [curPage, setCurPage] = useState(1)
 	const [perPage, setPerPage] = useState(10)
 	const [order, setOrder] = useState<ITableProps<IProduct>['order']>({
 		by: 'createdAt',
-		dir: 'desc',
+		dir: 'asc',
 	})
 
 	return (
@@ -459,6 +459,7 @@ export const StockProductsTable = ({
 			// totalRows={800}
 			onChangePerPage={setPerPage}
 			mapTitle={{
+				id: 'ID',
 				quantity: 'QTD.',
 				name: 'NOME',
 				costPrice: 'PREÇO DE CUSTO',

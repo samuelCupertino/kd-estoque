@@ -38,7 +38,11 @@ export const ImageGroup = ({
 								{'+ ' + (src.length - display)}
 							</AvatarFallbackText>
 						) : (
-							<AvatarImage source={{ uri }} className="rounded-md" />
+							<AvatarImage
+								source={{ uri }}
+								alt="imagem do produto"
+								className="rounded-md"
+							/>
 						)}
 					</Avatar>
 				),

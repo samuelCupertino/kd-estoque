@@ -17,3 +17,6 @@ export const formatNumberToReal = (number: number) =>
 		style: 'currency',
 		currency: 'BRL',
 	}).format(number)
+
+export const formatExtraSpaces = (text: string) =>
+	text.trimStart().replace(/\s+/g, ' ')

@@ -50,7 +50,10 @@ export default function RootLayout() {
 	return (
 		<GluestackUIProvider mode="system">
 			<ThemeProvider value={currentTheme}>
-				<StatusBar style={isDark ? 'light' : 'dark'} />
+				<StatusBar
+					style={isDark ? 'light' : 'dark'}
+					backgroundColor={currentTheme.colors.background}
+				/>
 
 				<SafeAreaView
 					style={{

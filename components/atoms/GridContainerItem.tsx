@@ -19,7 +19,7 @@ interface IGridContainerItemChildrenProps {
 export interface IGridContainerItemProps
 	extends Omit<ComponentProps<typeof GridItem>, '_extra' | 'children'> {
 	cols: IBreakPoint<number> | number
-	rows: IBreakPoint<number> | number
+	rows?: IBreakPoint<number> | number
 	borderRadius?: number
 	space?: number
 	children:
@@ -29,7 +29,7 @@ export interface IGridContainerItemProps
 
 export const GridContainerItem = ({
 	cols,
-	rows,
+	rows = cols,
 	space = 0,
 	borderRadius,
 	children,

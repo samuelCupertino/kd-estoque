@@ -8,8 +8,6 @@ import {
 
 import { ComponentProps, useRef } from 'react'
 import { HStack } from '@/components/ui/hstack'
-import { VStack } from '@/components/ui/vstack'
-import { Divider } from '@/components/ui/divider'
 import { useSpeechRecognitionWeb } from '@/hooks/useSpeechRecognitionWeb'
 import { useTextToSpeechWeb } from '@/hooks/useTextToSpeechWeb'
 import { useAnnaLisaAI } from '@/hooks/useAnnaLisaAI'
@@ -68,12 +66,12 @@ export const AIAnnaLisaCallDrawer = ({
 				abortListening()
 				abortSpeaking()
 			}}
-			renderButton={({ setShowDrawer }) => (
+			renderButton={({ setIsOpen }) => (
 				<Button
 					iconProps={{ name: 'Phone' }}
 					baseColor="tertiary"
 					onPress={() => {
-						setShowDrawer(true)
+						setIsOpen(true)
 						startQuickListen()
 					}}
 					{...buttonProps}
@@ -81,37 +79,34 @@ export const AIAnnaLisaCallDrawer = ({
 					Ligar
 				</Button>
 			)}
-			renderFooter={({ setShowDrawer }) => (
-				<VStack className="w-full gap-4">
-					<Divider />
-					<HStack className="gap-4 mx-auto">
-						<ButtonCircle
-							size={{ base: 'lg', sm: 'md' }}
-							iconProps={{ name: 'Ellipsis' }}
-						/>
-						<ButtonCircle
-							size={{ base: 'lg', sm: 'md' }}
-							iconProps={{ name: isSpeaking ? 'Volume2' : 'VolumeOff' }}
-							onPress={() => (isSpeaking ? pauseSpeaking() : resumeSpeaking())}
-						/>
-						<ButtonCircle
-							size={{ base: 'lg', sm: 'md' }}
-							iconProps={{ name: isListening ? 'Mic' : 'MicOff' }}
-							onPress={() =>
-								isListening ? abortListening() : startQuickListen()
-							}
-						/>
-						<ButtonCircle
-							size={{ base: 'lg', sm: 'md' }}
-							iconProps={{ name: 'Phone', color: 'red_900' }}
-							onPress={() => {
-								abortListening()
-								abortSpeaking()
-								setShowDrawer(false)
-							}}
-						/>
-					</HStack>
-				</VStack>
+			renderFooter={({ setIsOpen }) => (
+				<HStack className="gap-4 mx-auto">
+					<ButtonCircle
+						size={{ base: 'lg', sm: 'md' }}
+						iconProps={{ name: 'Ellipsis' }}
+					/>
+					<ButtonCircle
+						size={{ base: 'lg', sm: 'md' }}
+						iconProps={{ name: isSpeaking ? 'Volume2' : 'VolumeOff' }}
+						onPress={() => (isSpeaking ? pauseSpeaking() : resumeSpeaking())}
+					/>
+					<ButtonCircle
+						size={{ base: 'lg', sm: 'md' }}
+						iconProps={{ name: isListening ? 'Mic' : 'MicOff' }}
+						onPress={() =>
+							isListening ? abortListening() : startQuickListen()
+						}
+					/>
+					<ButtonCircle
+						size={{ base: 'lg', sm: 'md' }}
+						iconProps={{ name: 'Phone', color: 'red_900' }}
+						onPress={() => {
+							abortListening()
+							abortSpeaking()
+							setIsOpen(false)
+						}}
+					/>
+				</HStack>
 			)}
 			{...props}
 		>

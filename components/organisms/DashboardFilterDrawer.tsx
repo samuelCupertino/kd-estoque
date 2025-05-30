@@ -14,11 +14,11 @@ export const DashboardFilterDrawer = ({
 		title="Filtros"
 		subtitle="Métricas e gráficos"
 		iconName="Filter"
-		renderButton={({ setShowDrawer }) => (
+		renderButton={({ setIsOpen }) => (
 			<ButtonCircle
 				className="bg-background-0"
 				iconProps={{ name: 'Filter' }}
-				onPress={() => setShowDrawer(true)}
+				onPress={() => setIsOpen(true)}
 			>
 				<Badge
 					className="absolute -top-1 right-10 bg-red-500"

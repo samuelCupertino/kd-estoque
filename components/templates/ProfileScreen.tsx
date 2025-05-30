@@ -7,6 +7,7 @@ import {
 	IconCircle,
 	Icon,
 	ButtonCircle,
+	Divider,
 } from '@/components/atoms'
 import { ScreenHeader } from '@/components/molecules'
 
@@ -45,9 +46,7 @@ export const ProfileScreen = () => {
 							</VStack>
 						</VStack>
 
-						<Text size="md" color="typography_500">
-							Perfil
-						</Text>
+						<Divider title="Perfil" variant="left" />
 						<Stack
 							className="rounded-3xl overflow-hidden border-2 border-background-100 bg-background-0 dark:bg-background-50"
 							withDivider
@@ -99,9 +98,7 @@ export const ProfileScreen = () => {
 							</HStack>
 						</Stack>
 
-						<Text size="md" color="typography_500">
-							Preferências
-						</Text>
+						<Divider title="Preferências" variant="left" />
 						<Stack
 							className="rounded-3xl overflow-hidden border-2 border-background-100 bg-background-0 dark:bg-background-50"
 							withDivider

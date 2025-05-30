@@ -12,14 +12,13 @@ import { Platform, ScrollView, ViewStyle } from 'react-native'
 import { HStack } from '@/components/ui/hstack'
 import {
 	ButtonCircle,
-	Icon,
 	IScrollContainerProps,
 	ScrollContainer,
 	Text,
 } from '@/components/atoms'
 import { Pressable } from '@/components/ui/pressable'
 import { twMerge } from 'tailwind-merge'
-import { SelectField } from './fiends/SelectField'
+import { SelectMenuField } from './fiends/SelectMenuField'
 
 type IDataRow = { id: string | number } & Record<string, unknown>
 
@@ -57,11 +56,6 @@ export interface ITableProps<T extends IDataRow>
 }
 
 const getPagination = (curPage: number, totalPages: number) => {
-	// if (totalPages <= 3) return [...Array(totalPages).keys()].map((i) => i + 1)
-	// if (curPage <= 2) return [1, 2, '->', totalPages]
-	// if (curPage === 3) return [1, '<-', 3, '->', totalPages]
-	// if (curPage < totalPages - 1) return [1, '<-', curPage, '->', totalPages]
-	// return [1, '<-', totalPages - 1, totalPages]
 	if (totalPages <= 5) return [...Array(totalPages).keys()].map((i) => i + 1)
 	if (curPage <= 3) return [1, 2, 3, '->', totalPages]
 	if (curPage >= totalPages - 2)
@@ -196,7 +190,7 @@ export function Table<T extends IDataRow>({
 			{TbProps.data.map((row, rowIdx) => (
 				<TableRow
 					key={row.id}
-					className={`border-b-0 min-h-14 bg-background-${rowIdx % 2 === 0 ? 100 : 200}`}
+					className={`border-b-0 min-h-14 bg-primary-${rowIdx % 2 === 0 ? 100 : 50} dark:bg-background-${rowIdx % 2 === 0 ? 100 : 200}`}
 				>
 					{TbProps.dataCols.map((col, i) => (
 						<TableData
@@ -230,7 +224,7 @@ export function Table<T extends IDataRow>({
 	const fixedColStyle = dataMapColsStyle?.[fixedCol]?.style as ViewStyle
 	const offset = Math.max(curPage - 1, 0) * perPage
 	const dataFormatted = data
-		.toSorted((a, b) => {
+		.sort((a, b) => {
 			if (order?.dir === 'asc') return a[order.by] < b[order.by] ? -1 : 1
 			if (order?.dir === 'desc') return a[order.by] > b[order.by] ? -1 : 1
 			return 0
@@ -315,7 +309,7 @@ export function Table<T extends IDataRow>({
 					Platform.OS === 'web' ? 'py-1' : 'py-2',
 				)}
 			>
-				<SelectField
+				<SelectMenuField
 					options={[
 						{
 							value: 5,
@@ -338,18 +332,9 @@ export function Table<T extends IDataRow>({
 							label: `Exibir 100 em ${Math.ceil(totalRows / 100)} paginas`,
 						},
 					].filter((e) => e.value <= totalRows)}
-					renderButton={({ optionSelected, isOpen }) => (
-						<HStack className="items-center gap-1">
-							<Text size="sm">
-								{optionSelected?.value} de {totalRows}
-							</Text>
-							<Icon
-								name={isOpen ? 'ChevronUp' : 'ChevronDown'}
-								color="typography_400"
-								className="-mr-2"
-							/>
-						</HStack>
-					)}
+					renderButtonText={({ optionSelected }) =>
+						`${optionSelected?.value} de ${totalRows}`
+					}
 					size="sm"
 					value={perPage}
 					onChange={(op) => {

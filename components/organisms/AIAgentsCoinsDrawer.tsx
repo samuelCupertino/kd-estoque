@@ -40,11 +40,11 @@ export const AIAgentsCoinsDrawer = ({
 			title="Moedas"
 			subtitle="Adicione moedas na carteira"
 			iconName="DollarSign"
-			renderButton={({ setShowDrawer }) => (
+			renderButton={({ setIsOpen }) => (
 				<ButtonCircle
 					className="bg-background-0"
 					iconProps={{ name: 'CircleDollarSign' }}
-					onPress={() => setShowDrawer(true)}
+					onPress={() => setIsOpen(true)}
 				>
 					<Badge
 						className="absolute -top-1 right-10 bg-amber-300"

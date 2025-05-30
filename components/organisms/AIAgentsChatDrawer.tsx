@@ -121,11 +121,11 @@ export const AIAgentsChatDrawer = ({
 
 	return (
 		<Drawer
-			renderButton={({ setShowDrawer }) => (
+			renderButton={({ setIsOpen }) => (
 				<Button
 					iconProps={{ name: 'MessageCircle' }}
 					baseColor={baseColor50}
-					onPress={() => setShowDrawer(true)}
+					onPress={() => setIsOpen(true)}
 					{...buttonProps}
 				>
 					Chat

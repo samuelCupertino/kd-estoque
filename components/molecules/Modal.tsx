@@ -27,14 +27,20 @@ export interface IModalProps
 	iconName: IIconCircleProps['name']
 	iconColor?: IIconCircleProps['color']
 	bodyProps?: ComponentProps<typeof ModalBody>
-	children?: ComponentProps<typeof ModalUI>['children']
-	renderButton: (prop: {
-		showModal: boolean
-		setShowModal: React.Dispatch<React.SetStateAction<boolean>>
+	showFooterDivider?: boolean
+	children?:
+		| ComponentProps<typeof ModalUI>['children']
+		| ((props: {
+				isOpen: boolean
+				setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+		  }) => ComponentProps<typeof ModalUI>['children'])
+	renderButton?: (props: {
+		isOpen: boolean
+		setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 	}) => JSX.Element
-	renderFooter?: (prop: {
-		showModal: boolean
-		setShowModal: React.Dispatch<React.SetStateAction<boolean>>
+	renderFooter?: (props: {
+		isOpen: boolean
+		setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 	}) => JSX.Element
 }
 
@@ -48,19 +54,20 @@ export const Modal = ({
 	children,
 	onClose,
 	bodyProps,
+	showFooterDivider = true,
 	...props
 }: IModalProps) => {
-	const [showModal, setShowModal] = useState(false)
-	const maxHeight = Dimensions.get('window').height * 0.6
+	const [isOpen, setIsOpen] = useState(false)
+	const maxHeight = Dimensions.get('window').height * 0.8
 
 	return (
 		<>
-			{renderButton({ showModal, setShowModal })}
+			{renderButton?.({ isOpen, setIsOpen })}
 			<ModalUI
-				isOpen={showModal}
+				isOpen={isOpen}
 				onClose={() => {
 					onClose?.()
-					setShowModal(false)
+					setIsOpen(false)
 				}}
 				{...props}
 			>
@@ -92,13 +99,13 @@ export const Modal = ({
 								className="hover:scale-110 duration-500"
 								onResponderEnd={() => {
 									onClose?.()
-									setShowModal(false)
+									setIsOpen(false)
 								}}
 							>
 								<IconCircle
 									name="XIcon"
 									size={16}
-									color={{ light: 'background_400', dark: 'background_800' }}
+									color={{ light: 'background_600', dark: 'background_800' }}
 								/>
 							</Pressable>
 						</ModalCloseButton>
@@ -113,13 +120,22 @@ export const Modal = ({
 						{...bodyProps}
 						style={{ maxHeight, ...(bodyProps?.style as object) }}
 					>
-						{children}
+						{typeof children === 'function'
+							? children({ isOpen, setIsOpen })
+							: children}
 					</ModalBody>
 
 					{renderFooter && (
-						<ModalFooter className="px-4 pt-0 pb-4">
-							{renderFooter({ showModal, setShowModal })}
-						</ModalFooter>
+						<>
+							{showFooterDivider && (
+								<Box className="px-4 mb-4">
+									<Divider className="rounded-full" />
+								</Box>
+							)}
+							<ModalFooter className="px-4 pt-0 pb-4">
+								{renderFooter({ isOpen, setIsOpen })}
+							</ModalFooter>
+						</>
 					)}
 				</ModalContent>
 			</ModalUI>

@@ -4,7 +4,10 @@ import { InputTextField, ScreenHeader } from '@/components/molecules'
 
 import { VStack } from '@/components/ui/vstack'
 import { HStack } from '@/components/ui/hstack'
-import { StockProductsTable } from '@/components/organisms'
+import {
+	StockProductsCreateDrawer,
+	StockProductsTable,
+} from '@/components/organisms'
 
 export const StockProductsScreen = () => (
 	<VStack>
@@ -15,14 +18,14 @@ export const StockProductsScreen = () => (
 			]}
 		/>
 
-		<HStack className="gap-1 md:gap-2 mb-4">
+		<HStack className="gap-2 mb-4">
 			<InputTextField
 				size="xl"
 				className="mr-auto flex-1 max-w-[400px]"
 				placeholder="Pesquisar por nome..."
 				leftIconProps={{ name: 'Search' }}
 			/>
-			<ButtonCircle size="md" iconProps={{ name: 'Plus' }} />
+			<StockProductsCreateDrawer />
 			<ButtonCircle size="md" iconProps={{ name: 'RefreshCcw' }} />
 			<ButtonCircle size="md" iconProps={{ name: 'Filter' }} />
 			<ButtonCircle size="md" iconProps={{ name: 'Settings' }} />

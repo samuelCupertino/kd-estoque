@@ -75,12 +75,12 @@ export const AIEduarteCallDrawer = ({
 				abortListening()
 				abortSpeaking()
 			}}
-			renderButton={({ setShowDrawer }) => (
+			renderButton={({ setIsOpen }) => (
 				<Button
 					iconProps={{ name: 'Phone' }}
 					baseColor="quaternary"
 					onPress={() => {
-						setShowDrawer(true)
+						setIsOpen(true)
 						startQuickListen()
 					}}
 					{...buttonProps}
@@ -88,7 +88,7 @@ export const AIEduarteCallDrawer = ({
 					Ligar
 				</Button>
 			)}
-			renderFooter={({ setShowDrawer }) => (
+			renderFooter={({ setIsOpen }) => (
 				<VStack className="w-full gap-4">
 					<Divider />
 					<HStack className="gap-4 mx-auto">
@@ -114,7 +114,7 @@ export const AIEduarteCallDrawer = ({
 							onPress={() => {
 								abortListening()
 								abortSpeaking()
-								setShowDrawer(false)
+								setIsOpen(false)
 							}}
 						/>
 					</HStack>

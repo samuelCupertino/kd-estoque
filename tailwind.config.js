@@ -4,7 +4,13 @@ import gluestackPlugin from '@gluestack-ui/nativewind-utils/tailwind-plugin'
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	darkMode: 'class',
-	content: ['app/**/*.{tsx,jsx,ts,js}', 'components/**/*.{tsx,jsx,ts,js}'],
+	content: [
+		'app/**/*.{tsx,jsx,ts,js}',
+		'components/**/*.{tsx,jsx,ts,js}',
+		'./App.{js,jsx,ts,tsx}',
+		'./components/**/*.{js,jsx,ts,tsx}',
+		'./node_modules/@gluestack-ui/themed/**/*.{js,jsx,ts,tsx}',
+	],
 	presets: [require('nativewind/preset')],
 	safelist: [
 		{

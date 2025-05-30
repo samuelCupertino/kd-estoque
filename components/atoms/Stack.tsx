@@ -3,9 +3,10 @@ import { VStack } from '@/components/ui/vstack'
 import { HStack } from '@/components/ui/hstack'
 import { Divider } from '@/components/ui/divider'
 import React from 'react'
+import { IBreakPoint, isBreakPoint, useBreakpoint } from '@/hooks/useBreakpoint'
 
 export interface IStackProps extends ComponentProps<typeof VStack> {
-	dir?: 'vertical' | 'horizontal'
+	dir?: IBreakPoint<'vertical' | 'horizontal'> | 'vertical' | 'horizontal'
 	children: JSX.Element | JSX.Element[]
 	withDivider?: boolean
 	dividerProps?: ComponentProps<typeof Divider>
@@ -18,7 +19,8 @@ export const Stack = ({
 	dividerProps,
 	...props
 }: IStackProps) => {
-	const StackUI = dir === 'vertical' ? VStack : HStack
+	const dirResp = useBreakpoint(isBreakPoint(dir) ? dir : { base: dir })
+	const StackUI = dirResp === 'vertical' ? VStack : HStack
 	const childrensArray = Array.isArray(children) ? [...children] : [children]
 	const newChildrens = childrensArray.reduce((acc, child, i) => {
 		const newChilds =

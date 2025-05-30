@@ -26,24 +26,24 @@ export const AIAldairDrawer = ({ ...props }: IAIAldairDrawerProps) => {
 			subtitle="Auditor de Produtos"
 			iconName="PackageSearch"
 			iconColor="quinary_400"
-			renderButton={({ setShowDrawer }) => (
+			renderButton={({ setIsOpen }) => (
 				<Button
 					className="w-full h-full"
 					iconProps={{ name: 'TextSearch' }}
 					baseColor="quinary"
-					onPress={() => setShowDrawer(true)}
+					onPress={() => setIsOpen(true)}
 				>
 					Iniciar
 				</Button>
 			)}
-			renderFooter={({ setShowDrawer }) => (
+			renderFooter={({ setIsOpen }) => (
 				<VStack className="w-full gap-4">
 					<Divider />
 					<HStack className="w-full gap-4">
-						<Button variant="danger" onPress={() => setShowDrawer(false)}>
+						<Button variant="danger" onPress={() => setIsOpen(false)}>
 							Cancelar
 						</Button>
-						<Button baseColor="secondary" onPress={() => setShowDrawer(false)}>
+						<Button baseColor="secondary" onPress={() => setIsOpen(false)}>
 							Salvar
 						</Button>
 					</HStack>

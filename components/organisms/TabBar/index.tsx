@@ -83,7 +83,7 @@ export const TabBar = ({
 	const animateNavigation = useCallback(
 		(index: number) => {
 			tabPositionX.value = withSpring(buttonWidth * index, {
-				duration: 1000,
+				duration: 2000,
 			})
 			setSelectedIndex(index)
 		},
@@ -168,22 +168,17 @@ export const TabBar = ({
 							testID={options.tabBarButtonTestID}
 							onPress={() => {
 								animateNavigation(index)
+								onRouterChange?.(route)
 
-								setTimeout(
-									() => {
-										onRouterChange?.(route)
-										const event = navigation.emit({
-											type: 'tabPress',
-											target: route.key,
-											canPreventDefault: true,
-										})
+								const event = navigation.emit({
+									type: 'tabPress',
+									target: route.key,
+									canPreventDefault: true,
+								})
 
-										if (!event.defaultPrevented) {
-											navigation.navigate(route.name, route.params)
-										}
-									},
-									Platform.OS === 'web' ? 0 : 500,
-								)
+								if (!event.defaultPrevented) {
+									navigation.navigate(route.name, route.params)
+								}
 							}}
 							onLongPress={() =>
 								navigation.emit({

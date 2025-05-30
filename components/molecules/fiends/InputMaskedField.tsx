@@ -1,19 +1,45 @@
-import React, { ComponentProps, forwardRef } from 'react'
-import { Input, InputField, InputSlot } from '@/components/ui/input'
+import React, { ComponentProps, forwardRef, useState } from 'react'
+import { Input, InputSlot } from '@/components/ui/input'
 import { VStack } from '@/components/ui/vstack'
 import { Icon, IIconProps, Skeleton, Text } from '@/components/atoms'
 import { Pressable } from '@/components/ui/pressable'
+import { twMerge } from 'tailwind-merge'
 import { IBreakPoint, isBreakPoint, useBreakpoint } from '@/hooks/useBreakpoint'
 import { Popover } from '@/components/molecules/Popover'
 import { HStack } from '@/components/ui/hstack'
-import { formatExtraSpaces } from '@/utils/formatString'
-import { twMerge } from 'tailwind-merge'
+import { Platform, TextInput } from 'react-native'
+import { useThemeColor } from '@/hooks/useThemeColor'
+import MaskInput from 'react-native-mask-input'
 
-export type IInputField = ComponentProps<typeof InputField>
+type IInputField = ComponentProps<typeof MaskInput>
 
-export interface IInputTextFieldProps
-	extends Omit<ComponentProps<typeof VStack>, 'children'> {
+const inputMasks = {
+	phone: [
+		'(',
+		/\d/,
+		/\d/,
+		')',
+		' ',
+		/\d/,
+		/\d/,
+		/\d/,
+		/\d/,
+		/\d/,
+		'-',
+		/\d/,
+		/\d/,
+		/\d/,
+		/\d/,
+	],
+	date: [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/],
+}
+
+type InputMasks = keyof typeof inputMasks
+
+interface IInputMaskedFieldProps
+	extends Omit<ComponentProps<typeof VStack>, 'mask'> {
 	label?: string
+	mask: InputMasks
 	size?:
 		| IBreakPoint<ComponentProps<typeof Input>['size']>
 		| ComponentProps<typeof Input>['size']
@@ -25,20 +51,18 @@ export interface IInputTextFieldProps
 	isReadOnly?: boolean
 	isLoading?: boolean
 	value?: IInputField['value']
-	type?: IInputField['type']
 	onBlur?: IInputField['onBlur']
 	leftIconProps?: { onPress?: () => void } & Partial<IIconProps>
 	rightIconProps?: { onPress?: () => void } & Partial<IIconProps>
-	renderLeft?: () => JSX.Element
-	renderRight?: () => JSX.Element
-	onSubmitEditing?: IInputField['onSubmitEditing']
-	onChange?: IInputField['onChangeText']
+	keyboardType?: IInputField['keyboardType']
+	onChange?: (text: string, maskedText: string) => void
 }
 
-export const InputTextField = forwardRef<IInputField, IInputTextFieldProps>(
+export const InputMaskedField = forwardRef<TextInput, IInputMaskedFieldProps>(
 	(
 		{
 			label,
+			mask,
 			size = { base: 'xl', md: 'lg' },
 			placeholder,
 			helper,
@@ -48,19 +72,22 @@ export const InputTextField = forwardRef<IInputField, IInputTextFieldProps>(
 			isReadOnly,
 			isLoading,
 			value,
-			type = 'text',
 			onBlur,
 			leftIconProps,
 			rightIconProps,
-			renderLeft,
-			renderRight,
-			onSubmitEditing,
+			keyboardType,
 			onChange,
 			...props
 		},
 		ref,
 	) => {
+		const [isFocused, setIsFocused] = useState(false)
 		const sizeResp = useBreakpoint(isBreakPoint(size) ? size : { base: size })
+		const textColor = useThemeColor('typography_600')
+		const placeholderColor = useThemeColor({
+			light: 'typography_400',
+			dark: 'typography_200',
+		})
 
 		return (
 			<VStack {...props}>
@@ -88,6 +115,7 @@ export const InputTextField = forwardRef<IInputField, IInputTextFieldProps>(
 						isDisabled={isDisabled}
 						isInvalid={!!error}
 						isReadOnly={isReadOnly}
+						isFocused={isFocused}
 						className="bg-primary-0 dark:bg-background-50 duration-500"
 					>
 						{leftIconProps && (
@@ -95,7 +123,7 @@ export const InputTextField = forwardRef<IInputField, IInputTextFieldProps>(
 								<Icon
 									name="Search"
 									color="typography_400"
-									size={sizeResp}
+									size="md"
 									{...leftIconProps}
 									className={twMerge('ml-3', leftIconProps.className)}
 								/>
@@ -106,21 +134,28 @@ export const InputTextField = forwardRef<IInputField, IInputTextFieldProps>(
 							</InputSlot>
 						)}
 
-						{renderLeft && <InputSlot>{renderLeft()}</InputSlot>}
-
-						<InputField
+						<MaskInput
 							ref={ref}
-							placeholder={placeholder}
-							type={type}
 							value={value}
-							onBlur={onBlur}
-							onChangeText={(e) => onChange?.(formatExtraSpaces(e))}
-							onSubmitEditing={onSubmitEditing}
-							returnKeyType="send"
-							className="text-md placeholder:color-typography-400 dark:placeholder:color-typography-200"
+							onChangeText={(masked, unmasked) => onChange?.(unmasked, masked)}
+							onBlur={(e) => {
+								setIsFocused(false)
+								onBlur?.(e)
+							}}
+							onFocus={() => setIsFocused(true)}
+							mask={inputMasks[mask]}
+							placeholder={placeholder}
+							placeholderTextColor={placeholderColor}
+							keyboardType={keyboardType}
+							style={{
+								fontSize: 14,
+								paddingHorizontal: 14,
+								color: textColor,
+								flex: 1,
+								borderWidth: 0,
+								...(Platform.OS === 'web' && { outlineStyle: 'none' }),
+							}}
 						/>
-
-						{renderRight && <InputSlot>{renderRight()}</InputSlot>}
 
 						{rightIconProps && (
 							<InputSlot>

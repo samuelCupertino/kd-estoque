@@ -1,17 +1,25 @@
-import React, { ComponentProps, forwardRef } from 'react'
-import { Input, InputField, InputSlot } from '@/components/ui/input'
+import React, { ComponentProps, forwardRef, useState } from 'react'
+import { Input, InputSlot } from '@/components/ui/input'
 import { VStack } from '@/components/ui/vstack'
-import { Icon, IIconProps, Skeleton, Text } from '@/components/atoms'
+import {
+	ButtonCircle,
+	Icon,
+	IIconProps,
+	Skeleton,
+	Text,
+} from '@/components/atoms'
 import { Pressable } from '@/components/ui/pressable'
+import { twMerge } from 'tailwind-merge'
 import { IBreakPoint, isBreakPoint, useBreakpoint } from '@/hooks/useBreakpoint'
 import { Popover } from '@/components/molecules/Popover'
 import { HStack } from '@/components/ui/hstack'
-import { formatExtraSpaces } from '@/utils/formatString'
-import { twMerge } from 'tailwind-merge'
+import CurrencyInput from 'react-native-currency-input'
+import { TextInput } from 'react-native'
+import { useThemeColor } from '@/hooks/useThemeColor'
 
-export type IInputField = ComponentProps<typeof InputField>
+type IInputField = ComponentProps<typeof CurrencyInput>
 
-export interface IInputTextFieldProps
+interface IInputNumberFieldProps
 	extends Omit<ComponentProps<typeof VStack>, 'children'> {
 	label?: string
 	size?:
@@ -25,17 +33,16 @@ export interface IInputTextFieldProps
 	isReadOnly?: boolean
 	isLoading?: boolean
 	value?: IInputField['value']
-	type?: IInputField['type']
+	minValue?: number
+	maxValue?: number
 	onBlur?: IInputField['onBlur']
 	leftIconProps?: { onPress?: () => void } & Partial<IIconProps>
 	rightIconProps?: { onPress?: () => void } & Partial<IIconProps>
-	renderLeft?: () => JSX.Element
-	renderRight?: () => JSX.Element
 	onSubmitEditing?: IInputField['onSubmitEditing']
-	onChange?: IInputField['onChangeText']
+	onChange?: IInputField['onChangeValue']
 }
 
-export const InputTextField = forwardRef<IInputField, IInputTextFieldProps>(
+export const InputNumberField = forwardRef<TextInput, IInputNumberFieldProps>(
 	(
 		{
 			label,
@@ -48,19 +55,20 @@ export const InputTextField = forwardRef<IInputField, IInputTextFieldProps>(
 			isReadOnly,
 			isLoading,
 			value,
-			type = 'text',
+			minValue = 0,
+			maxValue = 999999999999999,
 			onBlur,
 			leftIconProps,
 			rightIconProps,
-			renderLeft,
-			renderRight,
-			onSubmitEditing,
 			onChange,
 			...props
 		},
 		ref,
 	) => {
+		const [isFocused, setIsFocused] = useState(false)
 		const sizeResp = useBreakpoint(isBreakPoint(size) ? size : { base: size })
+		const textColor = useThemeColor('typography_600')
+		const placeholderColor = useThemeColor('typography_200')
 
 		return (
 			<VStack {...props}>
@@ -88,6 +96,7 @@ export const InputTextField = forwardRef<IInputField, IInputTextFieldProps>(
 						isDisabled={isDisabled}
 						isInvalid={!!error}
 						isReadOnly={isReadOnly}
+						isFocused={isFocused}
 						className="bg-primary-0 dark:bg-background-50 duration-500"
 					>
 						{leftIconProps && (
@@ -106,21 +115,52 @@ export const InputTextField = forwardRef<IInputField, IInputTextFieldProps>(
 							</InputSlot>
 						)}
 
-						{renderLeft && <InputSlot>{renderLeft()}</InputSlot>}
+						<HStack className="items-center">
+							<CurrencyInput
+								ref={ref}
+								placeholder={placeholder}
+								value={value ?? null}
+								onChangeValue={onChange}
+								onBlur={(e) => {
+									setIsFocused(false)
+									onBlur?.(e)
+								}}
+								onFocus={() => setIsFocused(true)}
+								precision={0}
+								minValue={minValue}
+								maxValue={maxValue}
+								keyboardType="numeric"
+								placeholderTextColor={placeholderColor}
+								style={{
+									fontSize: 14,
+									paddingHorizontal: 14,
+									color: textColor,
+									flex: 1,
+									zIndex: 0,
+								}}
+							/>
 
-						<InputField
-							ref={ref}
-							placeholder={placeholder}
-							type={type}
-							value={value}
-							onBlur={onBlur}
-							onChangeText={(e) => onChange?.(formatExtraSpaces(e))}
-							onSubmitEditing={onSubmitEditing}
-							returnKeyType="send"
-							className="text-md placeholder:color-typography-400 dark:placeholder:color-typography-200"
-						/>
-
-						{renderRight && <InputSlot>{renderRight()}</InputSlot>}
+							<HStack className="gap-1">
+								<ButtonCircle
+									size={{ base: 'md', md: 'sm' }}
+									className="!bg-background-100 dark:!bg-background-300"
+									iconProps={{ name: 'Minus' }}
+									isDisabled={(value || 0) <= minValue}
+									onPress={() =>
+										onChange?.(Math.max((value || 0) - 1, minValue))
+									}
+								/>
+								<ButtonCircle
+									size={{ base: 'md', md: 'sm' }}
+									className="!bg-background-100 dark:!bg-background-300"
+									iconProps={{ name: 'Plus' }}
+									isDisabled={(value || 0) >= maxValue}
+									onPress={() =>
+										onChange?.(Math.min((value || 0) + 1, maxValue))
+									}
+								/>
+							</HStack>
+						</HStack>
 
 						{rightIconProps && (
 							<InputSlot>
